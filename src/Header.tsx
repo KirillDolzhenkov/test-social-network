@@ -4,8 +4,8 @@ type HeaderPropsType = {}
 
 const Header: React.FC<HeaderPropsType> = (props) => {
     return (
-        <div>
-
+        <div className={"header"}>
+            Header
         </div>
     )
 }

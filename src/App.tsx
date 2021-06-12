@@ -6,7 +6,7 @@ import {Navbar} from "./Navbar";
 
 function App() {
     return (
-        <div className="App">
+        <div className="app-wrapper">
             <Header/>
             <Navbar/>
             <Content/>

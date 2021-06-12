@@ -4,8 +4,8 @@ type ContentPropsType = {}
 
 const Content: React.FC<ContentPropsType> = (props) => {
     return (
-        <div>
-
+        <div className={"content"}>
+            Content
         </div>
     )
 }
