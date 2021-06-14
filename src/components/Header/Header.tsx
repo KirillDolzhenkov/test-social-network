@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./Header.module.css";
 
 type HeaderPropsType = {}
 
 const Header: React.FC<HeaderPropsType> = (props) => {
     return (
-        <div className={"header"}>
+        <div className={styles.header}>
             Header
         </div>
     )
