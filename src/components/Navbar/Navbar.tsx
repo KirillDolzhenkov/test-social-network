@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 type NavbarPropsType = {}
@@ -7,22 +8,22 @@ const Navbar: React.FC<NavbarPropsType> = (props) => {
     return (
         <div className={styles.navbar}>
             <div className={styles.item}>
-                <a>Profile</a>
+                <NavLink to={"/Profile"} activeClassName={styles.active}>Profile</NavLink>
             </div>
             <div className={styles.item}>
-                <a>Messages</a>
+                <NavLink to={"/Dialogs"} activeClassName={styles.active}>Messages</NavLink>
             </div>
             <div className={styles.item}>
-                <a>Users</a>
+                <NavLink to={"/Users"} activeClassName={styles.active}>Users</NavLink>
             </div>
             <div className={styles.item}>
-                <a>News</a>
+                <NavLink to={"/News"} activeClassName={styles.active}>News</NavLink>
             </div>
             <div className={styles.item}>
-                <a>Music</a>
+                <NavLink to={"/Music"} activeClassName={styles.active}>Music</NavLink>
             </div>
             <div className={styles.item}>
-                <a>Settings</a>
+                <NavLink to={"/Settings"} activeClassName={styles.active}>Settings</NavLink>
             </div>
         </div>
     )

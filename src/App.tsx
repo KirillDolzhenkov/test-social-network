@@ -3,16 +3,21 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
+import {BrowserRouter, Route} from "react-router-dom";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
 function App() {
     return (
-        <div className="app-wrapper">
-            <Header/>
-            <Navbar/>
-           <div>
-               <Profile/>
-           </div>
-        </div>
+        <BrowserRouter>
+            <div className="app-wrapper">
+                <Header/>
+                <Navbar/>
+                <div>
+                    <Route path={"/Profile"} render={()=><Profile/>}/>
+                    <Route path={"/Dialogs"} render={()=><Dialogs/>}/>
+                </div>
+            </div>
+        </BrowserRouter>
     );
 }
 
