@@ -6,7 +6,7 @@ type ProfilePropsType = {}
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
-        <div className={styles.content}>
+        <div className={styles.profile}>
             Content
         </div>
     )
