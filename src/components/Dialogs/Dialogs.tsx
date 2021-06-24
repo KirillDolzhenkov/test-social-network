@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Dialogs.module.css"
 import {Dialog} from "./Dialog/Dialog";
-import { Message } from "./Message/Message";
+import {Message} from "./Message/Message";
 
 type DialogsPropsType = {}
 
@@ -16,7 +16,6 @@ type MessagesDataType = {
 }
 
 
-
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const DialogsData: Array<DialogsDataType> = [
@@ -29,18 +28,22 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         {id: 2, message: "How are u?"},
     ]
 
+    let dialogElements = DialogsData.map(d => <Dialog name={d.name} id={d.id}/>);
+    let messageElements = MessagesData.map(m => <Message message={m.message} id={m.id}/>);
 
     return (
         <div className={styles.dialogsPage}>
 
             <div className={styles.dialogs}>
-                <Dialog name={DialogsData[0].name} id={DialogsData[0].id}/>
-                <Dialog name={DialogsData[1].name} id={DialogsData[1].id}/>
+                {
+                    dialogElements
+                }
             </div>
 
             <div className={styles.messages}>
-                <Message message={MessagesData[0].message} id={MessagesData[0].id}/>
-                <Message message={MessagesData[1].message} id={MessagesData[1].id}/>
+                {
+                    messageElements
+                }
             </div>
 
         </div>

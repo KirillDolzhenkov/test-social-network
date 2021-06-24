@@ -1,4 +1,4 @@
-.app-wrapper {
+/*.app-wrapper {
     display: grid;
     margin: 0 auto;
     grid-template-areas:
@@ -7,4 +7,43 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
+}*/
+
+.app-wrapper {
+    display: grid;
+    margin: 0 auto;
+    width: 1200px ;
+    background-image: url(https://img3.goodfon.ru/wallpaper/nbig/7/6d/ozero-gory-otrazhenie-priroda-3483.jpg);
+
+    grid-template-areas:
+  'h h'
+  'n c';
+
+    grid-template-rows: 75px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+}
+
+.header {
+    grid-area: h;
+    background-color: #20232a;
+}
+.header img {
+    width: 75px;
+    height: 65px;
+    padding: 5px;
+}
+
+.app-wrapper-content {
+    grid-area: c;
+    /*
+    background-color: #4E5D74;
+    */
+    background-color: #edeef0;
+    opacity: 0.89;
+}
+.app-wrapper-content img {
+    width: 1000px;
+    height: 200px;
+    opacity: 2;
 }
