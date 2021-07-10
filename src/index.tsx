@@ -4,12 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import { PostsData } from './store';
+import { state } from './store';
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App PostsData={PostsData}/>
+            <App state={state}/>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')

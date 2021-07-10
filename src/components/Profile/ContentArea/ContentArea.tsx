@@ -4,23 +4,13 @@ import styles from "./ContentArea.module.css"
 import {PostsDataType} from "../../../store";
 
 type ContentAreaPropsType = {
-    PostsData: Array<PostsDataType>
+    posts: Array<PostsDataType>
 }
 
-/*type PostsDataType = {
-    id: number
-    message: string
-    likesCount: number
-}*/
 
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
-    const PostsData: Array<PostsDataType> = [
-        {id: 1, message: "Hi dude", likesCount: 12},
-        {id: 1, message: "nice photos!", likesCount: 11},
-    ]
-
-    let postsElements = PostsData.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
+    let postsElements = props.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
 
     return (
         <div className={styles.postBlock}>

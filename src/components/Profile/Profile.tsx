@@ -2,11 +2,11 @@ import React from "react";
 import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {PostsDataType} from "../../store";
+import {AppStateType} from "../../store";
 
 
 type ProfilePropsType = {
-    PostsData: Array<PostsDataType>
+    state: AppStateType
 }
 
 
@@ -16,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profile}>
             <ProfileInfo/>
-            <ContentArea PostsData={props.PostsData}/>
+            <ContentArea posts={props.state.profilePage.posts}/>
         </div>
     )
 }
