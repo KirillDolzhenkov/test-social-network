@@ -1,14 +1,17 @@
 import React from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
+import {PostsDataType} from "../../../store";
 
-type ContentAreaPropsType = {}
+type ContentAreaPropsType = {
+    PostsData: Array<PostsDataType>
+}
 
-type PostsDataType = {
+/*type PostsDataType = {
     id: number
     message: string
     likesCount: number
-}
+}*/
 
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
@@ -23,7 +26,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
         <div className={styles.postBlock}>
             <h2>My posts: </h2>
             <hr/>
-            <textarea placeholder={"Write something"}></textarea>
+            <textarea placeholder={"Write something"}/>
             <span>
                 <button>send</button>
             </span>
