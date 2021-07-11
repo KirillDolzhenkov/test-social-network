@@ -1,5 +1,6 @@
 import React from "react";
 
+//types:
 export type PostsDataType = {
     id: number
     message: string
@@ -23,10 +24,22 @@ export type AppStateType = {
     }
 }
 
+//callBacks:
+export const addPost = (message: string)=>{
 
+  const newPost: PostsDataType =  {
+      id: 4,
+      message,
+      likesCount: 0
+  }
+  PostsData.push(newPost);
+    debugger
+}
+
+//BLL:
 const PostsData: Array<PostsDataType> = [
     {id: 1, message: "Hi dude", likesCount: 12},
-    {id: 1, message: "nice photos!", likesCount: 11},
+    {id: 2, message: "nice photos!", likesCount: 11},
 ]
 const DialogsData: Array<DialogsDataType> = [
     {id: 1, name: "Dimych"},

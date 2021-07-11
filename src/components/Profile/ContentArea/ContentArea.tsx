@@ -5,6 +5,7 @@ import {PostsDataType} from "../../../redux/store";
 
 type ContentAreaPropsType = {
     posts: Array<PostsDataType>
+    addPost: (message: string)=>void
 }
 
 
@@ -13,15 +14,18 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     let postsElements = props.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
     const testButtonRef: any = createRef()
     const onClickHandler = () => {
-        let message = testButtonRef.current?.value
-        alert(message)
+        const newMessage = testButtonRef.current?.value;
+        props.addPost(newMessage);
     }
 
     return (
         <div className={styles.postBlock}>
             <h2>My posts: </h2>
             <hr/>
-            <textarea ref={testButtonRef}  placeholder={"Write something"}/>
+            <textarea
+                ref={testButtonRef}
+                placeholder={"Write something"}
+            />
             <span>
                 <button onClick={onClickHandler} >send</button>
             </span>
