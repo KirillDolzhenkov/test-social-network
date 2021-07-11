@@ -2,7 +2,7 @@ import React from "react";
 import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {AppStateType} from "../../store";
+import {AppStateType} from "../../redux/store";
 
 
 type ProfilePropsType = {
@@ -17,6 +17,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
         <div className={styles.profile}>
             <ProfileInfo/>
             <ContentArea posts={props.state.profilePage.posts}/>
+
         </div>
     )
 }
