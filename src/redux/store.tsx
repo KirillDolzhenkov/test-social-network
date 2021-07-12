@@ -22,20 +22,11 @@ export type AppStateType = {
     }
     profilePage: {
         posts: Array<PostsDataType>
+        newPostText: string
     }
 }
 
-//callBacks:
-export const addPost = (message: string)=>{
 
-  const newPost: PostsDataType =  {
-      id: 4,
-      message,
-      likesCount: 0
-  }
-  PostsData.push(newPost);
-  reRenderEntireThree(state);
-}
 
 //BLL:
 const PostsData: Array<PostsDataType> = [
@@ -58,9 +49,28 @@ const state: AppStateType = {
         messages: MessagesData
     },
     profilePage: {
-        posts: PostsData
+        posts: PostsData,
+        newPostText: ""
     }
 }
+
+
+//callBacks:
+export const addPost = (message: string)=>{
+
+    const newPost: PostsDataType =  {
+        id: 4,
+        message,
+        likesCount: 0
+    }
+    PostsData.push(newPost);
+    reRenderEntireThree(state);
+}
+export const setNewPostText = (text: string)=>{
+    state.profilePage.newPostText = text;
+    reRenderEntireThree(state);
+}
+
 
 export {
     state

@@ -10,6 +10,7 @@ import {AppStateType} from "./redux/store";
 type AppPropsType = {
     state: AppStateType
     addPost: (message: string)=>void
+    setNewPostText: (text: string)=>void
 }
 
 function App(props: AppPropsType) {
@@ -22,6 +23,7 @@ function App(props: AppPropsType) {
                 <Route path={"/Profile"} render={() => <Profile
                     state={props.state}
                     addPost={props.addPost}
+                    setNewPostText={props.setNewPostText}
                 />}/>
                 <Route path={"/Dialogs"} render={() => <Dialogs
                     dialogs={props.state.dialogPage.dialogs}

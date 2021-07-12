@@ -1,4 +1,4 @@
-import React, {createRef} from "react";
+import React, {ChangeEvent, ChangeEventHandler, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
 import {PostsDataType} from "../../../redux/store";
@@ -6,17 +6,23 @@ import {PostsDataType} from "../../../redux/store";
 type ContentAreaPropsType = {
     posts: Array<PostsDataType>
     addPost: (message: string)=>void
+    setNewPostText: (text: string)=>void
+    newPostText: string
 }
 
 
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
+
     const testButtonRef: any = createRef()
     const onClickHandler = () => {
         const newMessage = testButtonRef.current?.value;
         props.addPost(newMessage);
         testButtonRef.current.value = '';
+    }
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
+        props.setNewPostText(e.currentTarget?.value);
     }
 
     return (
@@ -24,6 +30,8 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
             <h2>My posts: </h2>
             <hr/>
             <textarea
+                value={props.newPostText}
+                onChange={onChangeHandler}
                 ref={testButtonRef}
                 placeholder={"Write something"}
             />
