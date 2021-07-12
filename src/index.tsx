@@ -4,19 +4,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {addPost, state} from './redux/store';
+import {addPost, AppStateType, state} from './redux/store';
+import {reRenderEntireThree} from "./customRender";
 
-ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App
-                state={state}
-                addPost={addPost}
-            />
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+reRenderEntireThree(state);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

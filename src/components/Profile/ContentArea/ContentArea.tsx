@@ -16,6 +16,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     const onClickHandler = () => {
         const newMessage = testButtonRef.current?.value;
         props.addPost(newMessage);
+        testButtonRef.current.value = '';
     }
 
     return (

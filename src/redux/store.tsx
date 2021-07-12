@@ -1,4 +1,5 @@
 import React from "react";
+import {reRenderEntireThree} from "../customRender";
 
 //types:
 export type PostsDataType = {
@@ -33,7 +34,7 @@ export const addPost = (message: string)=>{
       likesCount: 0
   }
   PostsData.push(newPost);
-    debugger
+  reRenderEntireThree(state);
 }
 
 //BLL:
