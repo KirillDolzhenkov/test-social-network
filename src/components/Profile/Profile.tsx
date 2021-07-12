@@ -11,7 +11,6 @@ type ProfilePropsType = {
     setNewPostText: (text: string)=>void
 }
 
-
 const Profile: React.FC<ProfilePropsType> = (props) => {
 
 
@@ -19,12 +18,10 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
         <div className={styles.profile}>
             <ProfileInfo/>
             <ContentArea
-                posts={props.state.profilePage.posts}
+                state={props.state.profilePage}
                 addPost={props.addPost}
-                newPostText={props.state.profilePage.newPostText}
                 setNewPostText={props.setNewPostText}
             />
-
         </div>
     )
 }
