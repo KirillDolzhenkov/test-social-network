@@ -1,5 +1,4 @@
 import React from "react";
-import {reRenderEntireThree} from "../customRender";
 
 //types:
 export type PostsDataType = {
@@ -25,7 +24,6 @@ export type AppStateType = {
         newPostText: string
     }
 }
-
 
 
 //BLL:
@@ -56,9 +54,11 @@ const state: AppStateType = {
 
 
 //callBacks:
-export const addPost = ()=>{
+let reRenderEntireThree = (state: AppStateType) => {}
 
-    const newPost: PostsDataType =  {
+export const addPost = () => {
+
+    const newPost: PostsDataType = {
         id: 4,
         message: state.profilePage.newPostText,
         likesCount: 0
@@ -67,11 +67,14 @@ export const addPost = ()=>{
     reRenderEntireThree(state);
     state.profilePage.newPostText = '';
 }
-export const setNewPostText = (text: string)=>{
+export const setNewPostText = (text: string) => {
     state.profilePage.newPostText = text;
     reRenderEntireThree(state);
 }
 
+export const subscribe = (observer: any) => {
+    reRenderEntireThree = observer;
+}
 
 export {
     state
