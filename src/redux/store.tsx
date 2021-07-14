@@ -56,15 +56,16 @@ const state: AppStateType = {
 
 
 //callBacks:
-export const addPost = (message: string)=>{
+export const addPost = ()=>{
 
     const newPost: PostsDataType =  {
         id: 4,
-        message,
+        message: state.profilePage.newPostText,
         likesCount: 0
     }
     PostsData.push(newPost);
     reRenderEntireThree(state);
+    state.profilePage.newPostText = '';
 }
 export const setNewPostText = (text: string)=>{
     state.profilePage.newPostText = text;
