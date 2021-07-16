@@ -1,5 +1,3 @@
-import React from "react";
-
 //types:
 export type PostsDataType = {
     id: number
@@ -17,7 +15,8 @@ export type MessagesDataType = {
 export type AppStateType = {
     dialogPage: {
         dialogs: Array<DialogsDataType>,
-        messages: Array<MessagesDataType>
+        messages: Array<MessagesDataType>,
+        newMessageText: string
     }
     profilePage: {
         posts: Array<PostsDataType>
@@ -44,7 +43,8 @@ const MessagesData: Array<MessagesDataType> = [
 const state: AppStateType = {
     dialogPage: {
         dialogs: DialogsData,
-        messages: MessagesData
+        messages: MessagesData,
+        newMessageText: ""
     },
     profilePage: {
         posts: PostsData,
@@ -54,7 +54,8 @@ const state: AppStateType = {
 
 
 //callBacks:
-let reRenderEntireThree = (state: AppStateType) => {}
+let reRenderEntireThree = (state: AppStateType) => {
+}
 
 export const addPost = () => {
 
@@ -72,9 +73,25 @@ export const setNewPostText = (text: string) => {
     reRenderEntireThree(state);
 }
 
+export const addMessage = () => {
+
+    const newMessage: MessagesDataType = {
+        id: 4,
+        message: state.dialogPage.newMessageText,
+    }
+    MessagesData.push(newMessage);
+    reRenderEntireThree(state);
+    state.dialogPage.newMessageText = '';
+}
+export const setNewMessageText = (text: string) => {
+    state.dialogPage.newMessageText = text;
+    reRenderEntireThree(state);
+}
+
 export const subscribe = (observer: any) => {
     reRenderEntireThree = observer;
 }
+
 
 export {
     state

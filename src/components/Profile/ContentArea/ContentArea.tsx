@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, createRef} from "react";
+import React, {ChangeEvent, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
 import {PostsDataType} from "../../../redux/store";

@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {addPost, AppStateType, setNewPostText, state, subscribe} from './redux/store';
+import {addMessage, addPost, AppStateType, setNewMessageText, setNewPostText, state, subscribe} from './redux/store';
 
 
 
@@ -17,7 +17,9 @@ const reRenderEntireThree =(state: AppStateType)=> {
                 <App
                     state={state}
                     addPost={addPost}
+                    addMessage={addMessage}
                     setNewPostText={setNewPostText}
+                    setNewMessageText={setNewMessageText}
                 />
             </BrowserRouter>
         </React.StrictMode>,
