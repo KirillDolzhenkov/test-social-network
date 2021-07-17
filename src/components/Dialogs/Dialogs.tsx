@@ -21,8 +21,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         props.setNewMessageText(e.currentTarget?.value);
     }
 
-    const dialogElements = props.state.dialogPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    const messageElements = props.state.dialogPage.messages.map(m => <Message message={m.message} id={m.id}/>);
+    const dialogElements = props.state.dialogPage?.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    const messageElements = props.state.dialogPage?.messages.map(m => <Message message={m.message} id={m.id}/>);
 
     return (
         <div className={styles.dialogsPage}>
@@ -40,7 +40,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 <div>
                     <hr/>
                     <textarea
-                        value={props.state.dialogPage.newMessageText}
+                        value={props.state.dialogPage?.newMessageText}
                         onChange={onChangeHandler}
                         ref={testButtonRef}
                         placeholder={"Write something"}

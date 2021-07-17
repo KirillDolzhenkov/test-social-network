@@ -23,8 +23,16 @@ export type AppStateType = {
         newPostText: string
     }
 }
-type storeType = any
-
+export type StoreType = {
+    _state: AppStateType
+    _callSubscriber: (state: AppStateType) => void
+    subscribe: (observer: any) => void
+    getState: () => AppStateType
+    addPost: () => void
+    setNewPostText: (text: string) => void
+    addMessage: () => void
+    setNewMessageText: (text: string) => void
+}
 //BLL:
 const PostsData: Array<PostsDataType> = [
     {id: 1, message: "Hi dude", likesCount: 12},
@@ -40,7 +48,7 @@ const MessagesData: Array<MessagesDataType> = [
 ]
 
 
-const state: AppStateType = {
+/*const state: AppStateType = {
     dialogPage: {
         dialogs: DialogsData,
         messages: MessagesData,
@@ -50,9 +58,9 @@ const state: AppStateType = {
         posts: PostsData,
         newPostText: ""
     }
-}
+}*/
 
-const store: storeType = {
+const store: StoreType = {
     _state: {
         dialogPage: {
             dialogs: DialogsData,
@@ -105,7 +113,8 @@ const store: storeType = {
 
 
 //callBacks:
-let reRenderEntireThree = (state: AppStateType) => {
+
+/*let reRenderEntireThree = (state: AppStateType) => {
 }
 
 export const addPost = () => {
@@ -141,9 +150,9 @@ export const setNewMessageText = (text: string) => {
 
 export const subscribe = (observer: any) => {
     reRenderEntireThree = observer;
-}
+}*/
 
 
 export {
-    state
+    store
 }

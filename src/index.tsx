@@ -4,9 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {addMessage, addPost, AppStateType, setNewMessageText, setNewPostText, state, subscribe} from './redux/store';
-
-
+import {AppStateType, store} from './redux/store';
 
 
 const reRenderEntireThree =(state: AppStateType)=> {
@@ -16,10 +14,10 @@ const reRenderEntireThree =(state: AppStateType)=> {
             <BrowserRouter>
                 <App
                     state={state}
-                    addPost={addPost}
-                    addMessage={addMessage}
-                    setNewPostText={setNewPostText}
-                    setNewMessageText={setNewMessageText}
+                    addPost={store.addPost.bind(store)}
+                    addMessage={store.addMessage.bind(store)}
+                    setNewPostText={store.setNewPostText.bind(store)}
+                    setNewMessageText={store.setNewMessageText.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,
@@ -28,8 +26,8 @@ const reRenderEntireThree =(state: AppStateType)=> {
 
 }
 
-reRenderEntireThree(state);
-subscribe(reRenderEntireThree);
+reRenderEntireThree(store.getState());
+store.subscribe(reRenderEntireThree);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
