@@ -32,7 +32,28 @@ export type StoreType = {
     setNewPostText: (text: string) => void
     addMessage: () => void
     setNewMessageText: (text: string) => void
+    dispatch: any
 }
+
+
+type AddPostAT = /*{
+    type: "ADD-POST"
+}*/ any
+type SetNewPostTextAT = /*{
+    type: "SET-NEW-POST-TEXT"
+}*/ any
+type AddMessageAT = /*{
+    type: "ADD-MESSAGE"
+}*/ any
+type SetNewMessageTextAT = /*{
+    type: "SET-NEW-MESSAGE-TEXT"
+}*/ any
+
+type ActionType  = AddPostAT
+    | SetNewPostTextAT
+    | AddMessageAT
+    | SetNewMessageTextAT
+
 //BLL:
 const PostsData: Array<PostsDataType> = [
     {id: 1, message: "Hi dude", likesCount: 12},
@@ -80,6 +101,7 @@ const store: StoreType = {
     getState(){
         return this._state;
     },
+
     addPost() {
 
         const newPost: PostsDataType = {
@@ -108,6 +130,44 @@ const store: StoreType = {
         this._state.dialogPage.newMessageText = text;
         this._callSubscriber(this._state);
     },
+
+
+    dispatch(action: ActionType) {
+
+            if (action.type === "ADD-POST") {
+                const newPost: PostsDataType = {
+                    id: 4,
+                    message: this._state.profilePage.newPostText,
+                    likesCount: 0
+                }
+                PostsData.push(newPost);
+                this._callSubscriber(this._state);
+                this._state.profilePage.newPostText = '';
+            }
+        if (action.type ==="SET-NEW-POST-TEXT") {
+                this._state.profilePage.newPostText = action.text;
+                this._callSubscriber(this._state);
+            }
+        if (action.type ==="ADD-MESSAGE") {
+                const newMessage: MessagesDataType = {
+                    id: 4,
+                    message: this._state.dialogPage.newMessageText,
+                }
+                MessagesData.push(newMessage);
+                this._callSubscriber(this._state);
+                this._state.dialogPage.newMessageText = '';
+            }
+        if (action.type ==="SET-NEW-MESSAGE-TEXT") {
+                this._state.dialogPage.newMessageText = action.text;
+                this._callSubscriber(this._state);
+            }
+/*        else {
+            return this._state
+        }*/
+    }
+
+
+
 }
 
 
