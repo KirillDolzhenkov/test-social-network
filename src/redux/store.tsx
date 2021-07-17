@@ -23,7 +23,7 @@ export type AppStateType = {
         newPostText: string
     }
 }
-
+type storeType = any
 
 //BLL:
 const PostsData: Array<PostsDataType> = [
@@ -51,6 +51,57 @@ const state: AppStateType = {
         newPostText: ""
     }
 }
+
+const store: storeType = {
+    _state: {
+        dialogPage: {
+            dialogs: DialogsData,
+            messages: MessagesData,
+            newMessageText: ""
+        },
+        profilePage: {
+            posts: PostsData,
+            newPostText: ""
+        }
+    },
+    _callSubscriber(state: AppStateType) {
+    }, // _reRenderEntireThree
+    subscribe(observer: any) {
+        this._callSubscriber = observer;
+    },
+    getState(){
+        return this._state;
+    },
+    addPost() {
+
+        const newPost: PostsDataType = {
+            id: 4,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        }
+        PostsData.push(newPost);
+        this._callSubscriber(this._state);
+        this._state.profilePage.newPostText = '';
+    },
+    setNewPostText(text: string) {
+        this._state.profilePage.newPostText = text;
+        this._callSubscriber(this._state);
+    },
+    addMessage() {
+        const newMessage: MessagesDataType = {
+            id: 4,
+            message: this._state.dialogPage.newMessageText,
+        }
+        MessagesData.push(newMessage);
+        this._callSubscriber(this._state);
+        this._state.dialogPage.newMessageText = '';
+    },
+    setNewMessageText(text: string) {
+        this._state.dialogPage.newMessageText = text;
+        this._callSubscriber(this._state);
+    },
+}
+
 
 
 //callBacks:
