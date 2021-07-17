@@ -49,7 +49,7 @@ type SetNewMessageTextAT = /*{
     type: "SET-NEW-MESSAGE-TEXT"
 }*/ any
 
-type ActionType  = AddPostAT
+type ActionType = AddPostAT
     | SetNewPostTextAT
     | AddMessageAT
     | SetNewMessageTextAT
@@ -68,19 +68,6 @@ const MessagesData: Array<MessagesDataType> = [
     {id: 2, message: "How are u?"},
 ]
 
-
-/*const state: AppStateType = {
-    dialogPage: {
-        dialogs: DialogsData,
-        messages: MessagesData,
-        newMessageText: ""
-    },
-    profilePage: {
-        posts: PostsData,
-        newPostText: ""
-    }
-}*/
-
 const store: StoreType = {
     _state: {
         dialogPage: {
@@ -98,7 +85,7 @@ const store: StoreType = {
     subscribe(observer: any) {
         this._callSubscriber = observer;
     },
-    getState(){
+    getState() {
         return this._state;
     },
 
@@ -134,83 +121,37 @@ const store: StoreType = {
 
     dispatch(action: ActionType) {
 
-            if (action.type === "ADD-POST") {
-                const newPost: PostsDataType = {
-                    id: 4,
-                    message: this._state.profilePage.newPostText,
-                    likesCount: 0
-                }
-                PostsData.push(newPost);
-                this._callSubscriber(this._state);
-                this._state.profilePage.newPostText = '';
+        if (action.type === "ADD-POST") {
+            const newPost: PostsDataType = {
+                id: 4,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
             }
-        if (action.type ==="SET-NEW-POST-TEXT") {
-                this._state.profilePage.newPostText = action.text;
-                this._callSubscriber(this._state);
+            PostsData.push(newPost);
+            this._callSubscriber(this._state);
+            this._state.profilePage.newPostText = '';
+        }
+        if (action.type === "SET-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.text;
+            this._callSubscriber(this._state);
+        }
+        if (action.type === "ADD-MESSAGE") {
+            const newMessage: MessagesDataType = {
+                id: 4,
+                message: this._state.dialogPage.newMessageText,
             }
-        if (action.type ==="ADD-MESSAGE") {
-                const newMessage: MessagesDataType = {
-                    id: 4,
-                    message: this._state.dialogPage.newMessageText,
-                }
-                MessagesData.push(newMessage);
-                this._callSubscriber(this._state);
-                this._state.dialogPage.newMessageText = '';
-            }
-        if (action.type ==="SET-NEW-MESSAGE-TEXT") {
-                this._state.dialogPage.newMessageText = action.text;
-                this._callSubscriber(this._state);
-            }
-/*        else {
-            return this._state
-        }*/
+            MessagesData.push(newMessage);
+            this._callSubscriber(this._state);
+            this._state.dialogPage.newMessageText = '';
+        }
+        if (action.type === "SET-NEW-MESSAGE-TEXT") {
+            this._state.dialogPage.newMessageText = action.text;
+            this._callSubscriber(this._state);
+        } else {
+            return this._state // !!!!!
+        }
     }
-
-
-
 }
-
-
-
-//callBacks:
-
-/*let reRenderEntireThree = (state: AppStateType) => {
-}
-
-export const addPost = () => {
-
-    const newPost: PostsDataType = {
-        id: 4,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    }
-    PostsData.push(newPost);
-    reRenderEntireThree(state);
-    state.profilePage.newPostText = '';
-}
-export const setNewPostText = (text: string) => {
-    state.profilePage.newPostText = text;
-    reRenderEntireThree(state);
-}
-
-export const addMessage = () => {
-
-    const newMessage: MessagesDataType = {
-        id: 4,
-        message: state.dialogPage.newMessageText,
-    }
-    MessagesData.push(newMessage);
-    reRenderEntireThree(state);
-    state.dialogPage.newMessageText = '';
-}
-export const setNewMessageText = (text: string) => {
-    state.dialogPage.newMessageText = text;
-    reRenderEntireThree(state);
-}
-
-export const subscribe = (observer: any) => {
-    reRenderEntireThree = observer;
-}*/
 
 
 export {
