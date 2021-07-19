@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {AppStateType} from "./redux/store";
+import {ActionType, AppStateType} from "./redux/store";
 
 type AppPropsType = {
     state: AppStateType
@@ -13,6 +13,7 @@ type AppPropsType = {
     setNewPostText: (text: string)=>void
     addMessage: (message: string)=>void
     setNewMessageText: (text: string)=>void
+    dispatch: (action: ActionType) => any
 }
 
 function App(props: AppPropsType) {
@@ -26,6 +27,7 @@ function App(props: AppPropsType) {
                     state={props.state}
                     addPost={props.addPost}
                     setNewPostText={props.setNewPostText}
+                    dispatch={props.dispatch}
                 />}/>
                 <Route path={"/Dialogs"} render={() => <Dialogs
                     state={props.state}

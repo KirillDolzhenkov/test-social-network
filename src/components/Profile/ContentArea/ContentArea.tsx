@@ -1,7 +1,7 @@
 import React, {ChangeEvent, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
-import {PostsDataType} from "../../../redux/store";
+import {ActionType, AppStateType, PostsDataType} from "../../../redux/store";
 
 type PostsStatePropsType = {
     posts: Array<PostsDataType>
@@ -12,6 +12,7 @@ type ContentAreaPropsType = {
     state: PostsStatePropsType
     addPost: (message: string) => void
     setNewPostText: (text: string) => void
+    dispatch: (action: ActionType) => any
 }
 
 
@@ -21,11 +22,14 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const testButtonRef: any = createRef();
     const onClickHandler = () => {
-        const newMessage = testButtonRef.currentTarget?.value;
-        props.addPost(newMessage);
+        const newPost = testButtonRef.currentTarget?.value;
+        /*props.addPost(newMessage);*/
+        props.dispatch({type: "ADD-POST", newPost });
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.setNewPostText(e.currentTarget?.value);
+        /*props.setNewPostText(e.currentTarget?.value);*/
+        const newText = e.currentTarget?.value;
+        props.dispatch({type: "SET-NEW-POST-TEXT" , newText});
     }
 
     return (

@@ -18,6 +18,7 @@ const reRenderEntireThree =(state: AppStateType)=> {
                     addMessage={store.addMessage.bind(store)}
                     setNewPostText={store.setNewPostText.bind(store)}
                     setNewMessageText={store.setNewMessageText.bind(store)}
+                    dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,

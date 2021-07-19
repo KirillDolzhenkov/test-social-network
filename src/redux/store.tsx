@@ -32,24 +32,28 @@ export type StoreType = {
     setNewPostText: (text: string) => void
     addMessage: () => void
     setNewMessageText: (text: string) => void
-    dispatch: any
+    dispatch: (action: ActionType) => any
 }
 
 
-type AddPostAT = /*{
+type AddPostAT = {
     type: "ADD-POST"
-}*/ any
-type SetNewPostTextAT = /*{
+    newPost: string
+}
+type SetNewPostTextAT = {
     type: "SET-NEW-POST-TEXT"
-}*/ any
-type AddMessageAT = /*{
+    newText: string
+}
+type AddMessageAT = {
     type: "ADD-MESSAGE"
-}*/ any
-type SetNewMessageTextAT = /*{
+    newMessage: string
+}
+type SetNewMessageTextAT = {
     type: "SET-NEW-MESSAGE-TEXT"
-}*/ any
+    newText: string
+}
 
-type ActionType = AddPostAT
+export type ActionType = AddPostAT
     | SetNewPostTextAT
     | AddMessageAT
     | SetNewMessageTextAT
@@ -132,7 +136,7 @@ const store: StoreType = {
             this._state.profilePage.newPostText = '';
         }
         if (action.type === "SET-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.text;
+            this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
         }
         if (action.type === "ADD-MESSAGE") {
@@ -145,13 +149,16 @@ const store: StoreType = {
             this._state.dialogPage.newMessageText = '';
         }
         if (action.type === "SET-NEW-MESSAGE-TEXT") {
-            this._state.dialogPage.newMessageText = action.text;
+            this._state.dialogPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
-        } else {
+        }
+        else {
             return this._state // !!!!!
         }
     }
 }
+
+
 
 
 export {
