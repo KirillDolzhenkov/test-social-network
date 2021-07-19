@@ -7,7 +7,7 @@ import App from "./App";
 import {AppStateType, store} from './redux/store';
 
 
-const reRenderEntireThree =(state: AppStateType)=> {
+const reRenderEntireThree = (state: AppStateType) => {
 
     ReactDOM.render(
         <React.StrictMode>

@@ -15,7 +15,6 @@ const Post: React.FC<PostPropsType> = (props) => {
             <span>{props.message}</span><br/>
             <span>♥{props.likesCount}</span>
         </div>
-
     )
 }
 

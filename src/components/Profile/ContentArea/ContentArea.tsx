@@ -3,6 +3,7 @@ import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
 import {ActionType, AppStateType, PostsDataType} from "../../../redux/store";
 
+//types:
 type PostsStatePropsType = {
     posts: Array<PostsDataType>
     newPostText: string
@@ -10,22 +11,30 @@ type PostsStatePropsType = {
 
 type ContentAreaPropsType = {
     state: PostsStatePropsType
-    dispatch: (action: ActionType) => AppStateType| undefined
+    dispatch: (action: ActionType) => AppStateType | undefined
 }
 
+//custom ActionCreators:
+const AddPostAC = (newPost: string) => {
+    return {type: "ADD-POST", newPost} as const
+}
+const SetNewPostTextAC = (newText: string) => {
+    return {type: "SET-NEW-POST-TEXT", newText} as const
+}
 
+//FC:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     let postsElements = props.state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
-
     const testButtonRef: any = createRef();
+
     const onClickHandler = () => {
         const newPost = testButtonRef.currentTarget?.value;
-        props.dispatch({type: "ADD-POST", newPost });
+        props.dispatch(AddPostAC(newPost));
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.dispatch({type: "SET-NEW-POST-TEXT" , newText});
+        props.dispatch(SetNewPostTextAC(newText));
     }
 
     return (

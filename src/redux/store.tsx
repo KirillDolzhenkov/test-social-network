@@ -28,7 +28,7 @@ export type StoreType = {
     _callSubscriber: (state: AppStateType) => void
     subscribe: (observer: any) => void
     getState: () => AppStateType
-    dispatch: (action: ActionType) => AppStateType| undefined
+    dispatch: (action: ActionType) => AppStateType | undefined
 }
 
 
@@ -90,7 +90,7 @@ const store: StoreType = {
     },
 
     //custom dispatch:
-    dispatch(action: ActionType): AppStateType| undefined {
+    dispatch(action: ActionType): AppStateType | undefined {
 
         if (action.type === "ADD-POST") {
             const newPost: PostsDataType = {
@@ -118,14 +118,11 @@ const store: StoreType = {
         if (action.type === "SET-NEW-MESSAGE-TEXT") {
             this._state.dialogPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
-        }
-        else {
+        } else {
             return this._state;
         }
     }
 }
-
-
 
 
 export {
