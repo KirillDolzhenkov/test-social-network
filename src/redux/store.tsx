@@ -93,6 +93,7 @@ const store: StoreType = {
         return this._state;
     },
 
+    // need to delete:
     addPost() {
 
         const newPost: PostsDataType = {
@@ -122,7 +123,7 @@ const store: StoreType = {
         this._callSubscriber(this._state);
     },
 
-
+    //custom dispatch:
     dispatch(action: ActionType) {
 
         if (action.type === "ADD-POST") {
@@ -153,7 +154,7 @@ const store: StoreType = {
             this._callSubscriber(this._state);
         }
         else {
-            return this._state // !!!!!
+            return this._state;
         }
     }
 }

@@ -2,23 +2,27 @@ import React, {ChangeEvent, createRef} from "react";
 import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {AppStateType} from "../../redux/store";
+import {ActionType, AppStateType} from "../../redux/store";
 
 type DialogsPropsType = {
     state: AppStateType
-    addMessage: (message: string)=>void
-    setNewMessageText: (text: string)=>void
+    addMessage: (message: string) => void
+    setNewMessageText: (text: string) => void
+    dispatch: (action: ActionType) => any
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const testButtonRef: any = createRef()
     const onClickHandler = () => {
-        let message = testButtonRef.currentTarget?.value;
-        props.addMessage(message);
+        let newMessage = testButtonRef.currentTarget?.value;
+        /*props.addMessage(message);*/
+        props.dispatch({type: "ADD-MESSAGE", newMessage});
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.setNewMessageText(e.currentTarget?.value);
+        /*props.setNewMessageText(e.currentTarget?.value);*/
+        const newText = e.currentTarget?.value;
+        props.dispatch({type: "SET-NEW-MESSAGE-TEXT", newText});
     }
 
     const dialogElements = props.state.dialogPage?.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);

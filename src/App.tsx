@@ -13,7 +13,7 @@ type AppPropsType = {
     setNewPostText: (text: string)=>void
     addMessage: (message: string)=>void
     setNewMessageText: (text: string)=>void
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => AppStateType | undefined
 }
 
 function App(props: AppPropsType) {
@@ -33,7 +33,8 @@ function App(props: AppPropsType) {
                     state={props.state}
                     addMessage={props.addMessage}
                     setNewMessageText={props.setNewMessageText}
-                       />}/>
+                    dispatch={props.dispatch}
+                />}/>
             </div>
         </div>
 
