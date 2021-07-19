@@ -10,9 +10,7 @@ type PostsStatePropsType = {
 
 type ContentAreaPropsType = {
     state: PostsStatePropsType
-    addPost: (message: string) => void
-    setNewPostText: (text: string) => void
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => AppStateType| undefined
 }
 
 
@@ -23,11 +21,9 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     const testButtonRef: any = createRef();
     const onClickHandler = () => {
         const newPost = testButtonRef.currentTarget?.value;
-        /*props.addPost(newMessage);*/
         props.dispatch({type: "ADD-POST", newPost });
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        /*props.setNewPostText(e.currentTarget?.value);*/
         const newText = e.currentTarget?.value;
         props.dispatch({type: "SET-NEW-POST-TEXT" , newText});
     }

@@ -28,11 +28,7 @@ export type StoreType = {
     _callSubscriber: (state: AppStateType) => void
     subscribe: (observer: any) => void
     getState: () => AppStateType
-    addPost: () => void
-    setNewPostText: (text: string) => void
-    addMessage: () => void
-    setNewMessageText: (text: string) => void
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => AppStateType| undefined
 }
 
 
@@ -93,38 +89,8 @@ const store: StoreType = {
         return this._state;
     },
 
-    // need to delete:
-    addPost() {
-
-        const newPost: PostsDataType = {
-            id: 4,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        PostsData.push(newPost);
-        this._callSubscriber(this._state);
-        this._state.profilePage.newPostText = '';
-    },
-    setNewPostText(text: string) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state);
-    },
-    addMessage() {
-        const newMessage: MessagesDataType = {
-            id: 4,
-            message: this._state.dialogPage.newMessageText,
-        }
-        MessagesData.push(newMessage);
-        this._callSubscriber(this._state);
-        this._state.dialogPage.newMessageText = '';
-    },
-    setNewMessageText(text: string) {
-        this._state.dialogPage.newMessageText = text;
-        this._callSubscriber(this._state);
-    },
-
     //custom dispatch:
-    dispatch(action: ActionType) {
+    dispatch(action: ActionType): AppStateType| undefined {
 
         if (action.type === "ADD-POST") {
             const newPost: PostsDataType = {

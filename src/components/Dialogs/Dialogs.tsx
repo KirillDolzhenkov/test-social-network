@@ -6,9 +6,7 @@ import {ActionType, AppStateType} from "../../redux/store";
 
 type DialogsPropsType = {
     state: AppStateType
-    addMessage: (message: string) => void
-    setNewMessageText: (text: string) => void
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => AppStateType| undefined
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -16,11 +14,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const testButtonRef: any = createRef()
     const onClickHandler = () => {
         let newMessage = testButtonRef.currentTarget?.value;
-        /*props.addMessage(message);*/
         props.dispatch({type: "ADD-MESSAGE", newMessage});
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        /*props.setNewMessageText(e.currentTarget?.value);*/
         const newText = e.currentTarget?.value;
         props.dispatch({type: "SET-NEW-MESSAGE-TEXT", newText});
     }

@@ -14,10 +14,6 @@ const reRenderEntireThree =(state: AppStateType)=> {
             <BrowserRouter>
                 <App
                     state={state}
-                    addPost={store.addPost.bind(store)}
-                    addMessage={store.addMessage.bind(store)}
-                    setNewPostText={store.setNewPostText.bind(store)}
-                    setNewMessageText={store.setNewMessageText.bind(store)}
                     dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>

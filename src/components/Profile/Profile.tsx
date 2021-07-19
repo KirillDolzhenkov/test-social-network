@@ -7,9 +7,7 @@ import {ActionType, AppStateType} from "../../redux/store";
 
 type ProfilePropsType = {
     state: AppStateType
-    addPost: (message: string)=>void
-    setNewPostText: (text: string)=>void
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => AppStateType| undefined
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -20,8 +18,6 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
             <ProfileInfo/>
             <ContentArea
                 state={props.state.profilePage}
-                addPost={props.addPost}
-                setNewPostText={props.setNewPostText}
                 dispatch={props.dispatch}
             />
         </div>
