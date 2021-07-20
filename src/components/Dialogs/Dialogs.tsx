@@ -2,20 +2,12 @@ import React, {ChangeEvent, createRef} from "react";
 import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionType, AppStateType} from "../../redux/store";
+import {ActionType, AddMessageAC, AppStateType, SetNewMessageTextAC} from "../../redux/store";
 
 //types:
 type DialogsPropsType = {
     state: AppStateType
     dispatch: (action: ActionType) => AppStateType | undefined
-}
-
-//custom ActionCreators:
-const AddMessageAC = (newMessage: string) => {
-    return {type: "ADD-MESSAGE", newMessage} as const
-}
-const SetNewMessageTextAC = (newText: string) => {
-    return {type: "SET-NEW-MESSAGE-TEXT", newText} as const
 }
 
 //FC:

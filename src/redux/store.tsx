@@ -31,7 +31,6 @@ export type StoreType = {
     dispatch: (action: ActionType) => AppStateType | undefined
 }
 
-
 type AddPostAT = {
     type: "ADD-POST"
     newPost: string
@@ -89,9 +88,8 @@ const store: StoreType = {
         return this._state;
     },
 
-    //custom dispatch:
+//custom dispatch:
     dispatch(action: ActionType): AppStateType | undefined {
-
         if (action.type === "ADD-POST") {
             const newPost: PostsDataType = {
                 id: 4,
@@ -101,12 +99,10 @@ const store: StoreType = {
             PostsData.push(newPost);
             this._callSubscriber(this._state);
             this._state.profilePage.newPostText = '';
-        }
-        if (action.type === "SET-NEW-POST-TEXT") {
+        } else if (action.type === "SET-NEW-POST-TEXT") {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
-        }
-        if (action.type === "ADD-MESSAGE") {
+        } else if (action.type === "ADD-MESSAGE") {
             const newMessage: MessagesDataType = {
                 id: 4,
                 message: this._state.dialogPage.newMessageText,
@@ -114,14 +110,28 @@ const store: StoreType = {
             MessagesData.push(newMessage);
             this._callSubscriber(this._state);
             this._state.dialogPage.newMessageText = '';
-        }
-        if (action.type === "SET-NEW-MESSAGE-TEXT") {
+        } else if (action.type === "SET-NEW-MESSAGE-TEXT") {
             this._state.dialogPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
         } else {
             return this._state;
         }
     }
+}
+
+//action creators:
+export const AddPostAC = (newPost: string) => {
+    return {type: "ADD-POST", newPost} as const
+}
+export const SetNewPostTextAC = (newText: string) => {
+    return {type: "SET-NEW-POST-TEXT", newText} as const
+}
+
+export const AddMessageAC = (newMessage: string) => {
+    return {type: "ADD-MESSAGE", newMessage} as const
+}
+export const SetNewMessageTextAC = (newText: string) => {
+    return {type: "SET-NEW-MESSAGE-TEXT", newText} as const
 }
 
 

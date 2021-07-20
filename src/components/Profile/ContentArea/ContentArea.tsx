@@ -1,7 +1,7 @@
 import React, {ChangeEvent, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
-import {ActionType, AppStateType, PostsDataType} from "../../../redux/store";
+import {ActionType, AddPostAC, AppStateType, PostsDataType, SetNewPostTextAC} from "../../../redux/store";
 
 //types:
 type PostsStatePropsType = {
@@ -12,14 +12,6 @@ type PostsStatePropsType = {
 type ContentAreaPropsType = {
     state: PostsStatePropsType
     dispatch: (action: ActionType) => AppStateType | undefined
-}
-
-//custom ActionCreators:
-const AddPostAC = (newPost: string) => {
-    return {type: "ADD-POST", newPost} as const
-}
-const SetNewPostTextAC = (newText: string) => {
-    return {type: "SET-NEW-POST-TEXT", newText} as const
 }
 
 //FC:
