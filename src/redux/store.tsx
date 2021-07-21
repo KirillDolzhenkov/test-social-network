@@ -28,30 +28,13 @@ export type StoreType = {
     _callSubscriber: (state: AppStateType) => void
     subscribe: (observer: any) => void
     getState: () => AppStateType
-    dispatch: (action: ActionType) => AppStateType | undefined
+    dispatch: (action: ActionType) => any
 }
 
-type AddPostAT = {
-    type: "ADD-POST"
-    newPost: string
-}
-type SetNewPostTextAT = {
-    type: "SET-NEW-POST-TEXT"
-    newText: string
-}
-type AddMessageAT = {
-    type: "ADD-MESSAGE"
-    newMessage: string
-}
-type SetNewMessageTextAT = {
-    type: "SET-NEW-MESSAGE-TEXT"
-    newText: string
-}
-
-export type ActionType = AddPostAT
-    | SetNewPostTextAT
-    | AddMessageAT
-    | SetNewMessageTextAT
+export type ActionType = ReturnType<typeof AddPostAC>
+    | ReturnType<typeof SetNewPostTextAC>
+    | ReturnType<typeof AddMessageAC>
+    |ReturnType<typeof SetNewMessageTextAC>
 
 //BLL:
 const PostsData: Array<PostsDataType> = [
@@ -81,7 +64,7 @@ const store: StoreType = {
     },
     _callSubscriber(state: AppStateType) {
     }, // _reRenderEntireThree
-    subscribe(observer: any) {
+    subscribe(observer: () => void) {
         this._callSubscriber = observer;
     },
     getState() {
@@ -89,7 +72,13 @@ const store: StoreType = {
     },
 
 //custom dispatch:
-    dispatch(action: ActionType): AppStateType | undefined {
+    dispatch(action: ActionType) {
+
+       /* this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
+
+        this._callSubscriber(this._state);*/
+
         if (action.type === "ADD-POST") {
             const newPost: PostsDataType = {
                 id: 4,

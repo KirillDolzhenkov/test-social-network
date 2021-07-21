@@ -7,7 +7,7 @@ import {ActionType, AppStateType} from "../../redux/store";
 
 type ProfilePropsType = {
     state: AppStateType
-    dispatch: (action: ActionType) => AppStateType | undefined
+    dispatch: (action: ActionType) => any
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {

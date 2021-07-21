@@ -7,7 +7,7 @@ import {ActionType, AddMessageAC, AppStateType, SetNewMessageTextAC} from "../..
 //types:
 type DialogsPropsType = {
     state: AppStateType
-    dispatch: (action: ActionType) => AppStateType | undefined
+    dispatch: (action: ActionType) => any
 }
 
 //FC:

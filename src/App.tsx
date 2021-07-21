@@ -9,7 +9,7 @@ import {ActionType, AppStateType} from "./redux/store";
 
 type AppPropsType = {
     state: AppStateType
-    dispatch: (action: ActionType) => AppStateType | undefined
+    dispatch: (action: ActionType) => any
 }
 
 function App(props: AppPropsType) {

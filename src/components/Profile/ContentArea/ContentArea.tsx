@@ -11,7 +11,7 @@ type PostsStatePropsType = {
 
 type ContentAreaPropsType = {
     state: PostsStatePropsType
-    dispatch: (action: ActionType) => AppStateType | undefined
+    dispatch: (action: ActionType) => any
 }
 
 //FC:
