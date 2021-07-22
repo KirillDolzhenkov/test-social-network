@@ -1,16 +1,36 @@
-import {ActionType, AppStateType, MessagesDataType} from "./store";
+import {ActionType, DialogsDataType, MessagesDataType} from "./store";
 
-const dialogsReducer = (state: AppStateType, action: ActionType) => {
+type dialogsInitialStateType ={
+        dialogs: Array<DialogsDataType>,
+        messages: Array<MessagesDataType>,
+        newMessageText: string
+}
+
+const initialState: dialogsInitialStateType = {
+    dialogs: [
+        {id: 1, name: "Dima"},
+        {id: 2, name: "Sasha"},
+    ],
+    messages: [
+        {id: 1, message: "hello"},
+        {id: 2, message: "How are you?"},
+    ],
+    newMessageText: ""
+}
+
+const dialogsReducer = (state: dialogsInitialStateType, action: ActionType) => {
     if (action.type === "ADD-MESSAGE") {
         const newMessage: MessagesDataType = {
             id: 4,
-            message: state.dialogPage.newMessageText,
+            message: state.newMessageText,
         }
-        state.dialogPage.messages.push(newMessage);
+        state.messages.push(newMessage);
+        state.newMessageText = '';
+        return state;
 
-        state.dialogPage.newMessageText = '';
     } else if (action.type === "SET-NEW-MESSAGE-TEXT") {
-        state.dialogPage.newMessageText = action.newText;
+        state.newMessageText = action.newText;
+        return state;
 
     } else {
         return state;

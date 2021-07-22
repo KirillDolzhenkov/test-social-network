@@ -1,18 +1,31 @@
-import {ActionType, AppStateType, PostsDataType} from "./store";
+import {ActionType, PostsDataType} from "./store";
 
-const profileReducer = (state: AppStateType, action: ActionType) => {
+type ProfileInitialStateType = {
+    posts: Array<PostsDataType>
+    newPostText: string
+}
+
+const initialState: ProfileInitialStateType = {
+    posts: [
+        {id: 1, message: "Hi dude", likesCount: 12},
+        {id: 2, message: "nice photos!", likesCount: 11},
+    ],
+    newPostText: ""
+}
+
+const profileReducer = (state: ProfileInitialStateType, action: ActionType) => {
     if (action.type === "ADD-POST") {
         const newPost: PostsDataType = {
             id: 4,
-            message: state.profilePage.newPostText,
+            message: state.newPostText,
             likesCount: 0
         }
-        state.profilePage.posts.push(newPost);
-
-        state.profilePage.newPostText = '';
+        state.posts.push(newPost);
+        state.newPostText = '';
+        return state;
     } else if (action.type === "SET-NEW-POST-TEXT") {
-        state.profilePage.newPostText = action.newText;
-
+        state.newPostText = action.newText;
+        return state;
     } else {
         return state;
     }

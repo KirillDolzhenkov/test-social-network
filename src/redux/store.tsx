@@ -1,4 +1,9 @@
+
+
 //types:
+import { dialogsReducer } from "./dialogs-reducer";
+import {profileReducer} from "./profile-reducer";
+
 export type PostsDataType = {
     id: number
     message: string
@@ -24,11 +29,11 @@ export type AppStateType = {
     }
 }
 export type StoreType = {
-    _state: AppStateType
+    _state: any
     _callSubscriber: (state: AppStateType) => void
     subscribe: (observer: any) => void
     getState: () => AppStateType
-    dispatch: (action: ActionType) => any
+    dispatch: (action: ActionType) => void
 }
 
 export type ActionType = ReturnType<typeof AddPostAC>
@@ -37,28 +42,24 @@ export type ActionType = ReturnType<typeof AddPostAC>
     |ReturnType<typeof SetNewMessageTextAC>
 
 //BLL:
-const PostsData: Array<PostsDataType> = [
-    {id: 1, message: "Hi dude", likesCount: 12},
-    {id: 2, message: "nice photos!", likesCount: 11},
-]
-const DialogsData: Array<DialogsDataType> = [
-    {id: 1, name: "Dimych"},
-    {id: 2, name: "Victor"},
-]
-const MessagesData: Array<MessagesDataType> = [
-    {id: 1, message: "Hello"},
-    {id: 2, message: "How are u?"},
-]
-
 const store: StoreType = {
     _state: {
         dialogPage: {
-            dialogs: DialogsData,
-            messages: MessagesData,
+            dialogs: [
+                {id: 1, name: "Dimych"},
+                {id: 2, name: "Victor"},
+            ],
+            messages: [
+                {id: 1, message: "Hello"},
+                {id: 2, message: "How are u?"},
+            ],
             newMessageText: ""
         },
         profilePage: {
-            posts: PostsData,
+            posts: [
+                {id: 1, message: "Hi dude", likesCount: 12},
+                {id: 2, message: "nice photos!", likesCount: 11},
+            ],
             newPostText: ""
         }
     },
@@ -73,38 +74,10 @@ const store: StoreType = {
 
 //custom dispatch:
     dispatch(action: ActionType) {
-
-       /* this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
 
-        this._callSubscriber(this._state);*/
-
-        if (action.type === "ADD-POST") {
-            const newPost: PostsDataType = {
-                id: 4,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            PostsData.push(newPost);
-            this._callSubscriber(this._state);
-            this._state.profilePage.newPostText = '';
-        } else if (action.type === "SET-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === "ADD-MESSAGE") {
-            const newMessage: MessagesDataType = {
-                id: 4,
-                message: this._state.dialogPage.newMessageText,
-            }
-            MessagesData.push(newMessage);
-            this._callSubscriber(this._state);
-            this._state.dialogPage.newMessageText = '';
-        } else if (action.type === "SET-NEW-MESSAGE-TEXT") {
-            this._state.dialogPage.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-        } else {
-            return this._state;
-        }
+        this._callSubscriber(this._state); // _reRenderEntireThree
     }
 }
 
