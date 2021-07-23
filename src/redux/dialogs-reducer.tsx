@@ -1,12 +1,12 @@
 import {ActionType, DialogsDataType, MessagesDataType} from "./store";
 
-type dialogsInitialStateType ={
+export type DialogsInitialStateType ={
         dialogs: Array<DialogsDataType>,
         messages: Array<MessagesDataType>,
         newMessageText: string
 }
 
-const initialState: dialogsInitialStateType = {
+const initialState: DialogsInitialStateType = {
     dialogs: [
         {id: 1, name: "Dima"},
         {id: 2, name: "Sasha"},
@@ -18,7 +18,7 @@ const initialState: dialogsInitialStateType = {
     newMessageText: ""
 }
 
-const dialogsReducer = (state: dialogsInitialStateType, action: ActionType) => {
+const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => {
     if (action.type === "ADD-MESSAGE") {
         const newMessage: MessagesDataType = {
             id: 4,

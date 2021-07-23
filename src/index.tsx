@@ -10,23 +10,25 @@ import {AppStateType, store} from './redux/store';
 const reRenderEntireThree = (state: AppStateType) => {
 
     ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <App
-                    /*state={state}*/
-                    dispatch={store.dispatch.bind(store)}
+        /*<React.StrictMode>*/
+        <BrowserRouter>
+            <App
+                /*state={state}*/
+                dispatch={store.dispatch.bind(store)}
 
-                    store={store}
-                />
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
+                store={store}
+            />
+        </BrowserRouter>
+        /*</React.StrictMode>*/
+        , document.getElementById('root')
     );
 
 }
 
 reRenderEntireThree(store.getState());
-store.subscribe(reRenderEntireThree);
+store.subscribe(() => {
+    reRenderEntireThree(store.getState())
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
