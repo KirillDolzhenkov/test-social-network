@@ -18,14 +18,14 @@ const initialState: DialogsInitialStateType = {
     newMessageText: ""
 }
 
-const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => {
+const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
     if (action.type === "ADD-MESSAGE") {
         const newMessage: MessagesDataType = {
             id: 4,
             message: state.newMessageText,
         }
         state.messages.push(newMessage);
-        state.newMessageText = '';
+        state.newMessageText = "";
         return state;
 
     } else if (action.type === "SET-NEW-MESSAGE-TEXT") {

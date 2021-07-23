@@ -4,23 +4,24 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {AppStateType, store} from './redux/store';
+import {AppStateType} from './redux/redux-store';
+import {store} from "./redux/redux-store";
 
 
 const reRenderEntireThree = (state: AppStateType) => {
 
     ReactDOM.render(
-        /*<React.StrictMode>*/
-        <BrowserRouter>
-            <App
-                /*state={state}*/
-                dispatch={store.dispatch.bind(store)}
+        <React.StrictMode>
+            <BrowserRouter>
+                <App
+                    /*state={state}*/
+                    dispatch={store.dispatch.bind(store)}
 
-                store={store}
-            />
-        </BrowserRouter>
-        /*</React.StrictMode>*/
-        , document.getElementById('root')
+                    store={store}
+                />
+            </BrowserRouter>
+        </React.StrictMode>
+        ,document.getElementById('root')
     );
 
 }

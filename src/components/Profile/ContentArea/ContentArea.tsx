@@ -2,6 +2,7 @@ import React, {ChangeEvent, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
 import {ActionType, AddPostAC, AppStateType, PostsDataType, SetNewPostTextAC, StoreType} from "../../../redux/store";
+import {RootReduxStoreType} from "../../../redux/redux-store";
 
 //types:
 type PostsStatePropsType = {
@@ -13,7 +14,7 @@ type ContentAreaPropsType = {
    /* state: PostsStatePropsType*/
     dispatch: (action: ActionType) => void
 
-    store: StoreType
+    store: RootReduxStoreType
 }
 
 //FC:
@@ -21,7 +22,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const state = props.store.getState();
 
-    let postsElements = state.profilePage.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
+    let postsElements = state.profilePage?.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
     const testButtonRef: any = createRef();
 
     const onClickHandler = () => {
@@ -38,7 +39,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
             <h2>My posts: </h2>
             <hr/>
             <textarea
-                value={state.profilePage.newPostText}
+                value={state.profilePage?.newPostText}
                 onChange={onChangeHandler}
                 ref={testButtonRef}
                 placeholder={"Write something"}

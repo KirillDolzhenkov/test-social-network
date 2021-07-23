@@ -6,12 +6,13 @@ import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {ActionType, AppStateType, StoreType} from "./redux/store";
+import {RootReduxStoreType} from "./redux/redux-store";
 
 type AppPropsType = {
    /* state: AppStateType*/
     dispatch: (action: ActionType) => any
 
-    store: StoreType
+    store: RootReduxStoreType
 }
 
 function App(props: AppPropsType) {

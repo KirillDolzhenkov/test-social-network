@@ -3,13 +3,14 @@ import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {ActionType, AddMessageAC, AppStateType, SetNewMessageTextAC, StoreType} from "../../redux/store";
+import {RootReduxStoreType} from "../../redux/redux-store";
 
 //types:
 type DialogsPropsType = {
     /*state: AppStateType*/
     dispatch: (action: ActionType) => void
 
-    store: StoreType
+    store: RootReduxStoreType
 }
 
 //FC:
@@ -46,7 +47,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 <div>
                     <hr/>
                     <textarea
-                        value={props.store._state.dialogPage?.newMessageText}
+                        value={state.dialogPage?.newMessageText}
                         onChange={onChangeHandler}
                         ref={testButtonRef}
                         placeholder={"Write something"}
