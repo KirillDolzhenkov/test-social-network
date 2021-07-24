@@ -2,28 +2,23 @@ import React from "react";
 import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionType, AppStateType, StoreType} from "../../redux/store";
+import {ActionType} from "../../redux/store";
 import {RootReduxStoreType} from "../../redux/redux-store";
 
-
+//types:
 type ProfilePropsType = {
-    /*state: AppStateType*/
-    dispatch: (action: ActionType) => any
-
+    dispatch: (action: ActionType) => void
     store: RootReduxStoreType
 }
 
+//FC:
 const Profile: React.FC<ProfilePropsType> = (props) => {
-
-
 
     return (
         <div className={styles.profile}>
             <ProfileInfo/>
             <ContentArea
-               /* state={props.state.profilePage}*/
                 dispatch={props.dispatch}
-
                 store={props.store}
             />
         </div>

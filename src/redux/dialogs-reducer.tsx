@@ -1,11 +1,13 @@
 import {ActionType, DialogsDataType, MessagesDataType} from "./store";
 
+//types:
 export type DialogsInitialStateType ={
         dialogs: Array<DialogsDataType>,
         messages: Array<MessagesDataType>,
         newMessageText: string
 }
 
+//initialState:
 const initialState: DialogsInitialStateType = {
     dialogs: [
         {id: 1, name: "Dima"},
@@ -18,6 +20,7 @@ const initialState: DialogsInitialStateType = {
     newMessageText: ""
 }
 
+//reducer:
 const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
     if (action.type === "ADD-MESSAGE") {
         const newMessage: MessagesDataType = {

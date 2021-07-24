@@ -1,10 +1,12 @@
 import {ActionType, PostsDataType} from "./store";
 
+//types:
 export type ProfileInitialStateType = {
     posts: Array<PostsDataType>
     newPostText: string
 }
 
+//initialState:
 const initialState: ProfileInitialStateType = {
     posts: [
         {id: 1, message: "Hi dude", likesCount: 12},
@@ -13,6 +15,7 @@ const initialState: ProfileInitialStateType = {
     newPostText: ""
 }
 
+//reducer:
 const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType) => {
     if (action.type === "ADD-POST") {
         const newPost: PostsDataType = {
