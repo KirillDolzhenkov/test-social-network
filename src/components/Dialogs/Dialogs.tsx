@@ -1,9 +1,9 @@
-import React, {ChangeEvent, createRef} from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {ActionType, RootReduxStoreType} from "../../redux/redux-store";
-import { SetNewMessageTextAC } from "../../redux/dialogs-reducer";
+import {AddMessageAC, SetNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 //types:
 type DialogsPropsType = {
@@ -15,16 +15,23 @@ type DialogsPropsType = {
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const state = props.store.getState().dialogPage; // !!!
-    const testButtonRef: any = createRef();
+    /*const testButtonRef: any = createRef();*/ //need to delete this ref
 
-    const onClickHandler = () => {
-        let newMessage = testButtonRef.currentTarget?.value;
-        props.dispatch(AddMessageAC(newMessage));
-
+    const addMessageHandler = () => {
+        if (state.newMessageText) {
+            /*let newMessage = testButtonRef.currentTarget?.value;*/
+            props.dispatch(AddMessageAC(state.newMessageText));
+        }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
         props.dispatch(SetNewMessageTextAC(newText));
+    }
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addMessageHandler();
+        }
     }
 
     const dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
@@ -48,11 +55,12 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     <textarea
                         value={state.newMessageText}
                         onChange={onChangeHandler}
-                        ref={testButtonRef}
+                        /*ref={testButtonRef}*/
                         placeholder={"Write something"}
+                        onKeyPress={onKeyPressHandler}
                     />
                     <span>
-                        <button onClick={onClickHandler}>send</button>
+                        <button onClick={addMessageHandler}>send</button>
                     </span>
                 </div>
             </div>
@@ -63,8 +71,4 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
 export {
     Dialogs
-}
-
-function AddMessageAC(newMessage: any): ActionType {
-    throw new Error("Function not implemented.");
 }

@@ -29,7 +29,7 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
             message: state.newPostText,
             likesCount: 0
         }
-        state.posts.push(newPost);
+        state.posts.unshift(newPost);
         state.newPostText = "";
         return state;
     } else if (action.type === "SN/PROFILE/SET_NEW_POST_TEXT") {

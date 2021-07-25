@@ -1,8 +1,8 @@
-import React, {ChangeEvent, createRef} from "react";
+import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
 import {ActionType, RootReduxStoreType} from "../../../redux/redux-store";
-import { AddPostAC, SetNewPostTextAC } from "../../../redux/profile-reducer";
+import {AddPostAC, SetNewPostTextAC} from "../../../redux/profile-reducer";
 
 //types:
 type ContentAreaPropsType = {
@@ -14,17 +14,24 @@ type ContentAreaPropsType = {
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const state = props.store.getState().profilePage;
-
     let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
-    const testButtonRef: any = createRef();
+    /*const testButtonRef: any = createRef();*/ //need to delete this ref
 
-    const onClickHandler = () => {
-        const newPost = testButtonRef.currentTarget?.value;
-        props.dispatch(AddPostAC(newPost));
+    const addPostHandler = () => {
+        if (state.newPostText) {
+            /*const newPost = testButtonRef.currentTarget?.value;*/
+            props.dispatch(AddPostAC(state.newPostText));
+        }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
         props.dispatch(SetNewPostTextAC(newText));
+    }
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addPostHandler();
+        }
     }
 
     return (
@@ -34,11 +41,12 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
             <textarea
                 value={state.newPostText}
                 onChange={onChangeHandler}
-                ref={testButtonRef}
+                /*ref={testButtonRef}*/
                 placeholder={"Write something"}
+                onKeyPress={onKeyPressHandler}
             />
             <span>
-                <button onClick={onClickHandler}>send</button>
+                <button onClick={addPostHandler}>send</button>
             </span>
             <div className={styles.posts}>
                 {postsElements}
