@@ -1,22 +1,22 @@
-
 //types:
-import { dialogsReducer } from "./dialogs-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 import {profileReducer} from "./profile-reducer";
+import {ActionType} from "./redux-store";
 
-export type PostsDataType = {
+type PostsDataType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogsDataType = {
+type DialogsDataType = {
     id: number
     name: string
 }
-export type MessagesDataType = {
+type MessagesDataType = {
     id: number
     message: string
 }
-export type AppStateType = {
+type AppStateType = {
     dialogPage: {
         dialogs: Array<DialogsDataType>,
         messages: Array<MessagesDataType>,
@@ -27,15 +27,15 @@ export type AppStateType = {
         newPostText: string
     }
 }
-export type StoreType = {
-    _state: any
+type StoreType = {
+    _state: AppStateType
     _callSubscriber: (state: AppStateType) => void
-    subscribe: (observer: any) => void
+    subscribe: (observer: ()=> void) => void
     getState: () => AppStateType
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = ReturnType<typeof AddPostAC>
+type storeActionType = ReturnType<typeof AddPostAC> //unused
     | ReturnType<typeof SetNewPostTextAC>
     | ReturnType<typeof AddMessageAC>
     |ReturnType<typeof SetNewMessageTextAC>
@@ -81,18 +81,18 @@ const store: StoreType = {
 }
 
 //action creators:
-export const AddPostAC = (newPost: string) => {
-    return {type: "ADD-POST", newPost} as const
+const AddPostAC = (newPost: string) => {
+    return {type: "SN/PROFILE/ADD_POST", newPost} as const
 }
-export const SetNewPostTextAC = (newText: string) => {
-    return {type: "SET-NEW-POST-TEXT", newText} as const
+const SetNewPostTextAC = (newText: string) => {
+    return {type: "SN/PROFILE/SET_NEW_POST_TEXT", newText} as const
 }
 
-export const AddMessageAC = (newMessage: string) => {
-    return {type: "ADD-MESSAGE", newMessage} as const
+const AddMessageAC = (newMessage: string) => {
+    return {type: "SN/PROFILE/ADD_MESSAGE", newMessage} as const
 }
-export const SetNewMessageTextAC = (newText: string) => {
-    return {type: "SET-NEW-MESSAGE-TEXT", newText} as const
+const SetNewMessageTextAC = (newText: string) => {
+    return {type: "SN/PROFILE/SET_NEW_MESSAGE_TEXT", newText} as const
 }
 
 

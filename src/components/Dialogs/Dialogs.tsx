@@ -2,8 +2,8 @@ import React, {ChangeEvent, createRef} from "react";
 import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionType, AddMessageAC, SetNewMessageTextAC} from "../../redux/store";
-import {RootReduxStoreType} from "../../redux/redux-store";
+import {ActionType, RootReduxStoreType} from "../../redux/redux-store";
+import { SetNewMessageTextAC } from "../../redux/dialogs-reducer";
 
 //types:
 type DialogsPropsType = {
@@ -20,6 +20,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const onClickHandler = () => {
         let newMessage = testButtonRef.currentTarget?.value;
         props.dispatch(AddMessageAC(newMessage));
+
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
@@ -62,4 +63,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
 export {
     Dialogs
+}
+
+function AddMessageAC(newMessage: any): ActionType {
+    throw new Error("Function not implemented.");
 }

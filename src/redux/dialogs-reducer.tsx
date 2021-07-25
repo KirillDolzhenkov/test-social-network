@@ -1,6 +1,15 @@
-import {ActionType, DialogsDataType, MessagesDataType} from "./store";
+import { ActionType } from "./redux-store"
+
 
 //types:
+export type DialogsDataType = {
+    id: number
+    name: string
+}
+export type MessagesDataType = {
+    id: number
+    message: string
+}
 export type DialogsInitialStateType ={
         dialogs: Array<DialogsDataType>,
         messages: Array<MessagesDataType>,
@@ -22,7 +31,7 @@ const initialState: DialogsInitialStateType = {
 
 //reducer:
 const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
-    if (action.type === "ADD-MESSAGE") {
+    if (action.type === "SN/PROFILE/ADD_MESSAGE") {
         const newMessage: MessagesDataType = {
             id: 4,
             message: state.newMessageText,
@@ -31,13 +40,21 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         state.newMessageText = "";
         return state;
 
-    } else if (action.type === "SET-NEW-MESSAGE-TEXT") {
+    } else if (action.type === "SN/PROFILE/SET_NEW_MESSAGE_TEXT") {
         state.newMessageText = action.newText;
         return state;
 
     } else {
         return state;
     }
+}
+
+//action creators:
+export const AddMessageAC = (newMessage: string) => {
+    return {type: "SN/PROFILE/ADD_MESSAGE", newMessage} as const
+}
+export const SetNewMessageTextAC = (newText: string) => {
+    return {type: "SN/PROFILE/SET_NEW_MESSAGE_TEXT", newText} as const
 }
 
 export {

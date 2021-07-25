@@ -1,8 +1,8 @@
 import React, {ChangeEvent, createRef} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
-import {ActionType, AddPostAC, SetNewPostTextAC} from "../../../redux/store";
-import {RootReduxStoreType} from "../../../redux/redux-store";
+import {ActionType, RootReduxStoreType} from "../../../redux/redux-store";
+import { AddPostAC, SetNewPostTextAC } from "../../../redux/profile-reducer";
 
 //types:
 type ContentAreaPropsType = {

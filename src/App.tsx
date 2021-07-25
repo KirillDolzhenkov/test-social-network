@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {ActionType} from "./redux/store";
+import {ActionType} from "./redux/redux-store";
 import {RootReduxStoreType} from "./redux/redux-store";
 
 //types:

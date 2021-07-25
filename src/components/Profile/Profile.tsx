@@ -2,8 +2,7 @@ import React from "react";
 import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionType} from "../../redux/store";
-import {RootReduxStoreType} from "../../redux/redux-store";
+import {RootReduxStoreType, ActionType} from "../../redux/redux-store";
 
 //types:
 type ProfilePropsType = {
