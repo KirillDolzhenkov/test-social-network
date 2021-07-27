@@ -14,13 +14,13 @@ type DialogsPropsType = {
 //FC:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    const state = props.store.getState().dialogPage; // !!!
-    /*const testButtonRef: any = createRef();*/ //need to delete this ref
+    const state = props.store.getState().dialogPage; // getState!!!
+    const dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    const messageElements = state.messages.map(m => <Message message={m.message} id={m.id}/>);
 
     const addMessageHandler = () => {
         if (state.newMessageText) {
-            /*let newMessage = testButtonRef.currentTarget?.value;*/
-            props.dispatch(AddMessageAC(state.newMessageText));
+            props.dispatch(AddMessageAC(state.newMessageText.trim()));
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,9 +33,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             addMessageHandler();
         }
     }
-
-    const dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    const messageElements = state.messages.map(m => <Message message={m.message} id={m.id}/>);
 
     return (
         <div className={styles.dialogsPage}>

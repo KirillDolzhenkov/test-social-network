@@ -13,14 +13,13 @@ type ContentAreaPropsType = {
 //FC:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
-    const state = props.store.getState().profilePage;
+    const state = props.store.getState().profilePage; //getState!!!
     let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
-    /*const testButtonRef: any = createRef();*/ //need to delete this ref
+
 
     const addPostHandler = () => {
         if (state.newPostText) {
-            /*const newPost = testButtonRef.currentTarget?.value;*/
-            props.dispatch(AddPostAC(state.newPostText));
+            props.dispatch(AddPostAC(state.newPostText.trim()));
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
