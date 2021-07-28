@@ -16,9 +16,9 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profile}>
             <ProfileInfo/>
-            <ContentAreaContainer
-                store={props.store}
-            />
+           {/* <ContentAreaContainer
+               /* store={props.store}*/
+            />*/}
         </div>
     )
 }

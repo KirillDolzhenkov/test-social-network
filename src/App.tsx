@@ -9,8 +9,8 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 //types:
 type AppPropsType = {
-    dispatch: (action: ActionType) => void
-    store: RootReduxStoreType
+   /* dispatch: (action: ActionType) => void
+    store: RootReduxStoreType*/
 }
 
 //FC:
@@ -21,11 +21,9 @@ const App: React.FC< AppPropsType> = (props)=> {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={"/Profile"} render={() => <Profile
-                    store={props.store}
-                />}/>
+               {/* <Route path={"/Profile"} render={() => <Profile/>}/>*/}
                 <Route path={"/Dialogs"} render={() => <DialogsContainer
-                    store={props.store}
+                   /* store={props.store}*/
                 />}/>
             </div>
         </div>

@@ -19,12 +19,12 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const addPostHandler = () => {
         if (state.newPostText) {
-                        props.addPost(state.newPostText)
+            props.addPost(state.newPostText)
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-               props.updateNewPostText(newText)
+        props.updateNewPostText(newText)
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {
