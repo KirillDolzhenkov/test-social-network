@@ -1,18 +1,30 @@
 import React from "react";
-import {ActionType, RootReduxStoreType} from "../../redux/redux-store";
+import {RootReduxStoreType} from "../../redux/redux-store";
+import {Dialogs} from "./Dialogs";
+import {AddMessageAC, SetNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 //types:
 type DialogsContainerPropsType = {
-    dispatch: (action: ActionType) => void
     store: RootReduxStoreType
 }
 
 //FC:
 const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
 
+    const sendMessage = (newMessageText: string) => {
+        props.store.dispatch(AddMessageAC(newMessageText));
+    }
+    const updateNewMessageText = (newText: string) => {
+        props.store.dispatch(SetNewMessageTextAC(newText));
+    }
+
     return (
         <div>
-
+            <Dialogs
+                dialogsPage={props.store.getState().dialogPage}
+                sendMessage={sendMessage}
+                updateNewMessageText={updateNewMessageText}
+            />
         </div>
     )
 }
@@ -20,3 +32,5 @@ const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
 export {
     DialogsContainer
 }
+
+

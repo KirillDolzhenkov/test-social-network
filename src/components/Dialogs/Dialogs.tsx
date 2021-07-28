@@ -2,30 +2,31 @@ import React, {ChangeEvent} from "react";
 import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionType, RootReduxStoreType} from "../../redux/redux-store";
-import {AddMessageAC, SetNewMessageTextAC} from "../../redux/dialogs-reducer";
+import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
 
 //types:
 type DialogsPropsType = {
-    dispatch: (action: ActionType) => void
-    store: RootReduxStoreType
+    dialogsPage: DialogsInitialStateType
+    sendMessage: (newMessageText: string) => void
+    updateNewMessageText: (newText: string) => void
 }
 
 //FC:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    const state = props.store.getState().dialogPage; // getState!!!
-    const dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    const messageElements = state.messages.map(m => <Message message={m.message} id={m.id}/>);
+    const state = props.dialogsPage; // state!!!
+
+    let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let messageElements = state.messages.map(m => <Message message={m.message} id={m.id}/>);
 
     const addMessageHandler = () => {
         if (state.newMessageText) {
-            props.dispatch(AddMessageAC(state.newMessageText.trim()));
+            props.sendMessage(state.newMessageText.trim());
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.dispatch(SetNewMessageTextAC(newText));
+        props.updateNewMessageText(newText);
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {
@@ -52,7 +53,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     <textarea
                         value={state.newMessageText}
                         onChange={onChangeHandler}
-                        /*ref={testButtonRef}*/
                         placeholder={"Write something"}
                         onKeyPress={onKeyPressHandler}
                     />

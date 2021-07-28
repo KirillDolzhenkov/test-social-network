@@ -4,9 +4,8 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
-import {Dialogs} from "./components/Dialogs/Dialogs";
-import {ActionType} from "./redux/redux-store";
-import {RootReduxStoreType} from "./redux/redux-store";
+import {ActionType, RootReduxStoreType} from "./redux/redux-store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 //types:
 type AppPropsType = {
@@ -26,8 +25,7 @@ const App: React.FC< AppPropsType> = (props)=> {
                     dispatch={props.dispatch}
                     store={props.store}
                 />}/>
-                <Route path={"/Dialogs"} render={() => <Dialogs
-                    dispatch={props.dispatch}
+                <Route path={"/Dialogs"} render={() => <DialogsContainer
                     store={props.store}
                 />}/>
             </div>
