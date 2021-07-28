@@ -3,10 +3,10 @@ import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {RootReduxStoreType, ActionType} from "../../redux/redux-store";
+import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 
 //types:
 type ProfilePropsType = {
-    dispatch: (action: ActionType) => void
     store: RootReduxStoreType
 }
 
@@ -16,14 +16,14 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profile}>
             <ProfileInfo/>
-            <ContentArea
-                dispatch={props.dispatch}
+            <ContentAreaContainer
                 store={props.store}
             />
         </div>
     )
 }
 
-export {
+export
+{
     Profile
 }

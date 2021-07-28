@@ -22,7 +22,6 @@ const App: React.FC< AppPropsType> = (props)=> {
             <Navbar/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/Profile"} render={() => <Profile
-                    dispatch={props.dispatch}
                     store={props.store}
                 />}/>
                 <Route path={"/Dialogs"} render={() => <DialogsContainer

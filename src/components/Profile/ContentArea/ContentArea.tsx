@@ -1,30 +1,30 @@
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
 import styles from "./ContentArea.module.css"
-import {ActionType, RootReduxStoreType} from "../../../redux/redux-store";
-import {AddPostAC, SetNewPostTextAC} from "../../../redux/profile-reducer";
+import {ProfileInitialStateType} from "../../../redux/profile-reducer";
 
 //types:
 type ContentAreaPropsType = {
-    dispatch: (action: ActionType) => void
-    store: RootReduxStoreType
+    profilePage: ProfileInitialStateType
+    addPost: (newPostText: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 //FC:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
-    const state = props.store.getState().profilePage; //getState!!!
-    let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
+    const state = props.profilePage; //state!!!
 
+    let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
 
     const addPostHandler = () => {
         if (state.newPostText) {
-            props.dispatch(AddPostAC(state.newPostText.trim()));
+                        props.addPost(state.newPostText)
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.dispatch(SetNewPostTextAC(newText));
+               props.updateNewPostText(newText)
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {
@@ -40,7 +40,6 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
             <textarea
                 value={state.newPostText}
                 onChange={onChangeHandler}
-                /*ref={testButtonRef}*/
                 placeholder={"Write something"}
                 onKeyPress={onKeyPressHandler}
             />
