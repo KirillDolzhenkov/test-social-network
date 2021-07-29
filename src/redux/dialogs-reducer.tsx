@@ -1,4 +1,4 @@
-import { ActionType } from "./redux-store"
+import {ActionType} from "./redux-store"
 
 
 //types:
@@ -10,10 +10,10 @@ export type MessagesDataType = {
     id: number
     message: string
 }
-export type DialogsInitialStateType ={
-        dialogs: Array<DialogsDataType>,
-        messages: Array<MessagesDataType>,
-        newMessageText: string
+export type DialogsInitialStateType = {
+    dialogs: Array<DialogsDataType>,
+    messages: Array<MessagesDataType>,
+    newMessageText: string
 }
 
 //initialState:
@@ -32,17 +32,19 @@ const initialState: DialogsInitialStateType = {
 //reducer:
 const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
     if (action.type === "SN/PROFILE/ADD_MESSAGE") {
+        const stateCopy = {...state}
         const newMessage: MessagesDataType = {
             id: 4,
-            message: state.newMessageText,
+            message: stateCopy.newMessageText,
         }
-        state.messages.push(newMessage);
-        state.newMessageText = "";
-        return state;
+        stateCopy.messages.push(newMessage);
+        stateCopy.newMessageText = "";
+        return stateCopy;
 
     } else if (action.type === "SN/PROFILE/SET_NEW_MESSAGE_TEXT") {
-        state.newMessageText = action.newText;
-        return state;
+        const stateCopy = {...state}
+        stateCopy.newMessageText = action.newText;
+        return stateCopy;
 
     } else {
         return state;

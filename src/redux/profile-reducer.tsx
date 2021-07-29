@@ -24,17 +24,19 @@ const initialState: ProfileInitialStateType = {
 //reducer:
 const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType) => {
     if (action.type === "SN/PROFILE/ADD_POST") {
+        const stateCopy = {...state}
         const newPost: PostsDataType = {
             id: 4,
             message: state.newPostText,
             likesCount: 0
         }
-        state.posts.unshift(newPost);
-        state.newPostText = "";
-        return state;
+        stateCopy.posts.unshift(newPost);
+        stateCopy.newPostText = "";
+        return stateCopy;
     } else if (action.type === "SN/PROFILE/SET_NEW_POST_TEXT") {
-        state.newPostText = action.newText;
-        return state;
+        const stateCopy = {...state}
+        stateCopy.newPostText = action.newText;
+        return stateCopy;
     } else {
         return state;
     }
