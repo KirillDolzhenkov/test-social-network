@@ -36,13 +36,14 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         const newMessage: MessagesDataType = {
             id: 4,
             message: stateCopy.newMessageText,
-        }
+        };
+        stateCopy.messages = [...state.messages];
         stateCopy.messages.push(newMessage);
         stateCopy.newMessageText = "";
         return stateCopy;
 
     } else if (action.type === "SN/PROFILE/SET_NEW_MESSAGE_TEXT") {
-        const stateCopy = {...state}
+        const stateCopy = {...state};
         stateCopy.newMessageText = action.newText;
         return stateCopy;
 

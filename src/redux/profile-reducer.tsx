@@ -29,12 +29,13 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
             id: 4,
             message: state.newPostText,
             likesCount: 0
-        }
+        };
+        stateCopy.posts = [...state.posts];
         stateCopy.posts.unshift(newPost);
         stateCopy.newPostText = "";
         return stateCopy;
     } else if (action.type === "SN/PROFILE/SET_NEW_POST_TEXT") {
-        const stateCopy = {...state}
+        const stateCopy = {...state};
         stateCopy.newPostText = action.newText;
         return stateCopy;
     } else {
