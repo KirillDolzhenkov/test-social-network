@@ -1,6 +1,5 @@
 import {ActionType} from "./redux-store"
 
-
 //types:
 export type DialogsDataType = {
     id: number
@@ -37,8 +36,7 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
             id: 4,
             message: stateCopy.newMessageText,
         };
-        stateCopy.messages = [...state.messages];
-        stateCopy.messages.push(newMessage);
+        stateCopy.messages = [...state.messages, newMessage];
         stateCopy.newMessageText = "";
         return stateCopy;
 

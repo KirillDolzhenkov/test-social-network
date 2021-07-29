@@ -1,8 +1,6 @@
 import React from "react";
-import {ContentArea} from "./ContentArea/ContentArea";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {RootReduxStoreType, ActionType} from "../../redux/redux-store";
 import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 
 //types:

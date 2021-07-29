@@ -16,8 +16,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const state = props.dialogsPage; // state!!!
 
-    let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    let messageElements = state.messages.map(m => <Message message={m.message} id={m.id}/>);
+    let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
+    let messageElements = state.messages.map(m => <Message message={m.message} id={m.id} key={m.id}/>);
 
     const addMessageHandler = () => {
         if (state.newMessageText) {

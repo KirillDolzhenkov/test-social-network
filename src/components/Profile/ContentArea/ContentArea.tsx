@@ -15,7 +15,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const state = props.profilePage; //state!!!
 
-    let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount}/>);
+    let postsElements = state.posts.map(p => <Post message={p.message} id={p.id} likesCount={p.likesCount} key={p.id}/>);
 
     const addPostHandler = () => {
         if (state.newPostText) {

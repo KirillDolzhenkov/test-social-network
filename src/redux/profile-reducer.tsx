@@ -1,6 +1,5 @@
 import {ActionType} from "./redux-store";
 
-
 //types:
 export type PostsDataType = {
     id: number
@@ -30,8 +29,7 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
             message: state.newPostText,
             likesCount: 0
         };
-        stateCopy.posts = [...state.posts];
-        stateCopy.posts.unshift(newPost);
+        stateCopy.posts = [newPost,...state.posts];
         stateCopy.newPostText = "";
         return stateCopy;
     } else if (action.type === "SN/PROFILE/SET_NEW_POST_TEXT") {

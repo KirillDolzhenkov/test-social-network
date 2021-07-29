@@ -15,10 +15,7 @@ const reRenderEntireThree = (state: AppStateType) => {
         <React.StrictMode>
             <BrowserRouter>
                 <Provider store={store}>
-                    <App
-                       /* dispatch={store.dispatch.bind(store)}
-                        store={store}*/
-                    />
+                    <App/>
                 </Provider>
             </BrowserRouter>
         </React.StrictMode>

@@ -4,14 +4,10 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
-import {ActionType, RootReduxStoreType} from "./redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 //types:
-type AppPropsType = {
-   /* dispatch: (action: ActionType) => void
-    store: RootReduxStoreType*/
-}
+type AppPropsType = {}
 
 //FC:
 const App: React.FC< AppPropsType> = (props)=> {
