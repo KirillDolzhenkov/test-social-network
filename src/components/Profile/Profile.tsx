@@ -6,19 +6,14 @@ import {RootReduxStoreType, ActionType} from "../../redux/redux-store";
 import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 
 //types:
-type ProfilePropsType = {
-    store: RootReduxStoreType
-}
+type ProfilePropsType = {}
 
 //FC:
 const Profile: React.FC<ProfilePropsType> = (props) => {
-
     return (
         <div className={styles.profile}>
             <ProfileInfo/>
-           {/* <ContentAreaContainer
-               /* store={props.store}*/
-            />*/}
+           { <ContentAreaContainer/>}
         </div>
     )
 }
