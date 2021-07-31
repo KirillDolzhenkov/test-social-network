@@ -1,6 +1,6 @@
 import React from "react";
 
-//Types:
+//types:
 type SettingsPropsType = {}
 
 //FC:

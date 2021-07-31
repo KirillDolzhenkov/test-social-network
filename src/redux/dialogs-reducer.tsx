@@ -30,7 +30,7 @@ const initialState: DialogsInitialStateType = {
 
 //reducer:
 const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
-    if (action.type === "SN/PROFILE/ADD_MESSAGE") {
+    if (action.type === "SN/DIALOGS/ADD_MESSAGE") {
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {
             id: 4,
@@ -40,7 +40,7 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         stateCopy.newMessageText = "";
         return stateCopy;
 
-    } else if (action.type === "SN/PROFILE/SET_NEW_MESSAGE_TEXT") {
+    } else if (action.type === "SN/DIALOGS/SET_NEW_MESSAGE_TEXT") {
         const stateCopy = {...state};
         stateCopy.newMessageText = action.newText;
         return stateCopy;
@@ -52,10 +52,10 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
 
 //action creators:
 export const AddMessageAC = (newMessage: string) => {
-    return {type: "SN/PROFILE/ADD_MESSAGE", newMessage} as const
+    return {type: "SN/DIALOGS/ADD_MESSAGE", newMessage} as const
 }
 export const SetNewMessageTextAC = (newText: string) => {
-    return {type: "SN/PROFILE/SET_NEW_MESSAGE_TEXT", newText} as const
+    return {type: "SN/DIALOGS/SET_NEW_MESSAGE_TEXT", newText} as const
 }
 
 export {

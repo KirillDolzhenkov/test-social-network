@@ -1,52 +1,27 @@
 import {ActionType} from "./redux-store";
 
 //types:
-export type PostsDataType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type ProfileInitialStateType = {
-    posts: Array<PostsDataType>
-    newPostText: string
-}
+
 
 //initialState:
-const initialState: ProfileInitialStateType = {
-    posts: [
-        {id: 1, message: "Hi dude", likesCount: 12},
-        {id: 2, message: "nice photos!", likesCount: 11},
-    ],
-    newPostText: ""
+const initialState: any = {
+
 }
 
 //reducer:
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType) => {
-    if (action.type === "SN/PROFILE/ADD_POST") {
-        const stateCopy = {...state}
-        const newPost: PostsDataType = {
-            id: 4,
-            message: state.newPostText,
-            likesCount: 0
-        };
-        stateCopy.posts = [newPost,...state.posts];
-        stateCopy.newPostText = "";
-        return stateCopy;
-    } else if (action.type === "SN/PROFILE/SET_NEW_POST_TEXT") {
-        const stateCopy = {...state};
-        stateCopy.newPostText = action.newText;
-        return stateCopy;
-    } else {
-        return state;
-    }
+const profileReducer = (state: any = initialState, action: ActionType) => {
+    return state;
 }
 
 //action creators:
-export const AddPostAC = (newPost: string) => {
-    return {type: "SN/PROFILE/ADD_POST", newPost} as const
+export const FollowAC = (id: number) => {
+    return {type: "SN/USERS/FOLLOW", id} as const
 }
-export const SetNewPostTextAC = (newText: string) => {
-    return {type: "SN/PROFILE/SET_NEW_POST_TEXT", newText} as const
+export const UnFollowAC = (id: number) => {
+    return {type: "SN/USERS/UNFOLLOW", id} as const
+}
+export const SetUsersAC = () => {
+    return{type: "SN/USERS/SET_USERS"} as const
 }
 
 export {
