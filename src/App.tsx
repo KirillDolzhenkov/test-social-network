@@ -9,6 +9,7 @@ import { Users } from './components/Users/Users';
 import {Music} from "./Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 //types:
 type AppPropsType = {}
@@ -23,7 +24,7 @@ const App: React.FC< AppPropsType> = (props)=> {
             <div className={"app-wrapper-content"}>
                 <Route path={"/Profile"} render={() => <Profile/>}/>
                 <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
-                <Route path={"/Users"} render={() => <Users/>}/>
+                <Route path={"/Users"} render={() => <UsersContainer/>}/>
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>
                 <Route path={"/Settings"} render={() => <Settings/>}/>
