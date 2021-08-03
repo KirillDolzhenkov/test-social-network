@@ -9,9 +9,9 @@ type mapStateToPropsType = {
     usersPage: UsersInitialStateType
 }
 type mapDispatchToPropsType = {
-    follow: (id: number)=> void
-    unFollow: (id: number)=> void
-    setUsers: (users: UsersType)=> void
+    follow: (id: number) => void
+    unFollow: (id: number) => void
+    setUsers: (users: UsersType) => void
 }
 
 //CC:
@@ -21,14 +21,16 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+
+
     return {
-        follow: (id: number)=>{
+        follow: (id: number) => {
             dispatch(FollowAC(id));
         },
-        unFollow: (id: number)=>{
+        unFollow: (id: number) => {
             dispatch(UnFollowAC(id));
         },
-        setUsers: (users: UsersType)=>{
+        setUsers: (users: UsersType) => {
             dispatch(SetUsersAC(users));
         }
     }
