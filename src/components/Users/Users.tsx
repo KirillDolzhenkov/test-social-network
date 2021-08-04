@@ -14,20 +14,20 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
     const state = props.usersPage;
 
-   /* if(state.users.length === 0){
+    if(state.users.length === 0){
         props.setUsers([
             {id: 1, followed: false, photo: "PhotoURL", name: "Victor", status: "blabla", location: { country: "Belarus", city:"Minsk"}},
             {id: 2, followed: false, photo: "PhotoURL",name: "Dmitry", status: "blabla2", location: { country: "Belarus", city:"Mogilev"}},
             {id: 3, followed: false, photo: "PhotoURL",name: "Valera", status: "blabla3", location: { country: "Belarus", city:"Brest"}},
         ])
-    }*/
+    }
 
     return (
         <div>
             Users page content
             <hr/>
             {
-                state.users.map(u => <div>
+                state.users.map(u => <div> key={u.id}
                     <div>
                         {u.name}
                     </div>

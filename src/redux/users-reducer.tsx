@@ -19,11 +19,7 @@ export type UsersInitialStateType = {
 
 //initialState:
 const initialState: UsersInitialStateType = {
-    users: [
-        {id: 1, followed: false, photo: "PhotoURL", name: "Victor", status: "blabla", location: { country: "Belarus", city:"Minsk"}},
-        {id: 2, followed: false, photo: "PhotoURL",name: "Dmitry", status: "blabla2", location: { country: "Belarus", city:"Mogilev"}},
-        {id: 3, followed: false, photo: "PhotoURL",name: "Valera", status: "blabla3", location: { country: "Belarus", city:"Brest"}},
-    ]
+    users: []
 }
 
 //reducer:
@@ -52,7 +48,7 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
             return stateCopy;
         }
         case "SN/USERS/SET_USERS": {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [ ...action.users]} //need to return {...state, users: [...state.users, ...action.users]}
         }
         default: {
             return state;

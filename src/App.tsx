@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {Music} from "./Music/Music";
+import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/Users/UsersContainer";

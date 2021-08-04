@@ -22,7 +22,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 
-
     return {
         follow: (id: number) => {
             dispatch(FollowAC(id));
