@@ -27,7 +27,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
             Users page content
             <hr/>
             {
-                state.users.map(u => <div> key={u.id}
+                state.users.map(u => <div key={u.id}>
                     <div>
                         {u.name}
                     </div>
