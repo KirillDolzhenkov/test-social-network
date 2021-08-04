@@ -5,7 +5,6 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import { Users } from './components/Users/Users';
 import {Music} from "./Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
@@ -30,7 +29,6 @@ const App: React.FC< AppPropsType> = (props)=> {
                 <Route path={"/Settings"} render={() => <Settings/>}/>
             </div>
         </div>
-
     );
 }
 

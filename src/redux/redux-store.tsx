@@ -14,7 +14,7 @@ export type ActionType = ReturnType<typeof AddPostAC>
     | ReturnType<typeof UnFollowAC>
     | ReturnType<typeof SetUsersAC>
 
-//store:
+//store & rootReducer:
 export const rootReducer = combineReducers({
     dialogPage: dialogsReducer,
     profilePage: profileReducer,
