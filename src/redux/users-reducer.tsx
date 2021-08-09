@@ -1,17 +1,21 @@
 import {ActionType} from "./redux-store";
 
 //types:
-type locationType = {
+type LocationType = {
     country: string
     city: string
+}
+type PhotosType = {
+    small: string
+    large: string
 }
 export type UsersType = {
     id: number
     followed: boolean
-    photo: string
+    photos: PhotosType
     name: string
     status: string
-    location: locationType
+    location: LocationType
 }
 export type UsersInitialStateType = {
     users: Array<UsersType>

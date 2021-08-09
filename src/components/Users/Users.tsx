@@ -1,6 +1,8 @@
 import React from "react";
 import {UsersInitialStateType, UsersType} from "../../redux/users-reducer";
 import axios from "axios";
+import defaultSmallUserPhoto from "../../ assets/images/defaultSmallUserPhoto.png"
+import styles from "./Users.module.css";
 
 //types:
 type UsersPropsType = {
@@ -22,23 +24,32 @@ const Users: React.FC<UsersPropsType> = (props) => {
                 {id: 3, followed: false, photo: "PhotoURL",name: "Valera", status: "blabla3", location: { country: "Belarus", city:"Brest"}},
             ])
         }*/
+
+//GET request:
     if (state.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
             props.setUsers(response.data.items);
         });
     }
 
     return (
-        <div>
+        <div className={styles.items}>
             Users page content
             <hr/>
             {
                 state.users.map(u => <div key={u.id}>
                     <div>
-                        {u.name}
+                        <img src={
+                            u.photos.small != null
+                                ? u.photos.small
+                                : defaultSmallUserPhoto //default
+                        }
+                        />
                     </div>
+                    <div>{u.name}</div>
                     <div>
-                        {u.followed
+                        {
+                            u.followed
                             ?
                             <button onClick={() => {
                                 props.unFollow(u.id);
