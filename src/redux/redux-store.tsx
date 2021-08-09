@@ -4,8 +4,8 @@ import {AddPostAC, profileReducer, SetNewPostTextAC} from "./profile-reducer";
 import {FollowAC, SetUsersAC, UnFollowAC, usersReducer} from "./users-reducer";
 
 //types:
-export type AppStateType = ReturnType<typeof rootReducer>
-export type RootReduxStoreType = typeof store
+export type AppStateType = ReturnType<typeof rootReducer>;
+export type RootReduxStoreType = typeof store;
 export type ActionType = ReturnType<typeof AddPostAC>
     | ReturnType<typeof SetNewPostTextAC>
     | ReturnType<typeof AddMessageAC>

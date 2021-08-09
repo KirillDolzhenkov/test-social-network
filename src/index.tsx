@@ -19,9 +19,8 @@ const reRenderEntireThree = (state: AppStateType) => {
                 </Provider>
             </BrowserRouter>
         </React.StrictMode>
-        , document.getElementById('root')
+        ,document.getElementById('root')
     );
-
 }
 
 reRenderEntireThree(store.getState());
