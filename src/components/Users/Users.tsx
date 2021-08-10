@@ -34,7 +34,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
     return (
         <div className={styles.items}>
-            Users page content
+            Users:
             <hr/>
             {
                 state.users.map(u => <div key={u.id}>

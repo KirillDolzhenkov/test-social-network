@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Post.module.css"
 
+//types:
 type PostPropsType = {
     id: number
     message: string
@@ -10,7 +11,7 @@ type PostPropsType = {
     removeLike: (id: number, isLiked: boolean) => void
 }
 
-
+//FC:
 const Post: React.FC<PostPropsType> = (props) => {
 
     return (
@@ -18,18 +19,18 @@ const Post: React.FC<PostPropsType> = (props) => {
             <img src='https://cdn4.iconfinder.com/data/icons/spring-festival/512/man-512.png' alt=""/>
             <span>{props.message}</span>
             {/*<span >♥{props.likesCount}</span>*/}
-            <span>
+            <div>
             {
                 props.isLiked
-                    ? <div onClick={() => {
+                    ? <button onClick={() => {
                         props.removeLike(props.id, props.isLiked);
-                    }}>Like ♥{props.likesCount}</div>
+                    }}>Liked ♥{props.likesCount}</button>
                     :
-                    <div onClick={() => {
+                    <button onClick={() => {
                         props.addLike(props.id, props.isLiked);
-                    }}>Like ♥{props.likesCount}</div>
+                    }}>Like ♡{props.likesCount}</button>
             }
-            </span>
+            </div>
             <hr/>
         </div>
     )

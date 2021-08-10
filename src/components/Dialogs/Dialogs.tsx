@@ -52,12 +52,13 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     <hr/>
                     <textarea
                         value={state.newMessageText}
+                        maxLength={100000}
                         onChange={onChangeHandler}
                         placeholder={"Write something"}
                         onKeyPress={onKeyPressHandler}
                     />
                     <span>
-                        <button onClick={addMessageHandler}>send</button>
+                        <button onClick={addMessageHandler}>Send</button>
                     </span>
                 </div>
             </div>
