@@ -40,9 +40,9 @@ const Users: React.FC<UsersPropsType> = (props) => {
                 state.users.map(u => <div key={u.id}>
                     <div>
                         <img src={
-                            u.photos.small != null
+                            u.photos.small !== null
                                 ? u.photos.small
-                                : defaultSmallUserPhoto //default
+                                : defaultSmallUserPhoto //defaultAsset
                         }
                         />
                     </div>

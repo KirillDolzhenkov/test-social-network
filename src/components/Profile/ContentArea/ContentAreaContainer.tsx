@@ -27,7 +27,6 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         updateNewPostText: (newText: string) => {
             dispatch(SetNewPostTextAC(newText));
         }
-
     }
 }
 

@@ -5,6 +5,7 @@ export type PostsDataType = {
     id: number
     message: string
     likesCount: number
+    isLiked: boolean
 }
 export type ProfileInitialStateType = {
     posts: Array<PostsDataType>
@@ -14,8 +15,8 @@ export type ProfileInitialStateType = {
 //initialState:
 const initialState: ProfileInitialStateType = {
     posts: [
-        {id: 1, message: "Hi dude", likesCount: 12},
-        {id: 2, message: "nice photos!", likesCount: 11},
+        {id: 1, message: "Hi dude", likesCount: 2, isLiked: false},
+        {id: 2, message: "nice photos!", likesCount: 1, isLiked: false},
     ],
     newPostText: ""
 }
@@ -27,7 +28,8 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
         const newPost: PostsDataType = {
             id: 4,
             message: state.newPostText,
-            likesCount: 0
+            likesCount: 0,
+            isLiked: false
         };
         stateCopy.posts = [newPost,...state.posts];
         stateCopy.newPostText = "";
@@ -36,7 +38,27 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
         const stateCopy = {...state};
         stateCopy.newPostText = action.newText;
         return stateCopy;
-    } else {
+    } else if (action.type === "SN/PROFILE/ADD_LIKE") {
+        const stateCopy = {
+            ...state, posts: state.posts.map(p => {
+                if (p.id === action.id) {
+                    return {...p, isLiked: true, likesCount: p.likesCount + 1}
+                }
+                return p;
+            })
+        }
+        return stateCopy;
+    } else if (action.type === "SN/PROFILE/REMOVE_LIKE") {
+        const stateCopy = {
+            ...state, posts: state.posts.map(p => {
+                if (p.id === action.id) {
+                    return {...p, isLiked: false, likesCount: p.likesCount - 1}
+                }
+                return p;
+            })
+        }
+        return stateCopy;
+    }else {
         return state;
     }
 }
@@ -47,6 +69,12 @@ export const AddPostAC = (newPost: string) => {
 }
 export const SetNewPostTextAC = (newText: string) => {
     return {type: "SN/PROFILE/SET_NEW_POST_TEXT", newText} as const
+}
+export const AddLikeAC = (id: number, isLiked: boolean) => {
+    return {type: "SN/PROFILE/ADD_LIKE", id, isLiked} as const
+}
+export const RemoveLikeAC = (id: number, isLiked: boolean) => {
+    return {type: "SN/PROFILE/REMOVE_LIKE", id, isLiked} as const
 }
 
 export {
