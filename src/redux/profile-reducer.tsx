@@ -26,7 +26,7 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
     if (action.type === "SN/PROFILE/ADD_POST") {
         const stateCopy = {...state}
         const newPost: PostsDataType = {
-            id: 4,
+            id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number with javascript time
             message: state.newPostText,
             likesCount: 0,
             isLiked: false
