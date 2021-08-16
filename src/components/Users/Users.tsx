@@ -27,16 +27,18 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
 
 //GET request:
-    if (state.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
-            props.setUsers(response.data.items);
-        });
+    const getUsers =() => {
+        if (state.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
+                props.setUsers(response.data.items);
+            });
+        }
     }
-
     return (
         <div className={styles.items}>
             Users:
             <hr/>
+            <button onClick={getUsers}>GetUsers</button>
             {
                 state.users.map(u => <div key={u.id}>
                     <div>
@@ -47,8 +49,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                         }/>
                     </div>
                     <div>{u.name}</div>
-                    <div>{u.location?.country}</div>
-                    <div>{u.location?.city}</div>
+                    <div>{u.location?.country}</div> {/*missed value*/}
+                    <div>{u.location?.city}</div> {/*missed value*/}
                     <div>
                         {
                             u.followed
