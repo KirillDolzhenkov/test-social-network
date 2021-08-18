@@ -15,7 +15,7 @@ type UsersPropsType = {
 //FC:
 const Users: React.FC<UsersPropsType> = (props) => {
 
-    const state = props.usersPage;
+    const state = props.usersPage; //state!!!
 
     /*      if(state.users.length === 0){
               props.setUsers([
