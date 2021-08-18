@@ -3,7 +3,7 @@ import React from "react";
 //types:
 type NewsPropsType = {}
 
-//FC:
+//function component:
 const News: React.FC<NewsPropsType> = (props) => {
     return (
         <div>

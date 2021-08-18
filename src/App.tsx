@@ -13,7 +13,7 @@ import {UsersContainer} from "./components/Users/UsersContainer";
 //types:
 type AppPropsType = {}
 
-//FC:
+//function component:
 const App: React.FC< AppPropsType> = (props)=> {
     return (
 

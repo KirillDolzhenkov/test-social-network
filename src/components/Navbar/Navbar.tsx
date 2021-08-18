@@ -5,7 +5,7 @@ import styles from "./Navbar.module.css";
 //types:
 type NavbarPropsType = {}
 
-//FC:
+//function component:
 const Navbar: React.FC<NavbarPropsType> = (props) => {
     return (
         <div className={styles.navbar}>

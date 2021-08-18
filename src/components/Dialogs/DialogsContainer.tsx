@@ -13,7 +13,7 @@ type mapDispatchToPropsType = {
     updateNewMessageText: (newText: string) => void
 }
 
-//CC:
+//container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: state.dialogPage

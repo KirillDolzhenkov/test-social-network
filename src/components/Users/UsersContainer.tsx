@@ -15,7 +15,7 @@ type mapDispatchToPropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-//CC:
+//container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.usersPage

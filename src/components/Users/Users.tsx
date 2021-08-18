@@ -12,7 +12,7 @@ type UsersPropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-//FC:
+//function component:
 const Users: React.FC<UsersPropsType> = (props) => {
 
     const state = props.usersPage; //state!!!

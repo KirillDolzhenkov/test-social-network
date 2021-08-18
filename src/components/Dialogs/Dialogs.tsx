@@ -11,7 +11,7 @@ type DialogsPropsType = {
     updateNewMessageText: (newText: string) => void
 }
 
-//FC:
+//function component:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const state = props.dialogsPage; // state!!!

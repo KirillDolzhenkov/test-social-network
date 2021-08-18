@@ -13,7 +13,7 @@ type mapDispatchToPropsType = {
     updateNewPostText: (newText: string) => void
 }
 
-//CC:
+//container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profilePage: state.profilePage

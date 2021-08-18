@@ -6,7 +6,7 @@ import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 //types:
 type ProfilePropsType = {}
 
-//FC:
+//function component::
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profile}>

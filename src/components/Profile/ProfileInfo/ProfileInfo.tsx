@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
 
+//types:
 type  ProfileInfoPropsType = {}
 
+//function component:
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     return (
         <div>

@@ -3,7 +3,7 @@ import React from "react";
 //types:
 type MusicPropsType = {}
 
-//FC:
+//function component:
 const Music: React.FC<MusicPropsType> = (props) => {
     return (
         <div>
