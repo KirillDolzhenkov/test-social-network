@@ -13,7 +13,7 @@ type UsersPropsType = {
 }
 
 //class component:
-class UsersCopy extends React.Component<UsersPropsType, any>{
+class UsersCopy extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
@@ -22,7 +22,9 @@ class UsersCopy extends React.Component<UsersPropsType, any>{
     }
 
     render() {
-        const state = this.props.usersPage;
+
+        const state = this.props.usersPage; //state!!!
+
         return (
             <div className={styles.items}>
                 Users:
