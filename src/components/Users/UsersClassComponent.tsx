@@ -13,7 +13,7 @@ type UsersPropsType = {
 }
 
 //class component:
-class UsersCopy extends React.Component<UsersPropsType, any> {
+class UsersClassComponent extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
@@ -38,9 +38,8 @@ class UsersCopy extends React.Component<UsersPropsType, any> {
                                     : defaultSmallUserPhoto //defaultAsset
                             }/>
                         </div>
-                        <div>{u.name}</div>
-                        <div>{u.location?.country}</div> {/*missed value*/}
-                        <div>{u.location?.city}</div> {/*missed value*/}
+                        <div><b>{u.name}</b></div>
+                        <button>Write message</button>
                         <div>
                             {
                                 u.followed
@@ -54,6 +53,23 @@ class UsersCopy extends React.Component<UsersPropsType, any> {
                                     }}>follow</button>
                             }
                         </div>
+
+                        {/*location description:*/}
+                        <div>{"country:"}
+                            {
+                                u.location?.country //missed value
+                                    ? u.location.country
+                                    : " - "
+                            }
+                        </div>
+                        <div>{"city:"}
+                            {
+                                u.location?.city //missed value
+                                    ? u.location.city
+                                    : " - "
+                            }
+                        </div>
+
                         <hr/>
                     </div>)
                 }
@@ -63,5 +79,5 @@ class UsersCopy extends React.Component<UsersPropsType, any> {
 }
 
 export {
-    UsersCopy
+    UsersClassComponent
 }

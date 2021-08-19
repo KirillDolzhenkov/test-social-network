@@ -49,8 +49,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                         }/>
                     </div>
                     <div>{u.name}</div>
-                    <div>{u.location?.country}</div> {/*missed value*/}
-                    <div>{u.location?.city}</div> {/*missed value*/}
+                    <div> {u.location?.country}</div> {/*missed value*/}
+                    <div> {u.location?.city}</div> {/*missed value*/}
                     <div>
                         {
                             u.followed
