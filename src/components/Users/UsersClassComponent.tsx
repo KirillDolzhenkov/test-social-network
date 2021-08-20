@@ -30,9 +30,8 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
 
         const state = this.props.usersPage; //state!!!
 
-        let pagesCount = state.totalUsersCount / state.pageSize
-
         //pages for pagination:
+        let pagesCount = state.totalUsersCount / state.pageSize
         let pages = []
         for(let i =1; i<=pagesCount; i++){
             pages.push(i)
@@ -41,14 +40,14 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
         return (
             <div className={styles.items}>
                 Users:
-                <hr/>
 
-                {/*paginator:*/}
                 <div>
-                    {
-                        pages.map(p=><span>{p}</span>)
+                    { //paginator:
+                        pages.map(p=><span className={p === state.currentPage ? styles.selectedPage : ''}>{p}</span>)
                     }
                 </div>
+
+                <hr/>
                 {
                     state.users.map(u => <div key={u.id}>
                         <div>
@@ -56,7 +55,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                                 u.photos.small !== null
                                     ? u.photos.small
                                     : defaultSmallUserPhoto //defaultAsset
-                            }/>
+                            } />
                         </div>
                         <div><b>{u.name}</b></div>
                         <div>{"Write message"}</div>

@@ -19,7 +19,7 @@ export type UsersType = {
 }
 export type UsersInitialStateType = {
     users: Array<UsersType>
-    pageSize: number 
+    pageSize: number
     totalUsersCount: number
     currentPage: number
 }
