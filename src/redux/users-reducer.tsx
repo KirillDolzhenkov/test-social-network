@@ -19,11 +19,17 @@ export type UsersType = {
 }
 export type UsersInitialStateType = {
     users: Array<UsersType>
+    pageSize: number 
+    totalUsersCount: number
+    currentPage: number
 }
 
 //initialState:
 const initialState: UsersInitialStateType = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 20,
+    currentPage: 1
 }
 
 //reducer:

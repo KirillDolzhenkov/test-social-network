@@ -7,6 +7,11 @@ import styles from "./Users.module.css";
 //types:
 type UsersPropsType = {
     usersPage: UsersInitialStateType
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+
+    //callBackTypes:
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
@@ -25,10 +30,25 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
 
         const state = this.props.usersPage; //state!!!
 
+        let pagesCount = state.totalUsersCount / state.pageSize
+
+        //pages for pagination:
+        let pages = []
+        for(let i =1; i<=pagesCount; i++){
+            pages.push(i)
+        }
+
         return (
             <div className={styles.items}>
                 Users:
                 <hr/>
+
+                {/*paginator:*/}
+                <div>
+                    {
+                        pages.map(p=><span>{p}</span>)
+                    }
+                </div>
                 {
                     state.users.map(u => <div key={u.id}>
                         <div>
@@ -39,7 +59,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                             }/>
                         </div>
                         <div><b>{u.name}</b></div>
-                        <button>Write message</button>
+                        <div>{"Write message"}</div>
                         <div>
                             {
                                 u.followed
@@ -54,7 +74,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                             }
                         </div>
 
-                        {/*location description:*/}
+                        {/*description of location:*/}
                         <div>{"country:"}
                             {
                                 u.location?.country //missed value
