@@ -15,7 +15,7 @@ type UsersPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
-
+    setCurrentPage: (p: number) => void
 }
 
 //class component:
@@ -50,6 +50,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                                 ? styles.selectedPage
                                 : ''
                             }
+                            onClick={()=>{this.props.setCurrentPage(p)}}
                         >{p}</span>)
                     }
                 </div>
