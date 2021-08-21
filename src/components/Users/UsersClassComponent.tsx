@@ -15,7 +15,7 @@ type UsersPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
-    
+
 }
 
 //class component:
