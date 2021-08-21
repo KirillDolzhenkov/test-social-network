@@ -15,13 +15,14 @@ type UsersPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
+    
 }
 
 //class component:
 class UsersClassComponent extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users/").then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
         });
     }
@@ -31,19 +32,25 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
         const state = this.props.usersPage; //state!!!
 
         //pages for pagination:
-        let pagesCount = state.totalUsersCount / state.pageSize
-        let pages = []
-        for(let i =1; i<=pagesCount; i++){
+        const pagesCount = Math.ceil(state.totalUsersCount / state.pageSize) //.ceil rounds a number up to the next largest integer
+        const pages = []
+        for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
 
         return (
+
             <div className={styles.items}>
                 Users:
 
                 <div>
                     { //paginator:
-                        pages.map(p=><span className={p === state.currentPage ? styles.selectedPage : ''}>{p}</span>)
+                        pages.map(p => <span
+                            className={p === state.currentPage
+                                ? styles.selectedPage
+                                : ''
+                            }
+                        >{p}</span>)
                     }
                 </div>
 
@@ -55,10 +62,11 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                                 u.photos.small !== null
                                     ? u.photos.small
                                     : defaultSmallUserPhoto //defaultAsset
-                            } />
+                            }/>
                         </div>
                         <div><b>{u.name}</b></div>
-                        <div>{"Write message"}</div>
+                        <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>
+                        {/*//need to fix*/}
                         <div>
                             {
                                 u.followed

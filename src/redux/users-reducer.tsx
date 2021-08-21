@@ -28,8 +28,8 @@ export type UsersInitialStateType = {
 const initialState: UsersInitialStateType = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 20,
-    currentPage: 1
+    totalUsersCount: 19,
+    currentPage: 2
 }
 
 //reducer:
