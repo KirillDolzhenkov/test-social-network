@@ -11,11 +11,12 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
 
-    //callBackTypes:
+    //callBackTypes (mapDispatchToPropsType):
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 //class component:
@@ -24,8 +25,11 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount)
         });
     }
+
+    //onPageChanged Fn for pagination:
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
@@ -56,7 +60,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                                 ? styles.selectedPage
                                 : ''
                             }
-                            onClick={()=>this.onPageChanged(p)} //need to create Fn
+                            onClick={()=>this.onPageChanged(p)} //callBack?
                         >{p}</span>)
                     }
                 </div>
