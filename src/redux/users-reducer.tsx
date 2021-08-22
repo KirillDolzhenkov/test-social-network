@@ -61,7 +61,7 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
             return {...state, users: [ ...action.users]} //need to return {...state, users: [...state.users, ...action.users]}
         }
         case "SN/USERS/SET_CURRENT_PAGE": {
-            return {...state, currentPage: action.p}
+            return {...state, currentPage: action.currentPage}
         }
         default: {
             return state;
@@ -79,8 +79,8 @@ export const UnFollowAC = (id: number) => {
 export const SetUsersAC = (users: Array<UsersType>) => {
     return {type: "SN/USERS/SET_USERS", users} as const
 }
-export const SetCurrentPageAC = (p: number) => {
-    return{type: "SN/USERS/SET_CURRENT_PAGE", p} as const
+export const SetCurrentPageAC = (currentPage: number) => {
+    return{type: "SN/USERS/SET_CURRENT_PAGE", currentPage} as const
 }
 
 export {

@@ -15,7 +15,7 @@ type UsersPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (p: number) => void
+    setCurrentPage: (pageNumber: number) => void
 }
 
 //class component:
@@ -23,6 +23,12 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+        });
+    }
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
         });
     }
@@ -50,7 +56,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                                 ? styles.selectedPage
                                 : ''
                             }
-                            onClick={()=>{this.props.setCurrentPage(p)}}
+                            onClick={()=>this.onPageChanged(p)} //need to create Fn
                         >{p}</span>)
                     }
                 </div>
@@ -66,8 +72,7 @@ class UsersClassComponent extends React.Component<UsersPropsType, any> {
                             }/>
                         </div>
                         <div><b>{u.name}</b></div>
-                        <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>
-                        {/*//need to fix*/}
+                        <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div> {/*//need to fix*/}
                         <div>
                             {
                                 u.followed

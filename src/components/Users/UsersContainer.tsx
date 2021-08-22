@@ -22,7 +22,7 @@ type mapDispatchToPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (p: number) => void
+    setCurrentPage: (pageNumber: number) => void
 }
 
 //container component:
@@ -46,8 +46,8 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         setUsers: (users: Array<UsersType>) => {
             dispatch(SetUsersAC(users));
         },
-        setCurrentPage: (p: number) => {
-            dispatch(SetCurrentPageAC(p));
+        setCurrentPage: (pageNumber: number) => {
+            dispatch(SetCurrentPageAC(pageNumber));
         }
     }
 }
