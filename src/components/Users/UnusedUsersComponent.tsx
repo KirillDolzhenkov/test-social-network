@@ -13,7 +13,7 @@ type UsersPropsType = {
 }
 
 //function component:
-const Users: React.FC<UsersPropsType> = (props) => {
+const UnusedUsersComponent: React.FC<UsersPropsType> = (props) => {
 
     const state = props.usersPage; //state!!!
 
@@ -72,5 +72,5 @@ const Users: React.FC<UsersPropsType> = (props) => {
 }
 
 export {
-    Users
+    UnusedUsersComponent
 }
