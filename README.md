@@ -1,4 +1,4 @@
-## 🌐 [here is the project](https://kirilldolzhenkov.github.io/test-social-network/)
+## 🌐 [here is the project](https://kirilldolzhenkov.github.io/way-of-samurai-social-network/)
 
 # Getting Started with Create React App
 
