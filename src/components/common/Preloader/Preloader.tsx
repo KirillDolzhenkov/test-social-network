@@ -7,13 +7,15 @@ type PreloaderPropsType = {
 
 const Preloader: React.FC<PreloaderPropsType> = (props) => {
     return (
-        <div className="Preloader">
+        /*<div className="Preloader">
             <header className="Preloader-header">
                 <img src={PreloaderLogo} className="Preloader-logo" alt="logo"/>
-                {/*loading...*/}
                 <br/>
             </header>
-        </div>
+        </div>*/
+        <h1>
+            loading...
+        </h1>
     )
 }
 

@@ -12,6 +12,7 @@ import {Users} from "./Users";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
 type UsersPropsType = {
@@ -19,6 +20,7 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 
     //callBacksTypes (mapDispatchToPropsType):
     follow: (id: number) => void
@@ -32,6 +34,7 @@ type mapStateToPropsType = {
     pageSize: number //rudiment???
     totalUsersCount: number //rudiment???
     currentPage: number //rudiment???
+    isFetching: boolean
 }
 type mapDispatchToPropsType = {
     follow: (id: number) => void
@@ -60,29 +63,34 @@ class UsersClassContainer extends React.Component<UsersPropsType, any> {
     }
 
     render() {
-        return(
-            <Users
-                usersPage={this.props.usersPage}
-                pageSize={this.props.pageSize}
-                totalUsersCount={this.props.totalUsersCount}
-                currentPage={this.props.currentPage}
-                follow={this.props.follow}
-                unFollow={this.props.unFollow}
-                setUsers={this.props.setUsers}
-                setCurrentPage={this.props.setCurrentPage}
-                setTotalUsersCount={this.props.setTotalUsersCount}
-                onPageChanged={this.onPageChanged}
-            />
+        return (
+            <>
+                {this.props.isFetching ? <Preloader/> : null}
+                <Users
+                    usersPage={this.props.usersPage}
+                    pageSize={this.props.pageSize}
+                    totalUsersCount={this.props.totalUsersCount}
+                    currentPage={this.props.currentPage}
+                    follow={this.props.follow}
+                    unFollow={this.props.unFollow}
+                    setUsers={this.props.setUsers}
+                    setCurrentPage={this.props.setCurrentPage}
+                    setTotalUsersCount={this.props.setTotalUsersCount}
+                    onPageChanged={this.onPageChanged}
+                />
+            </>
         )
     }
 }
+
 //container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.usersPage,
         pageSize: state.usersPage.pageSize, //rudiment???
         totalUsersCount: state.usersPage.totalUsersCount, //rudiment???
-        currentPage: state.usersPage.currentPage //rudiment???
+        currentPage: state.usersPage.currentPage, //rudiment???
+        isFetching: state.usersPage.isFetching
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

@@ -21,7 +21,8 @@ export type UsersInitialStateType = {
     users: Array<UsersType>
     pageSize: number
     totalUsersCount: number
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 }
 
 //initialState:
@@ -29,7 +30,8 @@ const initialState: UsersInitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 19,
-    currentPage: 2
+    currentPage: 1,
+    isFetching: true
 }
 
 //reducer:
@@ -87,6 +89,9 @@ export const SetCurrentPageAC = (currentPage: number) => {
 }
 export const SetTotalUsersCountAC = (totalCount: number) => {
     return{type: "SN/USERS/SET_TOTAL_USERS_COUNT", totalCount} as const
+}
+export const SetIsFetchingAC = (isFetching: boolean) => {
+    return{type: "SN/USERS/SET_IS_FETCHING", isFetching} as const
 }
 
 export {
