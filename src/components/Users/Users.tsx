@@ -4,6 +4,7 @@ import defaultSmallUserPhoto from "../../ assets/images/defaultSmallUserPhoto.pn
 import styles from "./Users.module.css";
 
 //types:
+
 export type UsersPropsType = {
     usersPage: UsersInitialStateType //all usersPage or? :
     pageSize: number //<-

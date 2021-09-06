@@ -31,7 +31,7 @@ const initialState: UsersInitialStateType = {
     pageSize: 5,
     totalUsersCount: 19,
     currentPage: 1,
-    isFetching: true
+    isFetching: false
 }
 
 //reducer:
@@ -67,6 +67,9 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
         }
         case "SN/USERS/SET_TOTAL_USERS_COUNT": {
             return {...state, totalUsersCount: action.totalCount}
+        }
+        case "SN/USERS/SET_IS_FETCHING":{
+            return {...state, isFetching: action.isFetching}
         }
         default: {
             return state;

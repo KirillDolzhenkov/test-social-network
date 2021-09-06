@@ -25,7 +25,7 @@ export type ActionType = ReturnType<typeof AddPostAC>
     | ReturnType<typeof SetUsersAC>
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
-
+    | ReturnType<typeof SetIsFetchingAC>
 
 //store & rootReducer:
 export const rootReducer = combineReducers({

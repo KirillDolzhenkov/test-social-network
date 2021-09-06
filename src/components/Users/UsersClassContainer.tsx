@@ -1,7 +1,7 @@
 import React from "react";
 import {
     FollowAC,
-    SetCurrentPageAC, SetTotalUsersCountAC,
+    SetCurrentPageAC, SetIsFetchingAC, SetTotalUsersCountAC,
     SetUsersAC,
     UnFollowAC,
     UsersInitialStateType,
@@ -28,6 +28,7 @@ type UsersPropsType = {
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    setIsFetching: (isFetching: boolean) => void
 }
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
@@ -42,13 +43,16 @@ type mapDispatchToPropsType = {
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    setIsFetching: (isFetching: boolean) => void
 }
 
 //class container component:
 class UsersClassContainer extends React.Component<UsersPropsType, any> {
 
     componentDidMount() {
+        this.props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setIsFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
         });
@@ -57,7 +61,9 @@ class UsersClassContainer extends React.Component<UsersPropsType, any> {
     //onPageChanged Fn for pagination:
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
+        this.props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setIsFetching(false);
             this.props.setUsers(response.data.items);
         });
     }
@@ -110,6 +116,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         },
         setTotalUsersCount: (totalCount: number) => {
             dispatch(SetTotalUsersCountAC(totalCount));
+        },
+        setIsFetching: (isFetching: boolean) => {
+            dispatch(SetIsFetchingAC(isFetching));
         }
     }
 }
