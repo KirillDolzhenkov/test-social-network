@@ -4,12 +4,11 @@ import defaultSmallUserPhoto from "../../ assets/images/defaultSmallUserPhoto.pn
 import styles from "./Users.module.css";
 
 //types:
-
-export type UsersPropsType = {
-    usersPage: UsersInitialStateType //all usersPage or? :
-    pageSize: number //<-
-    totalUsersCount: number //<-
-    currentPage: number //<-
+export type UsersPropsType = { //duplicate UsersPropsType!!!
+    usersPage: UsersInitialStateType
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 
     //callBacksTypes (mapDispatchToPropsType):
     follow: (id: number) => void

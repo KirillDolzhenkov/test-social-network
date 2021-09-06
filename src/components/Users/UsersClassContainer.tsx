@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
-type UsersPropsType = {
+type UsersPropsType = { //duplicate UsersPropsType!!!
     usersPage: UsersInitialStateType
     pageSize: number
     totalUsersCount: number
@@ -30,11 +30,12 @@ type UsersPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
 }
+
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
-    pageSize: number //rudiment???
-    totalUsersCount: number //rudiment???
-    currentPage: number //rudiment???
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
     isFetching: boolean
 }
 type mapDispatchToPropsType = {
@@ -93,9 +94,9 @@ class UsersClassContainer extends React.Component<UsersPropsType, any> {
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize, //rudiment???
-        totalUsersCount: state.usersPage.totalUsersCount, //rudiment???
-        currentPage: state.usersPage.currentPage, //rudiment???
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching
     }
 }
@@ -124,7 +125,14 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 }
 
 //HOC:
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassContainer);
+const UsersContainer = connect(mapStateToProps, {
+    follow: FollowAC,
+    unFollow: UnFollowAC,
+    setUsers: SetUsersAC,
+    setCurrentPage: SetCurrentPageAC,
+    setTotalUsersCount: SetTotalUsersCountAC,
+    setIsFetching: SetIsFetchingAC
+})(UsersClassContainer);
 
 
 export {
