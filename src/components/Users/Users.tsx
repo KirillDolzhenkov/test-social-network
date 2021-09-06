@@ -2,6 +2,7 @@ import React from "react";
 import {UsersInitialStateType, UsersType} from "../../redux/users-reducer";
 import defaultSmallUserPhoto from "../../ assets/images/defaultSmallUserPhoto.png"
 import styles from "./Users.module.css";
+import { NavLink } from "react-router-dom";
 
 //types:
 export type UsersPropsType = { //duplicate UsersPropsType!!!
@@ -52,11 +53,13 @@ const Users: React.FC<UsersPropsType> = (props) => {
             {
                 state.users.map(u => <div key={u.id}>
                     <div>
+                        <NavLink to={'/profile/' + u.id}>
                         <img src={
                             u.photos.small !== null
                                 ? u.photos.small
                                 : defaultSmallUserPhoto //defaultAsset
                         }/>
+                        </NavLink>
                     </div>
                     <div><b>{u.name}</b></div>
                     <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>{/*//need to fix*/}

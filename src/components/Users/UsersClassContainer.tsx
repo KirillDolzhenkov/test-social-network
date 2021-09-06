@@ -100,38 +100,16 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 
-    return {
-        follow: (id: number) => {
-            dispatch(FollowAC(id));
-        },
-        unFollow: (id: number) => {
-            dispatch(UnFollowAC(id));
-        },
-        setUsers: (users: Array<UsersType>) => {
-            dispatch(SetUsersAC(users));
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(SetCurrentPageAC(pageNumber));
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(SetTotalUsersCountAC(totalCount));
-        },
-        setIsFetching: (isFetching: boolean) => {
-            dispatch(SetIsFetchingAC(isFetching));
-        }
-    }
-}
 
 //HOC:
 const UsersContainer = connect(mapStateToProps, {
-    follow: FollowAC,
-    unFollow: UnFollowAC,
-    setUsers: SetUsersAC,
-    setCurrentPage: SetCurrentPageAC,
-    setTotalUsersCount: SetTotalUsersCountAC,
-    setIsFetching: SetIsFetchingAC
+    FollowAC,
+    UnFollowAC,
+    SetUsersAC,
+    SetCurrentPageAC,
+    SetTotalUsersCountAC,
+    SetIsFetchingAC
 })(UsersClassContainer);
 
 
