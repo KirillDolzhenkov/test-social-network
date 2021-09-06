@@ -78,22 +78,22 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
 }
 
 //action creators:
-export const FollowAC = (id: number) => {
+export const follow = (id: number) => {
     return {type: "SN/USERS/FOLLOW", id} as const
 }
-export const UnFollowAC = (id: number) => {
+export const unFollow = (id: number) => {
     return {type: "SN/USERS/UNFOLLOW", id} as const
 }
-export const SetUsersAC = (users: Array<UsersType>) => {
+export const setUsers = (users: Array<UsersType>) => {
     return {type: "SN/USERS/SET_USERS", users} as const
 }
-export const SetCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return{type: "SN/USERS/SET_CURRENT_PAGE", currentPage} as const
 }
-export const SetTotalUsersCountAC = (totalCount: number) => {
+export const setTotalUsersCount = (totalCount: number) => {
     return{type: "SN/USERS/SET_TOTAL_USERS_COUNT", totalCount} as const
 }
-export const SetIsFetchingAC = (isFetching: boolean) => {
+export const setIsFetching = (isFetching: boolean) => {
     return{type: "SN/USERS/SET_IS_FETCHING", isFetching} as const
 }
 

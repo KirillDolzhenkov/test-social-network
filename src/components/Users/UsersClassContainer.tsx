@@ -1,9 +1,9 @@
 import React from "react";
 import {
-    FollowAC,
-    SetCurrentPageAC, SetIsFetchingAC, SetTotalUsersCountAC,
-    SetUsersAC,
-    UnFollowAC,
+    follow,
+    setCurrentPage, setIsFetching, setTotalUsersCount,
+    setUsers,
+    unFollow,
     UsersInitialStateType,
     UsersType
 } from "../../redux/users-reducer";
@@ -103,13 +103,13 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 //HOC:
-const UsersContainer = connect(mapStateToProps, {
-    FollowAC,
-    UnFollowAC,
-    SetUsersAC,
-    SetCurrentPageAC,
-    SetTotalUsersCountAC,
-    SetIsFetchingAC
+const UsersContainer = connect(mapStateToProps, { //
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setIsFetching
 })(UsersClassContainer);
 
 

@@ -9,6 +9,7 @@ import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
+import {ProfileClassContainer} from "./components/Profile/ProfileClassContainer";
 
 //types:
 type AppPropsType = {}
@@ -21,7 +22,7 @@ const App: React.FC< AppPropsType> = (props)=> {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={"/Profile"} render={() => <Profile />}/>
+                <Route path={"/Profile"} render={() => <ProfileClassContainer/>}/>
                 <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
                 <Route path={"/Users"} render={() => <UsersContainer/>}/>
                 <Route path={"/News"} render={() => <News/>}/>
