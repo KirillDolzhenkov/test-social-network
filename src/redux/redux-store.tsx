@@ -1,6 +1,6 @@
 import {combineReducers, createStore} from "redux";
 import {AddMessageAC, dialogsReducer, SetNewMessageTextAC} from "./dialogs-reducer";
-import {AddLikeAC, AddPostAC, profileReducer, RemoveLikeAC, SetNewPostTextAC} from "./profile-reducer";
+import {AddLikeAC, AddPostAC, profileReducer, RemoveLikeAC, SetNewPostTextAC, SetProfileAC} from "./profile-reducer";
 import {
     follow,
     setCurrentPage,
@@ -18,6 +18,7 @@ export type ActionType = ReturnType<typeof AddPostAC>
     | ReturnType<typeof SetNewPostTextAC>
     | ReturnType<typeof AddLikeAC>
     | ReturnType<typeof RemoveLikeAC>
+    | ReturnType<typeof SetProfileAC>
     | ReturnType<typeof AddMessageAC>
     | ReturnType<typeof SetNewMessageTextAC>
     | ReturnType<typeof follow>
