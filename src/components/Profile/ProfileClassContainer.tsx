@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import axios from "axios";
-import {ProfileInitialStateType, SetProfileAC} from "../../redux/profile-reducer";
+import {ProfileInitialStateType, setProfile} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 //types:
@@ -28,15 +28,14 @@ class ProfileClassContainer extends React.Component<ProfilePropsType, any> {
     }
 }
 
-
 const mapStateToProps = (state: AppStateType)  => {
     return{
         profile: state.profilePage.profile
     }
 }
 
-
-const ProfileContainer = connect(mapStateToProps,{setProfile: SetProfileAC})(ProfileClassContainer);//need mapStateToProps refactoring
+//HOC:
+const ProfileContainer = connect(mapStateToProps,{setProfile})(ProfileClassContainer);
 
 export
 {

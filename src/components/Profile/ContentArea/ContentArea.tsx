@@ -7,7 +7,7 @@ import {PostContainer} from "./Post/PostContainer";
 type ContentAreaPropsType = {
     profilePage: ProfileInitialStateType
     addPost: (newPostText: string) => void
-    updateNewPostText: (newText: string) => void
+    setNewPostText: (newText: string) => void
 }
 
 //function component:
@@ -31,7 +31,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.updateNewPostText(newText);
+        props.setNewPostText(newText);
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {

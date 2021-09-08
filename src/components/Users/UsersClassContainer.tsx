@@ -1,7 +1,9 @@
 import React from "react";
 import {
     follow,
-    setCurrentPage, setIsFetching, setTotalUsersCount,
+    setCurrentPage,
+    setIsFetching,
+    setTotalUsersCount,
     setUsers,
     unFollow,
     UsersInitialStateType,
@@ -10,7 +12,6 @@ import {
 import axios from "axios";
 import {Users} from "./Users";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 
@@ -103,7 +104,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 //HOC:
-const UsersContainer = connect(mapStateToProps, { //
+const UsersContainer = connect(mapStateToProps, {
     follow,
     unFollow,
     setUsers,

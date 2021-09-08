@@ -74,19 +74,19 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
 }
 
 //action creators:
-export const AddPostAC = (newPost: string) => {
+export const addPost = (newPost: string) => {
     return {type: "SN/PROFILE/ADD_POST", newPost} as const
 }
-export const SetNewPostTextAC = (newText: string) => {
+export const setNewPostText = (newText: string) => {
     return {type: "SN/PROFILE/SET_NEW_POST_TEXT", newText} as const
 }
-export const AddLikeAC = (id: number, isLiked: boolean) => {
+export const addLike = (id: number, isLiked: boolean) => {
     return {type: "SN/PROFILE/ADD_LIKE", id, isLiked} as const
 }
-export const RemoveLikeAC = (id: number, isLiked: boolean) => {
+export const removeLike = (id: number, isLiked: boolean) => {
     return {type: "SN/PROFILE/REMOVE_LIKE", id, isLiked} as const
 }
-export const SetProfileAC = (profile: ProfileInitialStateType) => {
+export const setProfile = (profile: ProfileInitialStateType) => {
     return{ type: "SN/PROFILE/SET_PROFILE", profile} as const
 }
 

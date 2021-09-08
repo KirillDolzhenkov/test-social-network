@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
-import {AddLikeAC, ProfileInitialStateType, RemoveLikeAC} from "../../../../redux/profile-reducer";
+import {addLike, ProfileInitialStateType, removeLike} from "../../../../redux/profile-reducer";
 import {Post} from "./Post";
 
 //types:
@@ -22,10 +22,10 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         addLike: (id: number, isLiked: boolean)=>{
-            dispatch(AddLikeAC(id, isLiked));
+            dispatch(addLike(id, isLiked));
         },
         removeLike: (id: number, isLiked: boolean)=> {
-            dispatch(RemoveLikeAC(id, isLiked));
+            dispatch(removeLike(id, isLiked));
         }
     }
 }

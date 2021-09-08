@@ -7,8 +7,8 @@ import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
 //types:
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
-    sendMessage: (newMessageText: string) => void
-    updateNewMessageText: (newText: string) => void
+    addMessage: (newMessageText: string) => void
+    setNewMessageText: (newText: string) => void
 }
 
 //function component:
@@ -21,12 +21,12 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const addMessageHandler = () => {
         if (state.newMessageText) {
-            props.sendMessage(state.newMessageText.trim());
+            props.addMessage(state.newMessageText.trim());
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.updateNewMessageText(newText);
+        props.setNewMessageText(newText);
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {

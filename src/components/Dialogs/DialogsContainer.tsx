@@ -1,6 +1,6 @@
 import {AppStateType} from "../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
-import {AddMessageAC, DialogsInitialStateType, SetNewMessageTextAC} from "../../redux/dialogs-reducer";
+import {addMessage, DialogsInitialStateType, setNewMessageText} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
@@ -22,17 +22,17 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         sendMessage: (newMessageText: string) => {
-            dispatch(AddMessageAC(newMessageText));
+            dispatch(addMessage(newMessageText));
         },
         updateNewMessageText: (newText: string) => {
-            dispatch(SetNewMessageTextAC(newText));
+            dispatch(setNewMessageText(newText));
 
         }
     }
 }
 
 //HOC:
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);
 
 export {
     DialogsContainer
