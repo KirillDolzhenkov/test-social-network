@@ -12,6 +12,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
         <div className={styles.profile}>
             <ProfileInfo/>
             <ContentAreaContainer/>
+
         </div>
     )
 }

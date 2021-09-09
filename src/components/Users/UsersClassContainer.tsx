@@ -73,47 +73,58 @@ class UsersClassContainer extends React.Component<UsersPropsType, any> {
     render() {
         return (
             <>
-                {this.props.isFetching ? <Preloader/> : null}
-                <Users
-                    usersPage={this.props.usersPage}
-                    pageSize={this.props.pageSize}
-                    totalUsersCount={this.props.totalUsersCount}
-                    currentPage={this.props.currentPage}
-                    follow={this.props.follow}
-                    unFollow={this.props.unFollow}
-                    setUsers={this.props.setUsers}
-                    setCurrentPage={this.props.setCurrentPage}
-                    setTotalUsersCount={this.props.setTotalUsersCount}
-                    onPageChanged={this.onPageChanged}
-                />
+                {
+                    this.props.isFetching
+                        ? <Preloader/>
+                        : <Users
+                            usersPage={this.props.usersPage}
+                            pageSize={this.props.pageSize}
+                            totalUsersCount={this.props.totalUsersCount}
+                            currentPage={this.props.currentPage}
+                            follow={this.props.follow}
+                            unFollow={this.props.unFollow}
+                            setUsers={this.props.setUsers}
+                            setCurrentPage={this.props.setCurrentPage}
+                            setTotalUsersCount={this.props.setTotalUsersCount}
+                            onPageChanged={this.onPageChanged}
+                        />
+                }
             </>
         )
     }
+
 }
 
 //container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
+        usersPage: state.usersPage
+        ,
+        pageSize: state.usersPage.pageSize
+        ,
+        totalUsersCount: state.usersPage.totalUsersCount
+        ,
+        currentPage: state.usersPage.currentPage
+        ,
         isFetching: state.usersPage.isFetching
     }
 }
 
 
 //HOC:
-const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setIsFetching
-})(UsersClassContainer);
+const UsersContainer = connect(mapStateToProps,
+    {
+        follow,
+        unFollow,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        setIsFetching
+    }
+)(UsersClassContainer);
 
 
-export {
+export
+{
     UsersContainer
 }
