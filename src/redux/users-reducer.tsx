@@ -38,7 +38,7 @@ const initialState: UsersInitialStateType = {
 const usersReducer = (state: UsersInitialStateType = initialState, action: ActionType) => {
     switch (action.type) {
         case "SN/USERS/FOLLOW": {
-            let stateCopy = {
+            return  {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.id) {
                         return {...u, followed: true}
@@ -46,10 +46,9 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
                     return u;
                 })
             }
-            return stateCopy;
         }
         case "SN/USERS/UNFOLLOW": {
-            let stateCopy = {
+            return {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.id) {
                         return {...u, followed: false}
@@ -57,10 +56,9 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
                     return u;
                 })
             }
-            return stateCopy;
         }
         case "SN/USERS/SET_USERS": {
-            return {...state, users: [ ...action.users]} //need to return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...action.users]} //need to return {...state, users: [...state.users, ...action.users]}
         }
         case "SN/USERS/SET_CURRENT_PAGE": {
             return {...state, currentPage: action.currentPage}
@@ -68,7 +66,7 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Actio
         case "SN/USERS/SET_TOTAL_USERS_COUNT": {
             return {...state, totalUsersCount: action.totalCount}
         }
-        case "SN/USERS/SET_IS_FETCHING":{
+        case "SN/USERS/SET_IS_FETCHING": {
             return {...state, isFetching: action.isFetching}
         }
         default: {
@@ -88,13 +86,13 @@ export const setUsers = (users: Array<UsersType>) => {
     return {type: "SN/USERS/SET_USERS", users} as const
 }
 export const setCurrentPage = (currentPage: number) => {
-    return{type: "SN/USERS/SET_CURRENT_PAGE", currentPage} as const
+    return {type: "SN/USERS/SET_CURRENT_PAGE", currentPage} as const
 }
 export const setTotalUsersCount = (totalCount: number) => {
-    return{type: "SN/USERS/SET_TOTAL_USERS_COUNT", totalCount} as const
+    return {type: "SN/USERS/SET_TOTAL_USERS_COUNT", totalCount} as const
 }
 export const setIsFetching = (isFetching: boolean) => {
-    return{type: "SN/USERS/SET_IS_FETCHING", isFetching} as const
+    return {type: "SN/USERS/SET_IS_FETCHING", isFetching} as const
 }
 
 export {

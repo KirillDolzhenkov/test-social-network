@@ -11,12 +11,11 @@ import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 
 //types:
-type AppPropsType = {}
+type PropsType = {}
 
 //function component:
-const App: React.FC< AppPropsType> = (props)=> {
+const App: React.FC<PropsType> = (props) => {
     return (
-
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
