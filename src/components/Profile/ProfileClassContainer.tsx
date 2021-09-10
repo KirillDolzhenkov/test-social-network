@@ -8,6 +8,7 @@ import {AppStateType} from "../../redux/redux-store";
 //types:
 type ProfilePropsType = {
     setProfile: (profile: ProfileInitialStateType) => void
+    profile: any//!!!
 }
 
 //function component:
@@ -22,7 +23,7 @@ class ProfileClassContainer extends React.Component<ProfilePropsType, any> {
     render() {
         return (
             <>
-                <Profile{...this.props}/>
+                <Profile{...this.props} profile={this.props.profile}/>
             </>
         )
     }

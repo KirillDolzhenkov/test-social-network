@@ -98,14 +98,10 @@ class UsersClassContainer extends React.Component<UsersPropsType, any> {
 //container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersPage: state.usersPage
-        ,
-        pageSize: state.usersPage.pageSize
-        ,
-        totalUsersCount: state.usersPage.totalUsersCount
-        ,
-        currentPage: state.usersPage.currentPage
-        ,
+        usersPage: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching
     }
 }

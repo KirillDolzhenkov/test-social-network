@@ -4,13 +4,16 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 
 //types:
-type ProfilePropsType = {}
+type ProfilePropsType = {
+    profile: any//!!!
+}
 
 //function component:
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profile}>
-            <ProfileInfo/>
+
+            <ProfileInfo profile={props.profile}/>
             <ContentAreaContainer/>
 
         </div>
