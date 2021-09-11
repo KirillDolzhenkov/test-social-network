@@ -1,17 +1,39 @@
 import {ActionType} from "./redux-store";
 
 //types:
-export type PostsDataType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
     isLiked: boolean
 }
 export type ProfileInitialStateType = {
-    posts: Array<PostsDataType>
+    posts: Array<PostType>
     newPostText: string
-    profile: any//!!!!
+    profile: ProfilePageType | null//!!!!
 }
+
+export type ProfilePageType = {
+    aboutMe: string,
+    contacts: LinksType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: null | string,
+    fullName: string,
+    userId: number,
+    photos: PhotosType
+}
+type LinksType = {
+    facebook: null | string,
+    website: null | string,
+    vk: null | string,
+    twitter: null | string,
+    instagram: null | string,
+    youtube: null | string,
+    github: null | string,
+    mainLink: null | string
+}
+export type PhotosType = { small: string, large: string }
+
 
 //initialState:
 const initialState: ProfileInitialStateType = {
@@ -24,11 +46,11 @@ const initialState: ProfileInitialStateType = {
 }
 
 //reducer:
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType) => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType): ProfileInitialStateType => {
     switch (action.type) {
         case "SN/PROFILE/ADD_POST": {
             const stateCopy = {...state}
-            const newPost: PostsDataType = {
+            const newPost: PostType = {
                 id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number with javascript time
                 message: state.newPostText,
                 likesCount: 0,
@@ -86,7 +108,7 @@ export const addLike = (id: number, isLiked: boolean) => {
 export const removeLike = (id: number, isLiked: boolean) => {
     return {type: "SN/PROFILE/REMOVE_LIKE", id, isLiked} as const
 }
-export const setProfile = (profile: ProfileInitialStateType) => {
+export const setProfile = (profile: ProfilePageType) => {
     return{ type: "SN/PROFILE/SET_PROFILE", profile} as const
 }
 

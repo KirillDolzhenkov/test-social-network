@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/Preloader/Preloader";
+import {ProfileInitialStateType, ProfilePageType} from "../../../redux/profile-reducer";
 
 //types:
 type  ProfileInfoPropsType = {
-    profile: any//!!!
+    profile: ProfilePageType | null//!!!!
 }
 
 //function component:
@@ -20,7 +21,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 <img src="https://i.redd.it/om4a8r7glhx21.png" alt=""/>
             </div>
             <div className={styles.descriptionBlock}>
-                {props.profile.photos.large}
+                <img src={props.profile.photos.large}/>
                 Ava + description
 
             </div>

@@ -16,22 +16,6 @@ import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
-type UsersPropsType = { //duplicate UsersPropsType!!!
-    usersPage: UsersInitialStateType
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-
-    //callBacksTypes (mapDispatchToPropsType):
-    follow: (id: number) => void
-    unFollow: (id: number) => void
-    setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    setIsFetching: (isFetching: boolean) => void
-}
-
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
@@ -47,9 +31,10 @@ type mapDispatchToPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
 }
+type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //class container component:
-class UsersClassContainer extends React.Component<UsersPropsType, any> {
+class UsersClassContainer extends React.Component<UsersClassContainerPropsType, any> {
 
     componentDidMount() {
         this.props.setIsFetching(true);

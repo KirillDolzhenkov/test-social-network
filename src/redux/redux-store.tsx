@@ -13,7 +13,6 @@ import {
 
 //types:
 export type AppStateType = ReturnType<typeof rootReducer>;
-export type RootReduxStoreType = typeof store;
 export type ActionType = ReturnType<typeof addPost>
     | ReturnType<typeof setNewPostText>
     | ReturnType<typeof addLike>
