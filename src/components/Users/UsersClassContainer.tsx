@@ -3,9 +3,7 @@ import {
     follow,
     setCurrentPage,
     setIsFetching,
-    setTotalUsersCount,
-    setUsers,
-    unFollow,
+    setTotalUsersCount, setUsers, unFollow,
     UsersInitialStateType,
     UsersType
 } from "../../redux/users-reducer";
@@ -100,7 +98,7 @@ const UsersContainer = connect(mapStateToProps,
         setUsers,
         setCurrentPage,
         setTotalUsersCount,
-        setIsFetching
+        setIsFetching,
     }
 )(UsersClassContainer);
 

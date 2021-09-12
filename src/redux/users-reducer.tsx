@@ -1,5 +1,3 @@
-import {ActionType} from "./redux-store";
-
 //types:
 type LocationType = {
     country: string
@@ -24,6 +22,12 @@ export type UsersInitialStateType = {
     currentPage: number,
     isFetching: boolean
 }
+export type UsersActionType = | ReturnType<typeof follow>
+    | ReturnType<typeof unFollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof setIsFetching>
 
 //initialState:
 const initialState: UsersInitialStateType = {
@@ -35,7 +39,7 @@ const initialState: UsersInitialStateType = {
 }
 
 //reducer:
-const usersReducer = (state: UsersInitialStateType = initialState, action: ActionType) => {
+const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType) => {
     switch (action.type) {
         case "SN/USERS/FOLLOW": {
             return  {

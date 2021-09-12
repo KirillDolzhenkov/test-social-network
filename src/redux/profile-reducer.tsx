@@ -1,5 +1,3 @@
-import {ActionType} from "./redux-store";
-
 //types:
 type PostType = {
     id: number
@@ -34,6 +32,11 @@ type LinksType = {
 }
 export type PhotosType = { small: string, large: string }
 
+export type ProfileActionType = ReturnType<typeof addPost>
+    | ReturnType<typeof setNewPostText>
+    | ReturnType<typeof addLike>
+    | ReturnType<typeof removeLike>
+    | ReturnType<typeof setProfile>
 
 //initialState:
 const initialState: ProfileInitialStateType = {
@@ -46,7 +49,7 @@ const initialState: ProfileInitialStateType = {
 }
 
 //reducer:
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionType): ProfileInitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType): ProfileInitialStateType => {
     switch (action.type) {
         case "SN/PROFILE/ADD_POST": {
             const stateCopy = {...state}

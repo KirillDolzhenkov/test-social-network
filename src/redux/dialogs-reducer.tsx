@@ -1,5 +1,3 @@
-import {ActionType} from "./redux-store"
-
 //types:
 export type DialogsDataType = {
     id: number
@@ -14,6 +12,8 @@ export type DialogsInitialStateType = {
     messages: Array<MessagesDataType>,
     newMessageText: string
 }
+export type DialogsActionType = ReturnType<typeof addMessage>
+    | ReturnType<typeof setNewMessageText>
 
 //initialState:
 const initialState: DialogsInitialStateType = {
@@ -29,7 +29,7 @@ const initialState: DialogsInitialStateType = {
 }
 
 //reducer:
-const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionType) => { //need to rename to dialogReducer
+const dialogsReducer = (state: DialogsInitialStateType = initialState, action: DialogsActionType) => { //need to rename to dialogReducer
     if (action.type === "SN/DIALOGS/ADD_MESSAGE") {
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {

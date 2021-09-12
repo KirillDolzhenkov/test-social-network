@@ -13,7 +13,7 @@ type mapDispatchToPropsType = {
 }
 
 //container component:
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogPage
     }
