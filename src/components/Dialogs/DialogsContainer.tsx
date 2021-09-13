@@ -4,23 +4,29 @@ import {addMessage, DialogsInitialStateType, setNewMessageText} from "../../redu
 import {connect} from "react-redux";
 
 //types:
+type DialogsContainerPropsType = {}
+
 type mapStateToPropsType = {
     dialogsPage: DialogsInitialStateType
 }
 type mapDispatchToPropsType = {
-    sendMessage: (newMessageText: string) => void
-    updateNewMessageText: (newText: string) => void
+    addMessage: (newMessageText: string) => void
+    setNewMessageText: (newText: string) => void
 }
+type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //container component:
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
     return {
         dialogsPage: state.dialogPage
     }
 }
 
 //HOC:
-const DialogsContainer = connect(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);
+const DialogsContainer = connect<mapStateToPropsType,
+    mapDispatchToPropsType,
+    DialogsContainerPropsType,
+    AppStateType>(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);
 
 export {
     DialogsContainer

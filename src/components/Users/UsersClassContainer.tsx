@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
+type UsersContainerPropsType = {}
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
@@ -91,7 +92,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 //HOC:
-const UsersContainer = connect(mapStateToProps,
+const UsersContainer = connect<mapStateToPropsType,mapDispatchToPropsType,UsersContainerPropsType,AppStateType>(mapStateToProps,
     {
         follow,
         unFollow,
