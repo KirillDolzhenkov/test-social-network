@@ -104,7 +104,6 @@ const UsersContainer = connect<mapStateToPropsType,mapDispatchToPropsType,UsersC
 )(UsersClassContainer);
 
 
-export
-{
+export {
     UsersContainer
 }

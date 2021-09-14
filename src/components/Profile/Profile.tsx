@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
-import {ProfileInitialStateType, ProfilePageType} from "../../redux/profile-reducer";
+import {ProfilePageType} from "../../redux/profile-reducer";
 
 //types:
 type ProfilePropsType = {
-    profile: ProfilePageType | null//!!!!
+    profile: ProfilePageType | null
 }
 
 //function component:

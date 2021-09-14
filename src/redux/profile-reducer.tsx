@@ -8,7 +8,7 @@ type PostType = {
 export type ProfileInitialStateType = {
     posts: Array<PostType>
     newPostText: string
-    profile: ProfilePageType | null//!!!!
+    profile: ProfilePageType | null
 }
 
 export type ProfilePageType = {

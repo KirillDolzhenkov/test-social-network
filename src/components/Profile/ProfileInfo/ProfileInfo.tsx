@@ -1,17 +1,19 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileInitialStateType, ProfilePageType} from "../../../redux/profile-reducer";
+import {ProfilePageType} from "../../../redux/profile-reducer";
 
 //types:
 type  ProfileInfoPropsType = {
-    profile: ProfilePageType | null//!!!!
+    profile: ProfilePageType | null
 }
 
 //function component:
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
-    if (!props.profile){
+    const state = props.profile;//!!!
+
+    if (!state) {
         return <Preloader/>
     }
 
@@ -21,9 +23,9 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 <img src="https://i.redd.it/om4a8r7glhx21.png" alt=""/>
             </div>
             <div className={styles.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
-                Ava + description
-
+                <img src={state.photos.large}/>
+                <b>{state.fullName}</b>
+                {/*<div>{state.aboutMe}</div>*/}
             </div>
         </div>
     )
