@@ -11,12 +11,13 @@ type PostPropsType = {
     removeLike: (id: number, isLiked: boolean) => void
 }
 
-//Fn Component:
+//functional Component:
 const Post: React.FC<PostPropsType> = (props) => {
 
     return (
         <div className={styles.items}>
             <img src='https://cdn4.iconfinder.com/data/icons/spring-festival/512/man-512.png' alt=""/>
+            <b>{"UserName"} </b> {/*<-- props.UserName !!!*/}
             <span>{props.message}</span>
             {/*<span >♥{props.likesCount}</span>*/}
             <div>
