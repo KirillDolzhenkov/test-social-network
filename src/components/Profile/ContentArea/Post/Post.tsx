@@ -11,7 +11,7 @@ type PostPropsType = {
     removeLike: (id: number, isLiked: boolean) => void
 }
 
-//functional Component:
+//Functional Component:
 const Post: React.FC<PostPropsType> = (props) => {
 
     return (

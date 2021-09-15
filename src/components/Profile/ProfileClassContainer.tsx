@@ -15,18 +15,21 @@ type mapStateToPropsType = {
 type mapDispatchToPropsType = {
     setProfile: (profile: ProfilePageType) => void
 }
-type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
-
 type  PathParamsType = {
-    userId: string
+    userId: any //number or string
 }
-type PropsType = RouteComponentProps<PathParamsType> & ProfileClassContainerPropsType//.props.match FIX
+type ProfileClassContainerPropsType = mapStateToPropsType
+    & mapDispatchToPropsType
+    & RouteComponentProps<PathParamsType>//.props.match.params FIX
 
-//function component:
-class ProfileClassContainer extends React.Component<PropsType> {
+//class container component:
+class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = 2;
+        }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             this.props.setProfile(response.data);
         });

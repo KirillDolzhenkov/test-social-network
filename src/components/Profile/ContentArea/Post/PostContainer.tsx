@@ -13,7 +13,7 @@ type mapDispatchToPropsType = {
     removeLike: (id: number, isLiked: boolean) => void
 }
 
-//Container Component:
+//container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profilePage: state.profilePage

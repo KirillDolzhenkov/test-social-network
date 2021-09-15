@@ -1,15 +1,8 @@
 import {combineReducers, createStore} from "redux";
-import {addMessage, dialogsReducer, setNewMessageText} from "./dialogs-reducer";
-import {addLike, addPost, profileReducer, removeLike, setNewPostText, setProfile} from "./profile-reducer";
-import {
-    follow,
-    setCurrentPage,
-    setIsFetching,
-    setTotalUsersCount,
-    setUsers,
-    unFollow,
-    usersReducer
-} from "./users-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {profileReducer} from "./profile-reducer";
+import {usersReducer} from "./users-reducer";
+import {authReducer} from "./auth-reducer";
 
 //types:
 export type AppStateType = ReturnType<typeof rootReducer>;
@@ -18,7 +11,8 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 export const rootReducer = combineReducers({
     dialogPage: dialogsReducer,
     profilePage: profileReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 const store = createStore(rootReducer);
