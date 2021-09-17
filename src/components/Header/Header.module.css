@@ -15,7 +15,9 @@
     float: right;
     padding: 30px;
     font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.3ch;
 }
+
 .loginBlock a{
     color: white;
 }
