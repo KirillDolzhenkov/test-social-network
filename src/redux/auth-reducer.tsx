@@ -1,11 +1,11 @@
 //types:
 
-type authReducerAT = ReturnType<typeof firstAC>
-
+type authReducerAT = ReturnType<typeof setAuthUserData>
 type authInitialStateType = {
-    userId: any
-    email: any
-    login: any
+    userId: any //number?
+    email: any //string?
+    login: any //string?
+    isAuth: boolean
 }
 
 //initialState:
@@ -13,12 +13,13 @@ const initialState: authInitialStateType = {
     userId: null,
     email: null,
     login: null,
+    isAuth: false
 }
 
 //reducer:
 const authReducer = (state: authInitialStateType = initialState, action: authReducerAT) => {
     switch (action.type) {
-        case "SN/SET_USER_DATA":{
+        case "SN/SET_AUTH_USER_DATA":{
             return state;
         }
         default: {
@@ -31,8 +32,8 @@ const authReducer = (state: authInitialStateType = initialState, action: authRed
 }
 
 //action creators:
-const firstAC = (data: authInitialStateType) => {
-    return {type: "SN/SET_USER_DATA", data} as const
+export const setAuthUserData = (data: authInitialStateType) => {
+    return {type: "SN/SET_AUTH_USER_DATA", data} as const
 }
 
 export {

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfilePageType} from "../../../redux/profile-reducer";
-import defaultSmallUserPhoto from "../../../ assets/images/defaultSmallUserPhoto.png";
+import defaultSmallUserPhoto from "../../../assets/images/defaultSmallUserPhoto.png";
 
 //types:
 type  ProfileInfoPropsType = {

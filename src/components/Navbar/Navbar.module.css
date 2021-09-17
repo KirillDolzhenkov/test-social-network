@@ -1,9 +1,15 @@
 .navbar {
     grid-area: n;
-    background-color: darkcyan;
+    background-color: #2b3f4f;
     padding: 20px;
+    min-height: 600px;
+    min-width: 150px;
+    max-height: 600px;
+    max-width: 150px;
     border-radius: 4px;
     grid-row-gap: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 0.95;
 }
 
 .item a{

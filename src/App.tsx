@@ -9,6 +9,7 @@ import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 
 //types:
 type PropsType = {}
@@ -17,7 +18,7 @@ type PropsType = {}
 const App: React.FC<PropsType> = (props) => {
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>

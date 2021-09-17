@@ -1,6 +1,6 @@
 import React from "react";
 import {UsersInitialStateType, UsersType} from "../../redux/users-reducer";
-import defaultSmallUserPhoto from "../../ assets/images/defaultSmallUserPhoto.png"
+import defaultSmallUserPhoto from "../../assets/images/defaultSmallUserPhoto.png"
 import styles from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 

@@ -1,8 +1,11 @@
+
 .app-wrapper {
     display: grid;
     margin: 0 auto;
     width: 1200px ;
-    background-image: url(https://img3.goodfon.ru/wallpaper/nbig/7/6d/ozero-gory-otrazhenie-priroda-3483.jpg);
+    height: 850px;
+    background-color: white;
+    background-image: url("assets/images/appBackroundImage.png");
 
     grid-template-areas:
   'h h'
@@ -13,15 +16,9 @@
     grid-gap: 10px;
 }
 
-.header {
+/*.header {
     grid-area: h;
-    background-color: #20232a;
-}
-.header img {
-    width: 75px;
-    height: 65px;
-    padding: 5px;
-}
+}*/
 
 .app-wrapper-content {
     grid-area: c;
