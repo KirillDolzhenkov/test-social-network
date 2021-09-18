@@ -6,15 +6,15 @@ import {AppStateType} from "../../redux/redux-store";
 import {AuthInitialStateType, setAuthUserData} from "../../redux/auth-reducer";
 
 //types:
-type HeaderContainerPropsType = {
-}
+type HeaderContainerPropsType = {}
 type mapStateToPropsType = {
     auth: AuthInitialStateType
 }
 type mapDispatchToPropsType = {
-    setAuthUserData: (id: null | number,email: null | number,login: null | number)=> void;
+    setAuthUserData: (id: null | number,email: null | number,login: null | number, isAuth: boolean)=> void;
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
+
 
 //class container component:
 class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType> {
@@ -23,9 +23,9 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
             {withCredentials: true
             })
             .then(response => {
-                if (response.data.resultCode === 0){ //if user login!!!
-                    let {id,email,login} = response.data.data.login;
-                    this.props.setAuthUserData(id,email,login);
+                if (response.data.resultCode === 0){
+                    let {id,email,login} = response.data.data;
+                    this.props.setAuthUserData(id,email,login, true);
                 }
             });
     }
