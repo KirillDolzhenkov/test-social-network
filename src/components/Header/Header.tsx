@@ -14,7 +14,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
             <img src={logo1}/>
             <img src={logo2}/>
             <div className={styles.loginBlock}>
-                <NavLink to={"/profile"}>login</NavLink>
+                <NavLink to={"/login"}>login</NavLink>
             </div>
         </div>
     )

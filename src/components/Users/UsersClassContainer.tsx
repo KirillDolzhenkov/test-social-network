@@ -33,7 +33,7 @@ type mapDispatchToPropsType = {
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //class container component:
-class UsersClassContainer extends React.Component<UsersClassContainerPropsType, any> {
+class UsersClassContainer extends React.Component<UsersClassContainerPropsType> {
 
     componentDidMount() {
         this.props.setIsFetching(true);
