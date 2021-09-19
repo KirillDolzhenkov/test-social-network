@@ -3,9 +3,10 @@ import {UsersInitialStateType, UsersType} from "../../redux/users-reducer";
 import defaultSmallUserPhoto from "../../assets/images/defaultSmallUserPhoto.png"
 import styles from "./Users.module.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 //types:
-export type UsersPropsType = { //duplicate UsersPropsType!!!
+type UsersPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
     totalUsersCount: number
@@ -35,8 +36,6 @@ const Users: React.FC<UsersPropsType> = (props) => {
     return (
 
         <div className={styles.items}>
-            Users:
-
             <div>
                 { //paginator:
                     pages.map(p => <span
@@ -48,8 +47,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                     >{p}</span>)
                 }
             </div>
-
             <hr/>
+
             {
                 state.users.map(u => <div key={u.id}>
                     <div>
@@ -62,37 +61,48 @@ const Users: React.FC<UsersPropsType> = (props) => {
                         </NavLink>
                     </div>
                     <div><b>{u.name}</b></div>
-                    <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>{/*//need to fix*/}
+                    <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>{/*//need to create own style*/}
                     <div>
                         {
                             u.followed
-                                ?
-                                <button onClick={() => {
-                                    props.unFollow(u.id);
+                                ? <button onClick={() => {
+
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                                        {withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "2f53ebc7-6e0c-44af-b6eb-a755cbe3639f"
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0){
+                                                props.unFollow(u.id);
+                                            }
+                                        });
                                 }}>unfollow</button>
-                                :
-                                <button onClick={() => {
-                                    props.follow(u.id);
+
+                                : <button onClick={() => {
+
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
+                                        {withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "2f53ebc7-6e0c-44af-b6eb-a755cbe3639f"
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0){
+                                                props.follow(u.id);
+                                            }
+                                        });
                                 }}>follow</button>
                         }
                     </div>
-
                     {/*description of location:*/}
-                    <div>{"country:"}
-                        {
-                            u.location?.country //missed value
-                                ? u.location.country
-                                : " - "
-                        }
+                    <div>
+                        {"country:"}{u.location?.country ? u.location.country : " - "}{/*missed value*/}
                     </div>
-                    <div>{"city:"}
-                        {
-                            u.location?.city //missed value
-                                ? u.location.city
-                                : " - "
-                        }
+                    <div>
+                        {"city:"}{u.location?.city ? u.location.city : " - "}{/*missed value*/}
                     </div>
-
                     <hr/>
                 </div>)
             }

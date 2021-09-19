@@ -3,7 +3,6 @@ import styles from "./Header.module.css";
 import logo1 from "../../assets/images/logo_part_1.png"
 import logo2 from "../../assets/images/logo_part_2.png"
 import {NavLink} from "react-router-dom";
-import {ReactComponent} from "*.svg";
 
 //types:
 type HeaderPropsType = {
@@ -13,7 +12,6 @@ type HeaderPropsType = {
 
 //function component:
 const Header: React.FC<HeaderPropsType> = (props) => {
-    debugger
     return (
         <div className={styles.header}>
             <img src={logo1}/>
@@ -21,7 +19,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
             <div className={styles.loginBlock}>
                 {
                     props.isAuth
-                        ? <span style={{color: "white"}}>{props.login}</span>
+                        ? <span style={{color: "white"}}>{props.login}</span>//need to create own style
                         : <NavLink to={"/login"}>login</NavLink>
                 }
             </div>

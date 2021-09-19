@@ -37,21 +37,29 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
 
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-        });
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                this.props.setIsFetching(false);
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
+            });
     }
 
     //onPageChanged Fn for pagination:
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items);
-        });
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                this.props.setIsFetching(false);
+                this.props.setUsers(response.data.items);
+            });
     }
 
     render() {
@@ -92,7 +100,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 //HOC:
-const UsersContainer = connect<mapStateToPropsType,mapDispatchToPropsType,UsersContainerPropsType,AppStateType>(mapStateToProps,
+const UsersContainer = connect<mapStateToPropsType, mapDispatchToPropsType, UsersContainerPropsType, AppStateType>(mapStateToProps,
     {
         follow,
         unFollow,
