@@ -2,19 +2,28 @@ import React from "react";
 import styles from "./Header.module.css";
 import logo1 from "../../assets/images/logo_part_1.png"
 import logo2 from "../../assets/images/logo_part_2.png"
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {ReactComponent} from "*.svg";
 
 //types:
-type HeaderPropsType = {}
+type HeaderPropsType = {
+    isAuth: boolean
+    login: null | string
+}
 
 //function component:
 const Header: React.FC<HeaderPropsType> = (props) => {
+    debugger
     return (
         <div className={styles.header}>
             <img src={logo1}/>
             <img src={logo2}/>
             <div className={styles.loginBlock}>
-                <NavLink to={"/login"}>login</NavLink>
+                {
+                    props.isAuth
+                        ? <span style={{color: "white"}}>{props.login}</span>
+                        : <NavLink to={"/login"}>login</NavLink>
+                }
             </div>
         </div>
     )

@@ -2,7 +2,7 @@
 
 type authReducerAT = ReturnType<typeof setAuthUserData>
 export type AuthInitialStateType = {
-    userId: null | number,
+    id: null | number,
     email: null | string,
     login: null | string,
      isAuth: boolean
@@ -10,19 +10,20 @@ export type AuthInitialStateType = {
 
 //initialState:
 const initialState: AuthInitialStateType = {
-    userId: null,
+    id: null,
     email: null,
     login: null,
-     isAuth: false
+    isAuth: false
 }
 
 //reducer:
-const authReducer = (state: AuthInitialStateType = initialState, action: authReducerAT) => {
+const authReducer = (state: AuthInitialStateType = initialState, action: authReducerAT): AuthInitialStateType => {
     switch (action.type) {
         case "SN/SET_AUTH_USER_DATA": {
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
         }
         default:
@@ -31,12 +32,12 @@ const authReducer = (state: AuthInitialStateType = initialState, action: authRed
 }
 
 //action creators:
-/*export const setAuthUserData = (data: authInitialStateType) => {
+export const setAuthUserData = (data: AuthInitialStateType) => {
     return {type: "SN/SET_AUTH_USER_DATA", data} as const
-}*/
-export const setAuthUserData = (userId: null | number, email: null | number, login: null | number, isAuth: boolean) => {
-    return {type: "SN/SET_AUTH_USER_DATA", data: {userId, email, login, isAuth}} as const
 }
+/*export const setAuthUserData = (userId: null | number, email: null | number, login: null | number, isAuth: boolean) => {
+    return {type: "SN/SET_AUTH_USER_DATA", data: {userId, email, login, isAuth}} as const
+}*/
 
 export {
     authReducer

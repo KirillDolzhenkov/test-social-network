@@ -8,10 +8,13 @@ import {AuthInitialStateType, setAuthUserData} from "../../redux/auth-reducer";
 //types:
 type HeaderContainerPropsType = {}
 type mapStateToPropsType = {
-    auth: AuthInitialStateType
+    /*auth: AuthInitialStateType*/
+    isAuth: boolean
+    login: null | string
 }
 type mapDispatchToPropsType = {
-    setAuthUserData: (id: null | number,email: null | number,login: null | number, isAuth: boolean)=> void;
+   /* setAuthUserData: (id: null | number,email: null | number,login: null | number, isAuth: boolean)=> void;*/
+    setAuthUserData: (data: AuthInitialStateType)=> void;
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -24,8 +27,10 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
             })
             .then(response => {
                 if (response.data.resultCode === 0){
-                    let {id,email,login} = response.data.data;
-                    this.props.setAuthUserData(id,email,login, true);
+                    /*let {id,email,login} = response.data.data;*/
+                   /* this.props.setAuthUserData(id,email,login, true);*/
+                    let data = response.data.data;
+                    this.props.setAuthUserData(data);
                 }
             });
     }
@@ -39,7 +44,9 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        auth: state.auth
+        /*auth: state.auth,*/
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
     }
 }
 
