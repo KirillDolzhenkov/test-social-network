@@ -12,6 +12,7 @@ import {Users} from "./Users";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
+import {getUsers} from "../../api/api";
 
 //types:
 type UsersContainerPropsType = {}
@@ -46,6 +47,9 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
             });
+
+      /*  getUsers(this.props.currentPage, this.props.pageSize)*/
+
     }
 
     //onPageChanged Fn for pagination:

@@ -1,0 +1,14 @@
+import React from "react";
+import axios from "axios";
+
+const baseUrl = `https://social-network.samuraijs.com/api/1.0/`
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+    axios.get(baseUrl + `users?page=${currentPage}&count=${pageSize}`,
+        {
+            withCredentials: true
+        })
+        .then(response => {
+            return response.data;
+        });
+}
