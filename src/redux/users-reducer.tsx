@@ -20,7 +20,8 @@ export type UsersInitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: any[]
 }
 export type UsersActionType = | ReturnType<typeof follow>
     | ReturnType<typeof unFollow>
@@ -28,6 +29,7 @@ export type UsersActionType = | ReturnType<typeof follow>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof setIsFetching>
+    | ReturnType<typeof setFollowingProgress>
 
 //initialState:
 const initialState: UsersInitialStateType = {
@@ -35,14 +37,15 @@ const initialState: UsersInitialStateType = {
     pageSize: 5,
     totalUsersCount: 19,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 //reducer:
 const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType) => {
     switch (action.type) {
         case "SN/USERS/FOLLOW": {
-            return  {
+            return {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.id) {
                         return {...u, followed: true}
@@ -73,6 +76,12 @@ const usersReducer = (state: UsersInitialStateType = initialState, action: Users
         case "SN/USERS/SET_IS_FETCHING": {
             return {...state, isFetching: action.isFetching}
         }
+        case "SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS": {
+            return {...state, followingInProgress: action.followingInProgress
+                    ? [...state.followingInProgress, action.id]
+                    : [...state.followingInProgress.filter(id => id !== action.id)]
+            }
+        }
         default: {
             return state;
         }
@@ -97,6 +106,9 @@ export const setTotalUsersCount = (totalCount: number) => {
 }
 export const setIsFetching = (isFetching: boolean) => {
     return {type: "SN/USERS/SET_IS_FETCHING", isFetching} as const
+}
+export const setFollowingProgress = (followingInProgress: boolean, id: number) => {
+    return {type: "SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS", followingInProgress, id} as const
 }
 
 export {

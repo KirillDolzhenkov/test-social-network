@@ -4,6 +4,7 @@ import {addPost, ProfileInitialStateType, setNewPostText} from "../../../redux/p
 import {connect} from "react-redux";
 
 //types:
+type ContentAreaType = {}
 type mapStateToPropsType = {
     profilePage: ProfileInitialStateType
 }
@@ -20,7 +21,10 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 
 //HOC:
-const ContentAreaContainer = connect(mapStateToProps, {addPost, setNewPostText})(ContentArea);
+const ContentAreaContainer = connect<mapStateToPropsType,
+    mapDispatchToPropsType,
+    ContentAreaType,
+    AppStateType>(mapStateToProps, {addPost, setNewPostText})(ContentArea);
 
 export {
     ContentAreaContainer
