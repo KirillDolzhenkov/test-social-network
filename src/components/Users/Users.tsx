@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api/api";
 import axios from "axios";
 
+
 //types:
 type UsersPropsType = {
     usersPage: UsersInitialStateType
@@ -33,7 +34,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
     const pagesCount = Math.ceil(state.totalUsersCount / state.pageSize) //.ceil rounds a number up to the next largest integer
     const pages = []
     for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+        pages.push(i);
     }
 
     return (

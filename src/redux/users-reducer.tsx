@@ -1,4 +1,7 @@
 //types:
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+
 type LocationType = {
     country: string
     city: string
@@ -31,6 +34,8 @@ export type UsersActionType = | ReturnType<typeof follow>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setFollowingProgress>
 
+export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator>
+
 //initialState:
 const initialState: UsersInitialStateType = {
     users: [],
@@ -42,7 +47,7 @@ const initialState: UsersInitialStateType = {
 }
 
 //reducer:
-const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType) => {
+const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType & ThunkCreatorType) => {
     switch (action.type) {
         case "SN/USERS/FOLLOW": {
             return {
@@ -110,6 +115,20 @@ export const setIsFetching = (isFetching: boolean) => {
 export const setFollowingProgress = (followingInProgress: boolean, id: number) => {
     return {type: "SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS", followingInProgress, id} as const
 }
+
+//thunk creators:
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        } );
+    }
+}
+
 
 export {
     usersReducer

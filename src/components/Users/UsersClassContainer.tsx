@@ -1,6 +1,7 @@
 import React from "react";
 import {
     follow,
+    getUsersThunkCreator,
     setCurrentPage,
     setFollowingProgress,
     setIsFetching,
@@ -34,8 +35,12 @@ type mapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
-   setFollowingProgress: (toggleFollowingProgress: boolean, id: number) => void
+    setFollowingProgress: (toggleFollowingProgress: boolean, id: number) => void
+
+    //thunkType:
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void //need to create thunk type
 }
+
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //class container component:
@@ -113,7 +118,9 @@ const UsersContainer = connect<mapStateToPropsType, mapDispatchToPropsType, User
         setCurrentPage,
         setTotalUsersCount,
         setIsFetching,
-        setFollowingProgress
+        setFollowingProgress,
+
+        getUsersThunkCreator //thunkCreator!
     }
 )(UsersClassContainer);
 
