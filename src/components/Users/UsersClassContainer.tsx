@@ -47,13 +47,16 @@ type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 class UsersClassContainer extends React.Component<UsersClassContainerPropsType> {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
+
+        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
+
+       /* this.props.setIsFetching(true);
 
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setIsFetching(false);
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
-        });
+        });*/
 
     }
 
