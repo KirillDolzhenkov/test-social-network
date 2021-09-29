@@ -23,6 +23,10 @@ type UsersPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     onPageChanged: (p: number) => void
     setFollowingProgress: (followingProgress: boolean, id: number) => void
+
+    //thunkType:
+    unFollowThunkCreator: (userId: number) => void //need to create thunk type
+    followThunkCreator: (userId: number) => void //need to create thunk type
 }
 
 //functional component:
@@ -41,7 +45,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
         <div className={styles.items}>
             <div>
-                { //paginator:
+                { //pagination:
                     pages.map(p => <span
                         className={p === state.currentPage
                             ? styles.selectedPage
@@ -65,65 +69,46 @@ const Users: React.FC<UsersPropsType> = (props) => {
                         </NavLink>
                     </div>
                     <div><b>{u.name}</b></div>
-                    <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>{/*//need to create own style*/}
+                    <div style={{textDecoration: "underline", color: "blue"}}>{"Write message"}</div>{/*need to create style at styleModule*/}
                     <div>
                         {
                             u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
 
-                                    props.setFollowingProgress(true, u.id);
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                        {withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "2f53ebc7-6e0c-44af-b6eb-a755cbe3639f"
-                                            }
-                                        })
+                                    props.unFollowThunkCreator(u.id);
+                                   /* props.setFollowingProgress(true, u.id);
+                                    usersAPI.unFollow(u.id)
                                         .then(response => {
                                             if (response.data.resultCode === 0){
                                                 props.unFollow(u.id);
                                             }
                                             props.setFollowingProgress(false, u.id);
-                                        });
-
-                                    /*usersAPI.unFollow(u.id)
-                                        .then(data => {
-                                            if (data.data.resultCode === 0){
-                                                props.unFollow(data.userId);
-                                            }
                                         });*/
+
                                 }}>unfollow</button>
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
 
-                                    props.setFollowingProgress(true, u.id);
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "2f53ebc7-6e0c-44af-b6eb-a755cbe3639f"
-                                            }
-                                        })
+                                    props.followThunkCreator(u.id);
+                                   /* props.setFollowingProgress(true, u.id);
+                                    usersAPI.follow(u.id)
                                         .then(response => {
                                         if (response.data.resultCode === 0){
                                             props.follow(u.id);
                                         }
                                             props.setFollowingProgress(false, u.id);
-                                    });
+                                    });*/
 
-                                    /*usersAPI.follow(u.id)
-                                        .then(data => {
-                                            if (data.data.resultCode === 0){
-                                                props.follow(data.userId);
-                                            }
-                                        });*/
                                 }}>follow</button>
                         }
                     </div>
-                    {/*description of location:*/}
+                    {
+                        //description of location (missed now):
+                    }
                     <div>
-                        {"country:"}{u.location?.country ? u.location.country : " - "}{/*missed value*/}
+                        {"country:"}{u.location?.country ? u.location.country : " - "}
                     </div>
                     <div>
-                        {"city:"}{u.location?.city ? u.location.city : " - "}{/*missed value*/}
+                        {"city:"}{u.location?.city ? u.location.city : " - "}
                     </div>
                     <hr/>
                 </div>)

@@ -1,13 +1,13 @@
 import React from "react";
 import {
-    follow,
+    follow, followThunkCreator,
     getUsersThunkCreator,
     setCurrentPage,
     setFollowingProgress,
     setIsFetching,
     setTotalUsersCount,
     setUsers,
-    unFollow,
+    unFollow, unFollowThunkCreator,
     UsersInitialStateType,
     UsersType
 } from "../../redux/users-reducer";
@@ -39,6 +39,8 @@ type mapDispatchToPropsType = {
 
     //thunkType:
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void //need to create thunk type
+    unFollowThunkCreator: (userId: number) => void //need to create thunk type
+    followThunkCreator: (userId: number) => void //need to create thunk type
 }
 
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
@@ -91,6 +93,8 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
                             onPageChanged={this.onPageChanged}
                             followingInProgress={ this.props.followingInProgress}
                             setFollowingProgress={this.props.setFollowingProgress}
+                            unFollowThunkCreator={this.props.unFollowThunkCreator}
+                            followThunkCreator={this.props.followThunkCreator}
                         />
                 }
             </>
@@ -123,7 +127,10 @@ const UsersContainer = connect<mapStateToPropsType, mapDispatchToPropsType, User
         setIsFetching,
         setFollowingProgress,
 
-        getUsersThunkCreator //thunkCreator!
+        //thunkCreators:
+        getUsersThunkCreator,
+        unFollowThunkCreator,
+        followThunkCreator
     }
 )(UsersClassContainer);
 

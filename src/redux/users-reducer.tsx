@@ -128,7 +128,30 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
         } );
     }
 }
-
+export const unFollowThunkCreator =(userId: number)=> {
+    return (dispatch: Dispatch) => {
+        dispatch(setFollowingProgress(true, userId));
+        usersAPI.unFollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unFollow(userId));
+                }
+                dispatch(setFollowingProgress(false, userId));
+            });
+    }
+}
+export const followThunkCreator =(userId: number)=> {
+    return (dispatch: Dispatch) => {
+        dispatch(setFollowingProgress(true, userId));
+        usersAPI.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0){
+                    dispatch(follow(userId));
+                }
+                dispatch(setFollowingProgress(false, userId));
+            });
+    }
+}
 
 export {
     usersReducer
