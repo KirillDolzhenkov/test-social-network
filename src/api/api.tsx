@@ -16,18 +16,21 @@ export const usersAPI = {
             });
     },
 
-    follow(userId: number) { //unused now!!!
-        return instance.post(`follow/${userId}`)
-            /*.then(response => {
-                return response.data;
-            });*/
+    follow(userId: number) {
+        return instance.post(`follow/${userId}`);
     },
-    unFollow(userId: number) { //unused now!!!
-        return instance.delete(`follow/${userId}`)
-            /*.then(response => {
-                return response.data;
-            });*/
+    unFollow(userId: number) {
+        return instance.delete(`follow/${userId}`);
+
+    },
+    getProfile(userId: number) {
+        return instance.get(`profile/${userId}`);
     }
 }
 
+export const authAPI = {
+    me() {
+        /*return instance.get();*/
+    }
+}
 
