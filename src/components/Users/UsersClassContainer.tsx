@@ -37,10 +37,10 @@ type mapDispatchToPropsType = {
     setIsFetching: (isFetching: boolean) => void
     setFollowingProgress: (toggleFollowingProgress: boolean, id: number) => void
 
-    //thunkType:
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => void //need to create thunk type
-    unFollowThunkCreator: (userId: number) => void //need to create thunk type
-    followThunkCreator: (userId: number) => void //need to create thunk type
+    //thunkTypes:
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    unFollowThunkCreator: (userId: number) => void
+    followThunkCreator: (userId: number) => void
 }
 
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
@@ -131,8 +131,7 @@ const UsersContainer = connect<mapStateToPropsType, mapDispatchToPropsType, User
         getUsersThunkCreator,
         unFollowThunkCreator,
         followThunkCreator
-    }
-)(UsersClassContainer);
+    })(UsersClassContainer);
 
 
 export {

@@ -24,9 +24,9 @@ type UsersPropsType = {
     onPageChanged: (p: number) => void
     setFollowingProgress: (followingProgress: boolean, id: number) => void
 
-    //thunkType:
-    unFollowThunkCreator: (userId: number) => void //need to create thunk type
-    followThunkCreator: (userId: number) => void //need to create thunk type
+    //thunkTypes:
+    unFollowThunkCreator: (userId: number) => void
+    followThunkCreator: (userId: number) => void
 }
 
 //functional component:

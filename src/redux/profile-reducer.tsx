@@ -1,4 +1,9 @@
 //types:
+
+import {Dispatch} from "redux";
+import {getUsersThunkCreator, setFollowingProgress} from "./users-reducer";
+import {usersAPI} from "../api/api";
+
 type PostType = {
     id: number
     message: string
@@ -38,23 +43,22 @@ export type ProfileActionType = ReturnType<typeof addPost>
     | ReturnType<typeof removeLike>
     | ReturnType<typeof setProfile>
 
+export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator>
+
 //initialState:
 const initialState: ProfileInitialStateType = {
-    posts: [
-        {id: 1, message: "Hi dude", likesCount: 2, isLiked: false},
-        {id: 2, message: "nice photos!", likesCount: 1, isLiked: false},
-    ],
+    posts: [],
     newPostText: "",
     profile: null
 }
 
 //reducer:
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType): ProfileInitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType & ThunkCreatorType): ProfileInitialStateType => {
     switch (action.type) {
         case "SN/PROFILE/ADD_POST": {
             const stateCopy = {...state}
             const newPost: PostType = {
-                id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number with javascript time
+                id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number using javaScriptTime
                 message: state.newPostText,
                 likesCount: 0,
                 isLiked: false
@@ -112,7 +116,17 @@ export const removeLike = (id: number, isLiked: boolean) => {
     return {type: "SN/PROFILE/REMOVE_LIKE", id, isLiked} as const
 }
 export const setProfile = (profile: ProfilePageType) => {
-    return{ type: "SN/PROFILE/SET_PROFILE", profile} as const
+    return {type: "SN/PROFILE/SET_PROFILE", profile} as const
+}
+
+//thunk creators:
+export const getUserProfile = (userId: number) => {
+    debugger
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setProfile(response.data));
+        });
+    }
 }
 
 export {

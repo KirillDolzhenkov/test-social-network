@@ -16,15 +16,8 @@
     grid-gap: 10px;
 }
 
-/*.header {
-    grid-area: h;
-}*/
-
 .app-wrapper-content {
     grid-area: c;
-    /*
-    background-color: #4E5D74;
-    */
     background-color: #edeef0;
     opacity: 0.89;
     border-radius: 4px;
