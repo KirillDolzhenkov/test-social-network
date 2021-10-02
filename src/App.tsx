@@ -10,6 +10,7 @@ import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
+import {Login} from "./Login/Login";
 
 //types:
 type PropsType = {}
@@ -27,6 +28,7 @@ const App: React.FC<PropsType> = (props) => {
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>
                 <Route path={"/Settings"} render={() => <Settings/>}/>
+                <Route path={"/Login"} render={() => <Login/>}/>
             </div>
         </div>
     );
