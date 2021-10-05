@@ -1,6 +1,7 @@
 //types:
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {AppActionType} from "./redux-store";
 
 type LocationType = {
     country: string
@@ -34,7 +35,8 @@ export type UsersActionType = | ReturnType<typeof follow>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setFollowingProgress>
 
-export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator>
+
+export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator> //??????
 
 //initialState:
 const initialState: UsersInitialStateType = {
@@ -47,7 +49,7 @@ const initialState: UsersInitialStateType = {
 }
 
 //reducer:
-const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType & ThunkCreatorType) => {
+const usersReducer = (state: UsersInitialStateType = initialState, action: AppActionType) => {
     switch (action.type) {
         case "SN/USERS/FOLLOW": {
             return {
@@ -118,7 +120,7 @@ export const setFollowingProgress = (followingInProgress: boolean, id: number) =
 
 //thunk creators:
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setIsFetching(true));
 
         usersAPI.getUsers(currentPage, pageSize).then(data => {
@@ -129,7 +131,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     }
 }
 export const unFollowThunkCreator =(userId: number)=> {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setFollowingProgress(true, userId));
         usersAPI.unFollow(userId)
             .then(response => {
@@ -141,7 +143,7 @@ export const unFollowThunkCreator =(userId: number)=> {
     }
 }
 export const followThunkCreator =(userId: number)=> {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setFollowingProgress(true, userId));
         usersAPI.follow(userId)
             .then(response => {

@@ -1,8 +1,8 @@
 //types:
-
 import {Dispatch} from "redux";
 import {getUsersThunkCreator, setFollowingProgress} from "./users-reducer";
 import {usersAPI} from "../api/api";
+import {AppActionType} from "./redux-store";
 
 type PostType = {
     id: number
@@ -43,7 +43,7 @@ export type ProfileActionType = ReturnType<typeof addPost>
     | ReturnType<typeof removeLike>
     | ReturnType<typeof setProfile>
 
-export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator>
+export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator> //??????
 
 //initialState:
 const initialState: ProfileInitialStateType = {
@@ -53,7 +53,7 @@ const initialState: ProfileInitialStateType = {
 }
 
 //reducer:
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType & ThunkCreatorType): ProfileInitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: AppActionType): ProfileInitialStateType => {
     switch (action.type) {
         case "SN/PROFILE/ADD_POST": {
             const stateCopy = {...state}
@@ -122,7 +122,7 @@ export const setProfile = (profile: ProfilePageType) => {
 //thunk creators:
 export const getUserProfile = (userId: number) => {
     debugger
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<AppActionType>) => {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setProfile(response.data));
         });

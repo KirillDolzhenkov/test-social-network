@@ -1,4 +1,6 @@
 //types:
+import {AppActionType} from "./redux-store";
+
 export type DialogsDataType = {
     id: number
     name: string
@@ -29,7 +31,7 @@ const initialState: DialogsInitialStateType = {
 }
 
 //reducer:
-const dialogsReducer = (state: DialogsInitialStateType = initialState, action: DialogsActionType) => { //need to rename to dialogReducer
+const dialogsReducer = (state: DialogsInitialStateType = initialState, action: AppActionType) => { //need to rename to dialogReducer
     if (action.type === "SN/DIALOGS/ADD_MESSAGE") {
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {

@@ -11,8 +11,6 @@ type mapStateToPropsType = {
     login: null | string
 }
 type mapDispatchToPropsType = {
-    /* setAuthUserData: (id: null | number,email: null | number,login: null | number, isAuth: boolean)=> void;*/
-    /*setAuthUserData: (data: AuthInitialStateType) => void;*/
     getAuthUserData: () => void;
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;

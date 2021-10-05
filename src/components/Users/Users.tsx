@@ -3,9 +3,6 @@ import {UsersInitialStateType, UsersType} from "../../redux/users-reducer";
 import defaultSmallUserPhoto from "../../assets/images/defaultSmallUserPhoto.png"
 import styles from "./Users.module.css";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
-import axios from "axios";
-
 
 //types:
 type UsersPropsType = {
@@ -61,11 +58,11 @@ const Users: React.FC<UsersPropsType> = (props) => {
                 state.users.map(u => <div key={u.id}>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                        <img src={
-                            u.photos.small !== null
-                                ? u.photos.small
-                                : defaultSmallUserPhoto //defaultAsset
-                        }/>
+                            <img src={
+                                u.photos.small !== null
+                                    ? u.photos.small
+                                    : defaultSmallUserPhoto //defaultAsset
+                            }/>
                         </NavLink>
                     </div>
                     <div><b>{u.name}</b></div>
@@ -73,37 +70,20 @@ const Users: React.FC<UsersPropsType> = (props) => {
                     <div>
                         {
                             u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-
-                                    props.unFollowThunkCreator(u.id);
-                                   /* props.setFollowingProgress(true, u.id);
-                                    usersAPI.unFollow(u.id)
-                                        .then(response => {
-                                            if (response.data.resultCode === 0){
-                                                props.unFollow(u.id);
-                                            }
-                                            props.setFollowingProgress(false, u.id);
-                                        });*/
-
-                                }}>unfollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-
-                                    props.followThunkCreator(u.id);
-                                   /* props.setFollowingProgress(true, u.id);
-                                    usersAPI.follow(u.id)
-                                        .then(response => {
-                                        if (response.data.resultCode === 0){
-                                            props.follow(u.id);
-                                        }
-                                            props.setFollowingProgress(false, u.id);
-                                    });*/
-
-                                }}>follow</button>
+                                ? <button
+                                    disabled={props.followingInProgress.some(id => id === u.id)}
+                                    onClick={() => {
+                                        props.unFollowThunkCreator(u.id);
+                                    }}
+                                >unfollow</button>
+                                : <button
+                                    disabled={props.followingInProgress.some(id => id === u.id)}
+                                    onClick={() => {
+                                        props.followThunkCreator(u.id);
+                                    }}
+                                >follow</button>
                         }
                     </div>
-                    {
-                        //description of location (missed now):
-                    }
                     <div>
                         {"country:"}{u.location?.country ? u.location.country : " - "}
                     </div>

@@ -10,7 +10,7 @@ import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
-import {Login} from "./Login/Login";
+import {Login} from "./components/Login/Login";
 
 //types:
 type PropsType = {}

@@ -1,9 +1,9 @@
 //types:
-
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {AppActionType} from "./redux-store";
 
-type authReducerAT = ReturnType<typeof setAuthUserData>
+export type authReducerAT = ReturnType<typeof setAuthUserData>
 export type AuthInitialStateType = {
     id: null | number,
     email: null | string,
@@ -20,7 +20,7 @@ const initialState: AuthInitialStateType = {
 }
 
 //reducer:
-const authReducer = (state: AuthInitialStateType = initialState, action: authReducerAT): AuthInitialStateType => {
+const authReducer = (state: AuthInitialStateType = initialState, action: AppActionType): AuthInitialStateType => {
     switch (action.type) {
         case "SN/SET_AUTH_USER_DATA": {
             return {
@@ -35,21 +35,16 @@ const authReducer = (state: AuthInitialStateType = initialState, action: authRed
 }
 
 //action creators:
-/*export const setAuthUserData = (userId: null | number, email: null | number, login: null | number, isAuth: boolean) => {
-    return {type: "SN/SET_AUTH_USER_DATA", data: {userId, email, login, isAuth}} as const
-}*/
 export const setAuthUserData = (data: AuthInitialStateType) => {
     return {type: "SN/SET_AUTH_USER_DATA", data} as const
 }
 
 //thunk creators:
 export const getAuthUserData = () => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<authReducerAT>) => {
         authAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    /*let {id,email,login} = response.data.data;*/
-                    /* this.props.setAuthUserData(id,email,login, true);*/
                     let data = response.data.data;
                     dispatch(setAuthUserData(data));
                 }

@@ -3,12 +3,14 @@ import styles from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
+import { Redirect } from "react-router-dom";
 
 //types:
 export type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
     addMessage: (newMessageText: string) => void
     setNewMessageText: (newText: string) => void
+    isAuth: boolean
 }
 
 //function component:
@@ -33,6 +35,11 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             e.preventDefault();
             addMessageHandler();
         }
+    }
+
+
+    if (!props.isAuth){ //auth Redirect!!!
+        return <Redirect to={"/Login"}/>
     }
 
     return (
