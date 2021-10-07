@@ -18,25 +18,32 @@ type mapDispatchToPropsType = {
 }
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-//container component:
+//class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: state.dialogPage,
         isAuth: state.auth.isAuth //delete?
     }
 }
-
+class DialogsClassContainer extends React.Component<DialogsClassContainerPropsType> {
+    render(){
+        return(
+            <Dialogs {...this.props}/>
+        )
+    }
+}
 
 //HOC:
-const DialogsContainer = connect<mapStateToPropsType,
+
+/*const DialogsContainer = connect<mapStateToPropsType,
     mapDispatchToPropsType,
     DialogsContainerPropsType,
-    AppStateType>(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);
+    AppStateType>(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);*/
 
-/*const DialogsContainer = compose<React.FC>(
+const DialogsContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType,
         DialogsContainerPropsType, AppStateType>(mapStateToProps, {addMessage,setNewMessageText}),
-)(DialogsClassContainer);*/
+)(DialogsClassContainer);
 
 export {
     DialogsContainer
