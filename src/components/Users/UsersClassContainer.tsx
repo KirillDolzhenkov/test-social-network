@@ -16,10 +16,11 @@ import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
+import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 //types:
 type UsersContainerPropsType = {}
-
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
@@ -42,14 +43,12 @@ type mapDispatchToPropsType = {
     unFollowThunkCreator: (userId: number) => void
     followThunkCreator: (userId: number) => void
 }
-
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //class container component:
 class UsersClassContainer extends React.Component<UsersClassContainerPropsType> {
 
     componentDidMount() {
-
         this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize); //usersAPI.getUsers()
     }
 
@@ -108,21 +107,23 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 //HOC:
-const UsersContainer = connect<mapStateToPropsType, mapDispatchToPropsType, UsersContainerPropsType, AppStateType>(mapStateToProps,
-    {
-        follow,
-        unFollow,
-        setUsers,
-        setCurrentPage,
-        setTotalUsersCount,
-        setIsFetching,
-        setFollowingProgress,
+const UsersContainer = compose<React.FC>(
+    connect<mapStateToPropsType, mapDispatchToPropsType, UsersContainerPropsType, AppStateType>(mapStateToProps,
+        {
+            follow,
+            unFollow,
+            setUsers,
+            setCurrentPage,
+            setTotalUsersCount,
+            setIsFetching,
+            setFollowingProgress,
 
-        //thunkCreators:
-        getUsersThunkCreator,
-        unFollowThunkCreator,
-        followThunkCreator
-    })(UsersClassContainer);
+            //thunkCreators:
+            getUsersThunkCreator,
+            unFollowThunkCreator,
+            followThunkCreator
+        }),
+)(UsersClassContainer);
 
 
 export {

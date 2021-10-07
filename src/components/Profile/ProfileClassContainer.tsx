@@ -3,8 +3,9 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {getUserProfile, ProfilePageType} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 //types:
 type ProfileContainerPropsType = {}
@@ -25,6 +26,12 @@ type ProfileClassContainerPropsType = mapStateToPropsType
     & RouteComponentProps<PathParamsType> //.props.match.params FIX
 
 //class container component:
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
+    }
+}
 class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
 
     componentDidMount() {
@@ -36,31 +43,26 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
     }
 
     render() {
-       /* if (!this.props.isAuth) {
-            return <Redirect to={"/Login"}/>
-        }*/
         return <>
             <Profile{...this.props} profile={this.props.profile}/>
         </>
     }
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-    return {
-        profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
-    }
-}
-
 //HOC:
-/*const WithUrlDataContainerComponent = withRouter<ProfileClassContainerPropsType, any>(WithAuthRedirect);*/ //need add types!!!
+const ProfileContainer = compose<React.FC>(
+    connect<mapStateToPropsType, mapDispatchToPropsType,
+        ProfileContainerPropsType, AppStateType>(mapStateToProps, {getUserProfile}),
+    withRouter,
+    WithAuthRedirect
+)(ProfileClassContainer);
 
-const WithUrlDataContainerComponent = withRouter(ProfileClassContainer);
 
+/*const WithUrlDataContainerComponent = withRouter(ProfileClassContainer);
 const ProfileContainer = WithAuthRedirect(connect<mapStateToPropsType,
     mapDispatchToPropsType,
     ProfileContainerPropsType,
-    AppStateType>(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent));
+    AppStateType>(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent));*/
 
 export {
     ProfileContainer

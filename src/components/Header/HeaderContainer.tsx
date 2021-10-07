@@ -15,8 +15,14 @@ type mapDispatchToPropsType = {
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-
 //class container component:
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
+    }
+}
+
 class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType> {
     componentDidMount() {
         this.props.getAuthUserData();
@@ -29,13 +35,7 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
     }
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-    return {
-        isAuth: state.auth.isAuth,
-        login: state.auth.login
-    }
-}
-
+//HOC
 const HeaderContainer = connect<mapStateToPropsType,
     mapDispatchToPropsType,
     HeaderContainerPropsType,
