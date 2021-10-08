@@ -8,13 +8,13 @@ type mapStateToPropsType = {
     isAuth: boolean
 }
 
-
 //container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth
     }
 }
+
 
 function WithAuthRedirect<T>(Component: React.ComponentType<T>)  {
 

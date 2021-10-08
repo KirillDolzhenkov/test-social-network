@@ -1,13 +1,15 @@
 import React from "react";
 import {
-    follow, followThunkCreator,
+    follow,
+    followThunkCreator,
     getUsersThunkCreator,
     setCurrentPage,
     setFollowingProgress,
     setIsFetching,
     setTotalUsersCount,
     setUsers,
-    unFollow, unFollowThunkCreator,
+    unFollow,
+    unFollowThunkCreator,
     UsersInitialStateType,
     UsersType
 } from "../../redux/users-reducer";
@@ -17,10 +19,10 @@ import {connect} from "react-redux";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
 import {compose} from "redux";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 //types:
 type UsersContainerPropsType = {}
+
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
@@ -29,6 +31,7 @@ type mapStateToPropsType = {
     isFetching: boolean
     followingInProgress: any[]
 }
+
 type mapDispatchToPropsType = {
     follow: (id: number) => void
     unFollow: (id: number) => void

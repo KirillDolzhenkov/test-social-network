@@ -20,17 +20,16 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     return (
         <div>
-            <div>
-                <img src="https://i.redd.it/om4a8r7glhx21.png" alt=""/>
-            </div>
             <div className={styles.descriptionBlock}>
                 <img src={
                     state.photos.large !== null
                         ? state.photos.large
                         : defaultSmallUserPhoto //defaultAsset
                 }/>
-                <b>{state.fullName}</b>
-                {/*<div>{state.aboutMe}</div>*/}
+                <div>
+                    <div><b>{state.fullName}</b></div>
+                    <div>{state.aboutMe}</div>
+                </div>
             </div>
         </div>
     )

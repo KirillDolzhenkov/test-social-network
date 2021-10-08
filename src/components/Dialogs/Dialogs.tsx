@@ -13,6 +13,7 @@ export type DialogsPropsType = {
     isAuth: boolean
 }
 
+
 //function component:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 

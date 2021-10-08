@@ -22,7 +22,9 @@ const Header: React.FC<HeaderPropsType> = (props) => {
                         ? <span style={{color: "white"}}>{props.login}</span>//need to create own style
                         : <NavLink to={"/login"}>login</NavLink>
                 }
+                <button>Logout</button>
             </div>
+
         </div>
     )
 }
