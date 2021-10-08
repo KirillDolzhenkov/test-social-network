@@ -19,12 +19,16 @@ const Header: React.FC<HeaderPropsType> = (props) => {
             <div className={styles.loginBlock}>
                 {
                     props.isAuth
-                        ? <span style={{color: "white"}}>{props.login}</span>//need to create own style
-                        : <NavLink to={"/login"}>login</NavLink>
+                        ? <div>
+                            <span style={{color: "white"}}>{props.login} </span> {/*need to create own style*/}
+                            <NavLink to={"/login"}>Logout</NavLink>
+                        </div>
+                        : <div>
+                            <NavLink to={"/login"}>Login </NavLink>
+                            <NavLink to={"/login"}>Signup </NavLink>
+                        </div>
                 }
-                <button>Logout</button>
             </div>
-
         </div>
     )
 }

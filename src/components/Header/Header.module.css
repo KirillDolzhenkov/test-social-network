@@ -11,13 +11,20 @@
     height: 70px;
 }
 
-.loginBlock{
+.loginBlock {
     float: right;
     padding: 30px;
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.3ch;
+    font-size: 15px;
 }
 
 .loginBlock a{
+    color: gray;
+
+    text-decoration: none;
+}
+
+.loginBlock a:hover{
     color: white;
 }
