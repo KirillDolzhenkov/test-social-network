@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom";
-import App from "./App";
-import {AppStateType} from './redux/redux-store';
-import {store} from "./redux/redux-store";
 import {Provider} from "react-redux";
+import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
+import reportWebVitals from './reportWebVitals';
+
+import './index.css';
+import App from "./App";
+import {AppStateType} from 'redux/redux-store';
+import {store} from "redux/redux-store";
 
 
 const reRenderEntireThree = (state: AppStateType) => {

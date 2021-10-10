@@ -5,7 +5,7 @@
     width: 1200px ;
     height: 850px;
     background-color: white;
-    background-image: url("assets/images/appBackroundImage.png");
+    background-image: url("node_modules/assets/images/appBackroundImage.png");
 
     grid-template-areas:
   'h h'
