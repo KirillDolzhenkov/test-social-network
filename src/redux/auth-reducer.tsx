@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 
-import {authAPI} from "../../api/api";
-import {AppActionType} from "redux/redux-store";
+import {authAPI} from "../api/api";
+import {AppActionType} from "./redux-store";
 
 //types:
 export type authReducerAT = ReturnType<typeof setAuthUserData>

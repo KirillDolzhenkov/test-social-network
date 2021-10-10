@@ -1,4 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
+import {compose} from "redux";
+
 import {
     follow,
     followThunkCreator,
@@ -13,12 +16,10 @@ import {
     UsersInitialStateType,
     UsersType
 } from "../../redux/users-reducer";
-import {Users} from "components/Users/Users";
+import {usersAPI} from "../../api/api";
 import {AppStateType} from "../../redux/redux-store";
-import {connect} from "react-redux";
-import {Preloader} from "components/common/Preloader/Preloader";
-import {usersAPI} from "../../../api/api";
-import {compose} from "redux";
+import {Preloader} from "../common/Preloader/Preloader";
+import {Users} from "./Users";
 
 //types:
 type UsersContainerPropsType = {}

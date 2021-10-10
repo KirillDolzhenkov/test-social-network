@@ -1,7 +1,7 @@
-import {Dispatch} from "redux";
+import { Dispatch } from "redux";
 
-import {usersAPI} from "../../api/api";
-import {AppActionType} from "redux/redux-store";
+import {usersAPI} from "../api/api";
+import {AppActionType} from "./redux-store";
 
 //types:
 type LocationType = {

@@ -1,10 +1,9 @@
 import React from "react";
 
-import "components/common/Preloader/Preloader.css"
-/*import PreloaderLogo from "components/common/Preloader/preloaderLogo.png"*/
+import "./Preloader.css"
+/*import PreloaderLogo from "preloaderLogo.png"*/
 
-type PreloaderPropsType = {
-}
+type PreloaderPropsType = {}
 
 const Preloader: React.FC<PreloaderPropsType> = (props) => {
     return (

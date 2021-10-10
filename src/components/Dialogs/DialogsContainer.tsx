@@ -1,9 +1,14 @@
-import {AppStateType} from "../../redux/redux-store";
-import {Dialogs} from "components/Dialogs/Dialogs";
-import {addMessage, DialogsInitialStateType, setNewMessageText} from "../../redux/dialogs-reducer";
-import {connect} from "react-redux";
-import {compose} from "redux";
 import React from "react";
+import {compose} from "redux";
+import {connect} from "react-redux";
+
+import {
+    addMessage,
+    DialogsInitialStateType,
+    setNewMessageText
+} from "../../redux/dialogs-reducer";
+import {AppStateType} from "../../redux/redux-store";
+import { Dialogs } from "./Dialogs";
 
 //types:
 type DialogsContainerPropsType = {}

@@ -1,9 +1,9 @@
 import React from "react";
 
-import styles from "components/Profile/Profile.module.css";
-import {ProfileInfo} from "components/Profile/ProfileInfo/ProfileInfo";
-import {ContentAreaContainer} from "components/Profile/ContentArea/ContentAreaContainer";
-import {ProfilePageType} from "redux/profile-reducer";
+import styles from "./Profile.module.css";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
+import {ProfilePageType} from "../../redux/profile-reducer";
 
 //types:
 type ProfilePropsType = {

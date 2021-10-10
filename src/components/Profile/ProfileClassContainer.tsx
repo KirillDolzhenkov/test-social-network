@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 
-import {Profile} from "components/Profile/Profile";
+
 import {AppStateType} from "../../redux/redux-store";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {getUserProfile, ProfilePageType} from "../../redux/profile-reducer";
+import { Profile } from "./Profile";
 
 
 //types:

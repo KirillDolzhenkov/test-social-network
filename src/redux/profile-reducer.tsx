@@ -1,8 +1,8 @@
 import {Dispatch} from "redux";
 
-import {usersAPI} from "../../api/api";
-import {AppActionType} from "redux/redux-store";
-import {getUsersThunkCreator, setFollowingProgress} from "redux/users-reducer";
+import {usersAPI} from "../api/api";
+import {AppActionType} from "./redux-store";
+import {getUsersThunkCreator, setFollowingProgress} from "./users-reducer";
 
 //types:
 type PostType = {

@@ -1,4 +1,4 @@
-import {AppActionType} from "redux/redux-store";
+import {AppActionType} from "./redux-store";
 
 //types:
 export type DialogsDataType = {

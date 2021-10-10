@@ -1,8 +1,9 @@
 import React from "react";
-import {Header} from "components/Header/Header";
 import {connect} from "react-redux";
+
 import {AppStateType} from "../../redux/redux-store";
 import {getAuthUserData} from "../../redux/auth-reducer";
+import { Header } from "./Header";
 
 //types:
 type HeaderContainerPropsType = {}

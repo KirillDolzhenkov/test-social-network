@@ -1,8 +1,9 @@
-import {connect} from "react-redux";
-import {AppStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
+import {connect} from "react-redux";
+
+import {AppStateType} from "../../../../redux/redux-store";
 import {addLike, ProfileInitialStateType, removeLike} from "../../../../redux/profile-reducer";
-import {Post} from "components/Profile/ContentArea/Post/Post";
+import {Post} from "./Post";
 
 //types:
 type mapStateToPropsType = {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "components/Dialogs/Dialogs.module.css";
+import styles from "../Dialogs.module.css";
 
 //types:
 type MessagePropsType = {

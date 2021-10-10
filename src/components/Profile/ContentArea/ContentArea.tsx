@@ -1,8 +1,8 @@
 import React, {ChangeEvent} from "react";
 
-import styles from "components/Profile/ContentArea/ContentArea.module.css"
-import {ProfileInitialStateType} from "redux/profile-reducer";
-import {PostContainer} from "components/Profile/ContentArea/Post/PostContainer";
+import styles from "./ContentArea.module.css"
+import {ProfileInitialStateType} from "../../../redux/profile-reducer";
+import {PostContainer} from "./Post/PostContainer";
 
 //types:
 type ContentAreaPropsType = {

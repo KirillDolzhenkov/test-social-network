@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "components/Profile/ContentArea/Post/Post.module.css"
+
+import styles from "./Post.module.css"
 
 //types:
 type PostPropsType = {

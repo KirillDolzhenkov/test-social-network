@@ -1,7 +1,8 @@
-import {AppStateType} from "../../../redux/redux-store";
-import {ContentArea} from "components/Profile/ContentArea/ContentArea";
-import {addPost, ProfileInitialStateType, setNewPostText} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
+
+import {ContentArea} from "./ContentArea";
+import {AppStateType} from "../../../redux/redux-store";
+import {addPost, ProfileInitialStateType, setNewPostText} from "../../../redux/profile-reducer";
 
 //types:
 type ContentAreaType = {}

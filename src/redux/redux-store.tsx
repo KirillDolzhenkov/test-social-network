@@ -1,10 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
 
-import {DialogsActionType, dialogsReducer} from "redux/dialogs-reducer";
-import {ProfileActionType, profileReducer} from "redux/profile-reducer";
-import {UsersActionType, usersReducer} from "redux/users-reducer";
-import {authReducer, authReducerAT} from "redux/auth-reducer";
+import {DialogsActionType, dialogsReducer} from "./dialogs-reducer";
+import {ProfileActionType, profileReducer} from "./profile-reducer";
+import {UsersActionType, usersReducer} from "./users-reducer";
+import {authReducer, authReducerAT} from "./auth-reducer";
 
 //types:
 export type AppStateType = ReturnType<typeof rootReducer>;

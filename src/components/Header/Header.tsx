@@ -1,9 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-import styles from "components/Header/Header.module.css";
-import logo1 from "assets/images/logo_part_1.png";
-import logo2 from "assets/images/logo_part_2.png";
+import styles from "./Header.module.css";
+import logo1 from "../../assets/images/logo_part_1.png";
+import logo2 from "../../assets/images/logo_part_2.png";
 
 
 //types:

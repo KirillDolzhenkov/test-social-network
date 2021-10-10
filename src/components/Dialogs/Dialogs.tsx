@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from "react";
 import { Redirect } from "react-router-dom";
 
-import styles from "components/Dialogs/Dialogs.module.css"
-import {DialogItem} from "components/Dialogs/DialogItem/DialogItem";
-import {Message} from "components/Dialogs/Message/Message";
-import {DialogsInitialStateType} from "redux/dialogs-reducer";
+import styles from "./Dialogs.module.css"
+import { DialogsInitialStateType } from "../../redux/dialogs-reducer";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 
 
 //types:
