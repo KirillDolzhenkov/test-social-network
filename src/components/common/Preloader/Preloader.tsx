@@ -1,7 +1,7 @@
 import React from "react";
 
 import "components/common/Preloader/Preloader.css"
-import PreloaderLogo from "components/common/Preloader/preloaderLogo.png"
+/*import PreloaderLogo from "components/common/Preloader/preloaderLogo.png"*/
 
 type PreloaderPropsType = {
 }

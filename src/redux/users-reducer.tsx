@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 
-import {usersAPI} from "api/api";
+import {usersAPI} from "../../api/api";
 import {AppActionType} from "redux/redux-store";
 
 //types:

@@ -17,7 +17,7 @@ import {Users} from "components/Users/Users";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {Preloader} from "components/common/Preloader/Preloader";
-import {usersAPI} from "api/api";
+import {usersAPI} from "../../../api/api";
 import {compose} from "redux";
 
 //types:
