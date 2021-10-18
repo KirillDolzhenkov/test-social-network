@@ -9,18 +9,15 @@ import App from "./App";
 import {AppStateType, store} from "./redux/redux-store";
 
 
-
 const reRenderEntireThree = (state: AppStateType) => {
 
     ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>
-        ,document.getElementById('root')
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+        , document.getElementById('root')
     );
 }
 

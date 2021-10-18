@@ -9,7 +9,7 @@ export type AuthInitialStateType = {
     id: null | number,
     email: null | string,
     login: null | string,
-     isAuth: boolean
+    isAuth: boolean
 }
 
 //initialState:

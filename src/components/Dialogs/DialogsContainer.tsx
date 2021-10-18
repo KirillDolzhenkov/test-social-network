@@ -11,8 +11,6 @@ import {AppStateType} from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
 
 //types:
-type DialogsContainerPropsType = {}
-
 type mapStateToPropsType = {
     dialogsPage: DialogsInitialStateType
     isAuth: boolean //delete?
@@ -39,15 +37,9 @@ class DialogsClassContainer extends React.Component<DialogsClassContainerPropsTy
 }
 
 //HOC:
-
-/*const DialogsContainer = connect<mapStateToPropsType,
-    mapDispatchToPropsType,
-    DialogsContainerPropsType,
-    AppStateType>(mapStateToProps, {addMessage,setNewMessageText})(Dialogs);*/
-
 const DialogsContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType,
-        DialogsContainerPropsType, AppStateType>(mapStateToProps, {addMessage,setNewMessageText}),
+        {}, AppStateType>(mapStateToProps, {addMessage,setNewMessageText}),
 )(DialogsClassContainer);
 
 export {

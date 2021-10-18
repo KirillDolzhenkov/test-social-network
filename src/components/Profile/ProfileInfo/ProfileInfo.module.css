@@ -5,6 +5,7 @@
     padding: 0;
     justify-content: normal;
     align-items: flex-start;
+
     text-align: start;
     font-size: 25px;
 }
@@ -13,5 +14,5 @@
     padding: 10px;
     width: 200px;
     height: 200px;
-    border-radius: 15px;
+    border-radius: 20px;
 }

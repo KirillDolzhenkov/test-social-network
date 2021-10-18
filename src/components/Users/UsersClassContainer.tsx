@@ -22,8 +22,6 @@ import {Preloader} from "../common/Preloader/Preloader";
 import {Users} from "./Users";
 
 //types:
-type UsersContainerPropsType = {}
-
 type mapStateToPropsType = {
     usersPage: UsersInitialStateType
     pageSize: number
@@ -112,7 +110,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 //HOC:
 const UsersContainer = compose<React.FC>(
-    connect<mapStateToPropsType, mapDispatchToPropsType, UsersContainerPropsType, AppStateType>(mapStateToProps,
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
         {
             follow,
             unFollow,

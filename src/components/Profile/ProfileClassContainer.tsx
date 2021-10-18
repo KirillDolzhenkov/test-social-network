@@ -3,27 +3,21 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
-
-
 import {AppStateType} from "../../redux/redux-store";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {getUserProfile, ProfilePageType} from "../../redux/profile-reducer";
-import { Profile } from "./Profile";
-
+import {Profile} from "./Profile";
 
 //types:
-type ProfileContainerPropsType = {}
-
 type mapStateToPropsType = {
     profile: ProfilePageType | null
     isAuth: boolean
 }
 type mapDispatchToPropsType = {
-    /*setProfile: (profile: ProfilePageType) => void*/
     getUserProfile: (userId: number) => void
 }
 type  PathParamsType = {
-    userId: any //number or string
+    userId: string //number or string
 }
 type ProfileClassContainerPropsType = mapStateToPropsType
     & mapDispatchToPropsType
@@ -36,14 +30,15 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         isAuth: state.auth.isAuth
     }
 }
+
 class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+        let userId: string = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = "2";
         }
-        this.props.getUserProfile(userId); //usersAPI.getProfile()
+        this.props.getUserProfile(+userId); //usersAPI.getProfile()
     }
 
     render() {
@@ -54,19 +49,10 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 }
 
 //HOC:
-const ProfileContainer = compose<React.FC>(
-    connect<mapStateToPropsType, mapDispatchToPropsType,
-        ProfileContainerPropsType, AppStateType>(mapStateToProps, {getUserProfile}),
-    withRouter,
-    WithAuthRedirect
-)(ProfileClassContainer);
-
-
-/*const WithUrlDataContainerComponent = withRouter(ProfileClassContainer);
-const ProfileContainer = WithAuthRedirect(connect<mapStateToPropsType,
-    mapDispatchToPropsType,
-    ProfileContainerPropsType,
-    AppStateType>(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent));*/
+const ProfileContainer = compose<React.FC>(connect<mapStateToPropsType,
+    mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
+    {getUserProfile}), withRouter,
+    WithAuthRedirect)(ProfileClassContainer);
 
 export {
     ProfileContainer

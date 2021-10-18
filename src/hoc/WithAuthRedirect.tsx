@@ -16,7 +16,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-
 function WithAuthRedirect<T>(Component: React.ComponentType<T>)  {
 
     const RedirectComponent = (props: mapStateToPropsType) => {

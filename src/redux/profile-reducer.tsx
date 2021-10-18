@@ -44,7 +44,6 @@ export type ProfileActionType = ReturnType<typeof addPost>
     | ReturnType<typeof removeLike>
     | ReturnType<typeof setProfile>
 
-export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator> //??????
 
 //initialState:
 const initialState: ProfileInitialStateType = {
@@ -122,7 +121,6 @@ export const setProfile = (profile: ProfilePageType) => {
 
 //thunk creators:
 export const getUserProfile = (userId: number) => {
-    debugger
     return (dispatch: Dispatch<AppActionType>) => {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setProfile(response.data));
