@@ -36,9 +36,6 @@ export type UsersActionType = | ReturnType<typeof follow>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setFollowingProgress>
 
-
-export type ThunkCreatorType =  ReturnType<typeof getUsersThunkCreator> //??????
-
 //initialState:
 const initialState: UsersInitialStateType = {
     users: [],

@@ -10,7 +10,6 @@ import {authReducer, authReducerAT} from "./auth-reducer";
 export type AppStateType = ReturnType<typeof rootReducer>;
 export type AppActionType = UsersActionType | ProfileActionType | DialogsActionType | authReducerAT
 
-
 //store & rootReducer:
 export const rootReducer = combineReducers({
     dialogPage: dialogsReducer,
