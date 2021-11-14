@@ -26,6 +26,7 @@ const initialState: DialogsInitialStateType = {
     messages: [
         {id: 1, message: "hello"},
         {id: 2, message: "How are you?"},
+
     ],
     newMessageText: ""
 }

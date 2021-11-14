@@ -55,9 +55,11 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
 
             <div className={styles.messages}>
-                {
-                    messageElements
-                }
+                <div className={styles.messageElements}>
+                    {
+                        messageElements
+                    }
+                </div>
                 <div>
                     <hr/>
                     <textarea
