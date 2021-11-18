@@ -8,7 +8,6 @@ import defaultAvatar from "../../../assets/images/defaultSmallUserPhoto.png"
 type MessagePropsType = {
     id: number
     message: string
-
 }
 
 //function component:
@@ -17,7 +16,7 @@ const Message: React.FC<MessagePropsType> = (props) => {
 
     <div className={dialogStyle.text}>
         <div className={messageStyle.message}>
-            <img className={messageStyle.img} alt='Текст' src={defaultAvatar}/>
+            <img className={messageStyle.img} alt="userPhoto" src={defaultAvatar}/>
             <div className={messageStyle.content}>
                 <div className={messageStyle.name}>userName</div>
                 <div className={messageStyle.text}>{props.message}</div>

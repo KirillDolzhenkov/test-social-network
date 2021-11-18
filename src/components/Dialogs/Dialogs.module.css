@@ -19,7 +19,8 @@
     background: #d3d6d9;
     border-radius: 4px;
     padding-bottom: 10px;
-    width: 600px;
+    /*width: 600px;*/
+    width: 800px;
 }
 
 .messages textArea {
