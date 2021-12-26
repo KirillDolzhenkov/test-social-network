@@ -4,6 +4,7 @@ import defaultSmallUserPhoto from "../../../assets/images/defaultSmallUserPhoto.
 import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
 import styles from "./ProfileInfo.module.css";
+import preloaderStyle from "../../common/Preloader/Preloader.module.css";
 
 //types:
 type  ProfileInfoPropsType = {
@@ -16,7 +17,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     const state = props.profile; //!!!
 
     if (!state) {
-        return <Preloader/>
+        return <div className={preloaderStyle.main}><Preloader/></div>
     }
 
     return (
