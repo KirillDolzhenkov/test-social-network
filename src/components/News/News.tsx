@@ -3,11 +3,11 @@ import React from "react";
 //types:
 type NewsPropsType = {}
 
-//function component:
+//functional component:
 const News: React.FC<NewsPropsType> = (props) => {
     return (
         <div>
-            News Page Content
+            News Page's Content
         </div>
     )
 }

@@ -36,7 +36,7 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
     if (action.type === "SN/DIALOGS/ADD_MESSAGE") {
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {
-            id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number with javascript time
+            id: Math.floor(new Date().valueOf() * Math.random()), //Creating a unique number with javascript time method
             message: stateCopy.newMessageText,
         };
         stateCopy.messages = [...state.messages, newMessage];

@@ -3,8 +3,10 @@ import React from "react";
 import "./Preloader.css"
 /*import PreloaderLogo from "preloaderLogo.png"*/
 
+//types:
 type PreloaderPropsType = {}
 
+//functional component:
 const Preloader: React.FC<PreloaderPropsType> = (props) => {
     return (
         /*<div className="Preloader">
