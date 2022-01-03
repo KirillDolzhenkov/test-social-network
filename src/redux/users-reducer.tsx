@@ -39,7 +39,7 @@ export type UsersActionType = | ReturnType<typeof follow>
 //initialState:
 const initialState: UsersInitialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 4,
     totalUsersCount: 19,
     currentPage: 1,
     isFetching: false,
