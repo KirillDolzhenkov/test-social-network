@@ -3,7 +3,7 @@ import React from "react";
 import defaultSmallUserPhoto from "../../../assets/images/defaultSmallUserPhoto.png";
 import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
-import styles from "./ProfileInfo.module.css";
+import style from "./ProfileInfo.module.css";
 import preloaderStyle from "../../common/Preloader/Preloader.module.css";
 
 //types:
@@ -22,7 +22,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     return (
         <div>
-            <div className={styles.descriptionBlock}>
+            <div className={style.descriptionBlock}>
                 <img src={
                     state.photos.large !== null
                         ? state.photos.large

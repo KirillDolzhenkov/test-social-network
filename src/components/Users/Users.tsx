@@ -31,7 +31,7 @@ type UsersPropsType = {
 //functional component:
 const Users: React.FC<UsersPropsType> = (props) => {
 
-    const state = props.usersPage; //state!!!
+    const state = props.usersPage;
 
     //pages for pagination:
     const pagesCount = Math.ceil(state.totalUsersCount / state.pageSize) //.ceil rounds a number up to the next largest integer
@@ -69,7 +69,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
                         </NavLink>
                         <div className={style.info}>
                             <NavLink to={'/profile/' + u.id}>
-                                <b>{u.name}</b>
+                                <div className={style.name}>{u.name}</div>
                             </NavLink>
                         </div>
                     </div>
@@ -84,13 +84,13 @@ const Users: React.FC<UsersPropsType> = (props) => {
                                         onClick={() => {
                                             props.unFollowThunkCreator(u.id);
                                         }}
-                                    >-unfollow</button>
+                                    >unfollow</button>
                                     : <button
                                         disabled={props.followingInProgress.some(id => id === u.id)}
                                         onClick={() => {
                                             props.followThunkCreator(u.id);
                                         }}
-                                    >+follow</button>
+                                    >follow</button>
                             }
                         </div>
                         <div>
