@@ -43,22 +43,11 @@ const Users: React.FC<UsersPropsType> = (props) => {
     return (
 
         <div className={style.items}>
-            <div>
-                { //pagination:
-                    pages.map(p => <span
-                        className={p === state.currentPage
-                            ? style.selectedPage
-                            : ''
-                        }
-                        onClick={() => props.onPageChanged(p)} //callBack?
-                    >{p}</span>)
-                }
 
-            </div>
 
             {
                 state.users.map(u => <div key={u.id}>
-                    <hr/>
+                    {/*<hr/>*/}
                     <div className={style.profile}>
                         <NavLink to={'/profile/' + u.id}>
                             <img src={
@@ -99,8 +88,22 @@ const Users: React.FC<UsersPropsType> = (props) => {
                             </NavLink>
                         </div>
                     </div>
+                    <hr/>
                 </div>)
+
             }
+            <div>
+
+                {
+                    pages.map(p => <span  //pagination
+                        className={p === state.currentPage
+                            ? style.selectedPage
+                            : ''
+                        }
+                        onClick={() => props.onPageChanged(p)}
+                    >{p}</span>)
+                }
+            </div>
         </div>
     )
 }

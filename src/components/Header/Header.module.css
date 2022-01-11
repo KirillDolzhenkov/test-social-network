@@ -38,3 +38,11 @@
 .loginBlock a:hover{
     color: white;
 }
+
+.items {
+    display: flex;
+    width: 140px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

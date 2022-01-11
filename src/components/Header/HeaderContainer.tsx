@@ -36,6 +36,7 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
 
             .then(response=>{
                 if (response.data.resultCode === 0) {
+                    debugger
                     let data = response.data.data;
                     this.props.setAuthUserData(data);
                 }

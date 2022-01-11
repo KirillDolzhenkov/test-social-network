@@ -18,6 +18,7 @@ const Post: React.FC<PostPropsType> = (props) => {
 
     return (
         <>
+            <hr/>
             <div className={style.post}>
                 <div className={style.items}>
                     <div>
@@ -58,7 +59,7 @@ const Post: React.FC<PostPropsType> = (props) => {
                     <div> <button> Share</button> </div>
                 </div>
             </div>
-            <hr/>
+
         </>
     )
 }

@@ -1,14 +1,12 @@
 
 .app-wrapper {
-    /*app size on page: */
-    /* width: 1200px ;
-     height: 850px;*/
+    width: 1000px;
+    height: 850px;
     display: grid;
-    height: 100vh;
     margin: 0 auto;
     background-color: white;
-    background-image: url("assets/images/appBackroundImage.png") ;
-    background-size:  1200px 700px;
+    /*background-image: url("assets/images/appBackroundImage.png") ;
+    background-size:  1200px 700px;*/
 
     grid-template-areas:
   'h h'

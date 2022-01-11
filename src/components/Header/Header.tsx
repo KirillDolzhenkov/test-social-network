@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import style from "./Header.module.css";
 import logo1 from "../../assets/images/logo_part_1.png";
 import logo2 from "../../assets/images/logo_part_2.png";
+import defaultSmallUserPhoto from "../../assets/images/defaultSmallUserPhoto.png";
 
 //types:
 type HeaderPropsType = {
@@ -27,11 +28,18 @@ const Header: React.FC<HeaderPropsType> = (props) => {
             <div className={style.loginBlock}>
                 {
                     props.isAuth
-                        ? <div>
-                            <span style={{color: "white"}}>{props.login} </span> {/*need to create own style*/}
+                        ? <div className={style.items}>
+                            <div>
+                                {/*<img src={                    //<-- no photo yet
+                                    props.photos.small !== null
+                                        ? props.photos.small
+                                        : defaultSmallUserPhoto //defaultAsset
+                                }/>*/}
+                            </div>
+                            <div>{props.login} </div>
                             <NavLink to={"/login"}>Logout</NavLink>
                         </div>
-                        : <div>
+                        : <div className={style.items}>
                             <NavLink to={"/login"}>Login </NavLink>
                             <NavLink to={"/login"}>Signup </NavLink>
                         </div>
