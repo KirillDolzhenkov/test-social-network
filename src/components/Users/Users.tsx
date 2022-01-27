@@ -15,17 +15,17 @@ type UsersPropsType = {
     followingInProgress: any[]
 
     //callBacksTypes (mapDispatchToPropsType):
-    follow: (id: number) => void
-    unFollow: (id: number) => void
+  /*  follow: (id: number) => void
+    unFollow: (id: number) => void*/
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     onPageChanged: (p: number) => void
-    setFollowingProgress: (followingProgress: boolean, id: number) => void
+  /*  setFollowingProgress: (followingProgress: boolean, id: number) => void*/
 
     //thunkTypes:
-    unFollowThunkCreator: (userId: number) => void
-    followThunkCreator: (userId: number) => void
+    unFollowThunkCreator: (userId: number) => void //need rename to unFollow
+    followThunkCreator: (userId: number) => void //need rename to follow
 }
 
 //functional component:
@@ -41,28 +41,26 @@ const Users: React.FC<UsersPropsType> = (props) => {
     }
 
     return (
-
         <div className={style.items}>
-
-
             {
                 state.users.map(u => <div key={u.id}>
                     {/*<hr/>*/}
                     <div className={style.profile}>
+
                         <NavLink to={'/profile/' + u.id}>
                             <img src={
                                 u.photos.small !== null
                                     ? u.photos.small
                                     : defaultSmallUserPhoto //defaultAsset
-                            }/>
+                            } alt="defaultSmallUserPhoto"/>
                         </NavLink>
+
                         <div className={style.info}>
                             <NavLink to={'/profile/' + u.id}>
                                 <div className={style.name}>{u.name}</div>
                             </NavLink>
                         </div>
                     </div>
-
 
                     <div className={style.buttonsArea}>
                         <div>

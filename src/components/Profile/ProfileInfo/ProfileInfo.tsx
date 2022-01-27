@@ -14,7 +14,7 @@ type  ProfileInfoPropsType = {
 //functional component:
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
-    const state = props.profile; //!!!
+    const state = props.profile;
 
     if (!state) {
         return <div className={preloaderStyle.main}><Preloader/></div>

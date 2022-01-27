@@ -29,18 +29,18 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType>{
     componentDidMount() {
-        /*this.props.getAuthUserData();*/ /*<-request*/
-        axios.get("https://social-network.samuraijs.com/api/1.0/auth/me",{
+        this.props.getAuthUserData(); /*<-request*/
+
+        /*axios.get("https://social-network.samuraijs.com/api/1.0/auth/me",{
             withCredentials: true,
         })
-
             .then(response=>{
                 if (response.data.resultCode === 0) {
                     debugger
                     let data = response.data.data;
                     this.props.setAuthUserData(data);
                 }
-            })
+            })*/
     }
 
     render() {

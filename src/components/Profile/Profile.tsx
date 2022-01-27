@@ -21,7 +21,6 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     )
 }
 
-export
-{
+export {
     Profile
 }

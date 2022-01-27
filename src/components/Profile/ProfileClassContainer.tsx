@@ -42,9 +42,9 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
     }
 
     render() {
-        return <>
-            <Profile{...this.props} profile={this.props.profile}/>
-        </>
+        return (
+            <><Profile{...this.props} profile={this.props.profile}/></>
+        )
     }
 }
 

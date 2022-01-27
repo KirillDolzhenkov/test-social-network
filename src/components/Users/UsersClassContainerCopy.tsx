@@ -1,4 +1,5 @@
 import React from "react";
+/*
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -118,4 +119,4 @@ const UsersContainer = compose<React.FC>(
 
 export {
     UsersContainer
-}
+}*/
