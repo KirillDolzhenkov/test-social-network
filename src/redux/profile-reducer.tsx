@@ -47,7 +47,14 @@ export type ProfileActionType = ReturnType<typeof addPost>
 
 //initialState:
 const initialState: ProfileInitialStateType = {
-    posts: [],
+    posts: [
+        {
+            id: 21313,
+            message: "testPost",
+            likesCount: 1,
+            isLiked: false
+        }
+    ],
     newPostText: "",
     profile: null
 }
