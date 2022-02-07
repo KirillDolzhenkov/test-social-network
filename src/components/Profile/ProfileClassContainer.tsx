@@ -11,7 +11,6 @@ import {Profile} from "./Profile";
 //types:
 type mapStateToPropsType = {
     profile: ProfilePageType | null
-    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -25,9 +24,9 @@ type ProfileClassContainerPropsType = mapStateToPropsType
 
 //class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
     }
 }
 
@@ -49,10 +48,12 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 }
 
 //HOC:
-const ProfileContainer = compose<React.FC>(connect<mapStateToPropsType,
-    mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-    {getUserProfile}), withRouter,
-    WithAuthRedirect)(ProfileClassContainer);
+const ProfileContainer = compose<React.FC>(
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
+        mapStateToProps, {getUserProfile}),
+    withRouter,
+    WithAuthRedirect,
+)(ProfileClassContainer);
 
 export {
     ProfileContainer

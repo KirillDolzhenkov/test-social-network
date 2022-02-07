@@ -61,6 +61,7 @@ const initialState: ProfileInitialStateType = {
 
 //reducer:
 const profileReducer = (state: ProfileInitialStateType = initialState, action: AppActionType): ProfileInitialStateType => {
+
     switch (action.type) {
         case "SN/PROFILE/ADD_POST": {
             const stateCopy = {...state}

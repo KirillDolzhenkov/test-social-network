@@ -13,17 +13,11 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     followingInProgress: any[]
-
-    //callBacksTypes (mapDispatchToPropsType):
-  /*  follow: (id: number) => void
-    unFollow: (id: number) => void*/
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     onPageChanged: (p: number) => void
-  /*  setFollowingProgress: (followingProgress: boolean, id: number) => void*/
 
-    //thunkTypes:
     unFollowThunkCreator: (userId: number) => void //need rename to unFollow
     followThunkCreator: (userId: number) => void //need rename to follow
 }

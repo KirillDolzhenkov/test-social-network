@@ -3,15 +3,12 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 
 import {
-    /*follow,*/
     followThunkCreator,
     getUsersThunkCreator,
     setCurrentPage,
-    /*setFollowingProgress,*/
     setIsFetching,
     setTotalUsersCount,
     setUsers,
-    /*unFollow,*/
     unFollowThunkCreator,
     UsersInitialStateType,
     UsersType
@@ -21,6 +18,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {Preloader} from "../common/Preloader/Preloader";
 import preloaderStyle from "../common/Preloader/Preloader.module.css"
 import {Users} from "./Users";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 //types:
 type mapStateToPropsType = {
@@ -33,18 +31,14 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-   /* follow: (id: number) => void
-    unFollow: (id: number) => void*/
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
-  /*  setFollowingProgress: (toggleFollowingProgress: boolean, id: number) => void*/
 
-    //thunkTypes:
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
-    unFollowThunkCreator: (userId: number) => void
-    followThunkCreator: (userId: number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void // need rename to getUsers?
+    unFollowThunkCreator: (userId: number) => void //need rename to follow
+    followThunkCreator: (userId: number) => void //need rename to unFollow
 }
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -100,19 +94,15 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 const UsersContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
         {
-           /* follow,*/
-           /* unFollow,*/
             setUsers,
             setCurrentPage,
             setTotalUsersCount,
             setIsFetching,
-            /*setFollowingProgress,*/
-
-            //thunkCreators:
-            getUsersThunkCreator,
+            getUsersThunkCreator, // need rename to getUsers?
             unFollowThunkCreator, //need rename to unFollow
             followThunkCreator  //need rename to follow
         }),
+        WithAuthRedirect,
 )(UsersClassContainer);
 
 export {
