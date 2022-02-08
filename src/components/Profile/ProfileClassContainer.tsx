@@ -52,7 +52,7 @@ const ProfileContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
         mapStateToProps, {getUserProfile}),
     withRouter,
-    WithAuthRedirect,
+    //WithAuthRedirect, !!!!!
 )(ProfileClassContainer);
 
 export {

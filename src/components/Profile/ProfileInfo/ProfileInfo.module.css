@@ -16,3 +16,8 @@
     height: 200px;
     border-radius: 20px;
 }
+
+.items {
+    display: flex;
+    flex-direction: column;
+}

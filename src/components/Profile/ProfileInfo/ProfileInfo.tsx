@@ -5,6 +5,7 @@ import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
 import style from "./ProfileInfo.module.css";
 import preloaderStyle from "../../common/Preloader/Preloader.module.css";
+import {ProfileStatus} from "./ProfileStatus";
 
 //types:
 type  ProfileInfoPropsType = {
@@ -28,9 +29,11 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                         ? state.photos.large
                         : defaultSmallUserPhoto //defaultAsset
                 }/>
-                <div>
+                <div className={style.items}>
                     <div><b>{state.fullName}</b></div>
-                    <div>{state.aboutMe}</div>
+
+                    {/*<div>{state.aboutMe}</div>*/}
+                    <ProfileStatus status={state.aboutMe}/>
                 </div>
             </div>
         </div>
