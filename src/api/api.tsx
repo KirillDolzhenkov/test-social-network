@@ -1,4 +1,5 @@
 import axios from "axios";
+import {getUserProfile} from "../redux/profile-reducer";
 
 const instance = axios.create({
 	withCredentials: true,
@@ -24,9 +25,16 @@ export const usersAPI = {
 		return instance.delete(`follow/${userId}`);
 	},
 	getProfile(userId: number) {
-		return instance.get(`profile/${userId}`);
+		console.warn('obsolete method. Please use profileAPI object');
+		return profileAPI.getProfile(userId);
 	},
 };
+
+export const profileAPI = {
+	getProfile(userId: number) {
+		return instance.get(`profile/${userId}`);
+	},
+}
 
 export const authAPI = {
 	me() {
