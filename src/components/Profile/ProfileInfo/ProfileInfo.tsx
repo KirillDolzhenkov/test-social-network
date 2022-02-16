@@ -10,6 +10,8 @@ import {ProfileStatus} from "./ProfileStatus";
 //types:
 type  ProfileInfoPropsType = {
     profile: ProfilePageType | null
+    status: string | null
+    updateStatus: (status: string) => void
 }
 
 //functional component:
@@ -31,9 +33,11 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 }/>
                 <div className={style.items}>
                     <div><b>{state.fullName}</b></div>
-
-                    {/*<div>{state.aboutMe}</div>*/}
-                    <ProfileStatus status={state.aboutMe}/>
+                    <ProfileStatus status={
+                        state.aboutMe
+                            ? state.aboutMe
+                            : "..."
+                    }/>
                 </div>
             </div>
         </div>

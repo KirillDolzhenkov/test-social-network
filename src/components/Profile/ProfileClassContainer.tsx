@@ -4,19 +4,21 @@ import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 import {AppStateType} from "../../redux/redux-store";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
-import {getUserProfile, ProfilePageType} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 
 //types:
 type mapStateToPropsType = {
     profile: ProfilePageType | null
+    status: string | null
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
 }
 type  PathParamsType = {
-    userId: string //number or string
+    userId: string //number or string (STRING!!!)
 }
 type ProfileClassContainerPropsType = mapStateToPropsType
     & mapDispatchToPropsType
@@ -27,6 +29,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status,
     }
 }
 
@@ -37,12 +40,20 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
         if (!userId) {
             userId = "2";
         }
-        this.props.getUserProfile(+userId); //usersAPI.getProfile()
+        this.props.getUserProfile(+userId); //usersAPI.getProfile(), ("+" for to string)
+        this.props.getUserStatus(+userId); // profileAPI.getUserStatus()
     }
 
     render() {
         return (
-            <><Profile{...this.props} profile={this.props.profile}/></>
+            <>
+                <Profile
+                    {...this.props}
+                    profile={this.props.profile}
+                    status={this.props.status}
+                    updateStatus={this.props.updateUserStatus}
+                />
+            </>
         )
     }
 }
@@ -50,9 +61,14 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 //HOC:
 const ProfileContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
-        mapStateToProps, {getUserProfile}),
+        mapStateToProps,
+        {
+            getUserProfile,
+            getUserStatus,
+            updateUserStatus
+        }
+    ),
     withRouter,
-    //WithAuthRedirect, !!!!!
 )(ProfileClassContainer);
 
 export {
