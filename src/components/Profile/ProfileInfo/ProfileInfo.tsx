@@ -33,11 +33,10 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 }/>
                 <div className={style.items}>
                     <div><b>{state.fullName}</b></div>
-                    <ProfileStatus status={
-                        state.aboutMe
-                            ? state.aboutMe
-                            : "..."
-                    }/>
+                    <ProfileStatus
+                        updateStatus={props.updateStatus}
+                        status={props.status}
+                    />
                 </div>
             </div>
         </div>

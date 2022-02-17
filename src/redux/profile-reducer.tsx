@@ -149,7 +149,7 @@ export const getUserProfile = (userId: number) => {
 export const getUserStatus = (userId: number) => {
     return (dispatch: Dispatch<AppActionType>) => {
         profileAPI
-            .getUserStatus(userId)
+            .getUserStatus(userId) //+userId ??
             .then(response => {
                 dispatch(setStatus(response.data));
             });

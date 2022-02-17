@@ -38,7 +38,8 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
     componentDidMount() {
         let userId: string = this.props.match.params.userId;
         if (!userId) {
-            userId = "2";
+            /*userId = "2";*/
+            userId = "8091";
         }
         this.props.getUserProfile(+userId); //usersAPI.getProfile(), ("+" for to string)
         this.props.getUserStatus(+userId); // profileAPI.getUserStatus()
@@ -65,7 +66,8 @@ const ProfileContainer = compose<React.FC>(
         {
             getUserProfile,
             getUserStatus,
-            updateUserStatus
+            updateUserStatus,
+
         }
     ),
     withRouter,

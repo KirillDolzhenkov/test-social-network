@@ -1,13 +1,19 @@
 import React from "react";
 
 type ProfileStatusPropsType = {
-    status: string
+    status: string | null
+    updateStatus: (status: string) => void
+}
+type LocalStateType = {
+    editMode: boolean
+    status: string | null
 }
 
 class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
-    state = {
+    state: LocalStateType = {
         editMode: false,
+        status: this.props.status,
     }
 
     activateEditMode = () => {
@@ -15,6 +21,15 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
     deactivateEditMode = () => {
         this.setState({editMode: false});
+        this.onUpdateStatus();
+    }
+    onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({status: e.currentTarget.value});
+    }
+    onUpdateStatus = () => {
+        if (this.state.status){
+            this.props.updateStatus( this.state.status);
+        }
     }
 
     render() {
@@ -24,14 +39,23 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 {
                     !this.state.editMode &&
                         <div>
-                            <div onDoubleClick={this.activateEditMode}>{this.props.status}</div>
+                            <div onDoubleClick={this.activateEditMode}>{
+                                this.props.status
+                                    ? this.props.status
+                                    : "..."
+                            }</div>
                         </div>
                 }
 
                 {
                     this.state.editMode &&
                         <div>
-                            <input autoFocus onBlur={this.deactivateEditMode} value={this.props.status}></input>
+                            <input
+                                autoFocus
+                                onBlur={this.deactivateEditMode}
+                                value={`${this.state.status}`}  //NEED TO FIX !!!!
+                                onChange={this.onStatusChange}
+                            />
                         </div>
                 }
             </>
