@@ -3,7 +3,7 @@ import React from "react";
 import defaultSmallUserPhoto from "../../../assets/images/defaultSmallUserPhoto.png";
 import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
-import style from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.css";
 import preloaderStyle from "../../common/Preloader/Preloader.module.css";
 import {ProfileStatus} from "./ProfileStatus";
 
@@ -20,18 +20,24 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     const state = props.profile;
 
     if (!state) {
-        return <div className={preloaderStyle.main}><Preloader/></div>
+        return (
+            <>
+                <div className={preloaderStyle.main}>
+                    <Preloader/>
+                </div>
+            </>
+        )
     }
 
     return (
         <div>
-            <div className={style.descriptionBlock}>
+            <div className={styles.descriptionBlock}>
                 <img src={
                     state.photos.large !== null
                         ? state.photos.large
                         : defaultSmallUserPhoto //defaultAsset
                 }/>
-                <div className={style.items}>
+                <div className={styles.items}>
                     <div><b>{state.fullName}</b></div>
                     <ProfileStatus
                         updateStatus={props.updateStatus}
