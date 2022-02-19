@@ -24,7 +24,8 @@ type ProfileClassContainerPropsType = mapStateToPropsType
     & mapDispatchToPropsType
     & RouteComponentProps<PathParamsType> //.props.match.params FIX
 
-//class container component:
+
+
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
     return {
@@ -33,15 +34,20 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
+//class container component:
 class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
 
     componentDidMount() {
+
+        //profile userId:
         let userId: string = this.props.match.params.userId;
         if (!userId) {
             userId = "8091"; // test value!!!!
         }
-        this.props.getUserProfile(+userId); //usersAPI.getProfile(), ("+" for to string)
-        this.props.getUserStatus(+userId); // profileAPI.getUserStatus()
+
+        //usersAPI.getProfile() & profileAPI.getUserStatus() requests, ("+" for to string):
+        this.props.getUserProfile(+userId);
+        this.props.getUserStatus(+userId);
     }
 
     render() {
@@ -61,12 +67,10 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 //HOC:
 const ProfileContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
-        mapStateToProps,
-        {
+        mapStateToProps, {
             getUserProfile,
             getUserStatus,
             updateUserStatus,
-
         }
     ),
     withRouter,

@@ -29,31 +29,33 @@ type mapStateToPropsType = {
     isFetching: boolean
     followingInProgress: any[]
 }
-
 type mapDispatchToPropsType = {
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
 
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => void // need rename to getUsers?
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void // need rename to getUsers
     unFollowThunkCreator: (userId: number) => void //need rename to follow
     followThunkCreator: (userId: number) => void //need rename to unFollow
 }
 type UsersClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
+
 //class container component:
 class UsersClassContainer extends React.Component<UsersClassContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize); //usersAPI.getUsers()
+        //usersAPI.getUsers() request:
+        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
     }
 
-    //onPageChanged Fn for pagination:
+    //onChanged function for pagination:
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
 
+        //request for re-render next page of users:
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false);
@@ -67,17 +69,19 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
                 {
                     this.props.isFetching
                         ? <div className={preloaderStyle.main}><Preloader/></div>
-                        : <Users
-                            {...this.props}
-                            onPageChanged={this.onPageChanged}
-                        />
+                        : <div>
+                            <Users
+                                {...this.props}
+                                onPageChanged={this.onPageChanged}
+                            />
+                        </div>
                 }
             </>
         )
     }
 }
 
-//container component:
+
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.usersPage,
@@ -92,17 +96,17 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 //HOC:
 const UsersContainer = compose<React.FC>(
-    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-        {
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
+        mapStateToProps, {
             setUsers,
             setCurrentPage,
             setTotalUsersCount,
             setIsFetching,
-            getUsersThunkCreator, // need rename to getUsers?
+            getUsersThunkCreator, // need rename to getUsers
             unFollowThunkCreator, //need rename to unFollow
-            followThunkCreator  //need rename to follow
+            followThunkCreator,  //need rename to follow
         }),
-        WithAuthRedirect,
+    WithAuthRedirect,
 )(UsersClassContainer);
 
 export {

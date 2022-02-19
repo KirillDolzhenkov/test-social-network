@@ -54,11 +54,11 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 </div>
                 <hr/>
                 <div className={style.inputAreaElements}>
-
+                    <AddMessageForm/>
                     <div>
                         <textarea
                             value={state.newMessageText}
-                            maxLength={100000}
+                            maxLength={500}
                             onChange={onChangeHandler}
                             placeholder={"Write something"}
                             onKeyPress={onKeyPressHandler}
@@ -71,6 +71,26 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
 
         </div>
+    )
+}
+
+//functional component:
+const AddMessageForm: React.FC<{}> = (props) => {
+    return(
+        <form>
+            {/*<div>
+                        <textarea
+                            value={state.newMessageText}
+                            maxLength={500}
+                            onChange={onChangeHandler}
+                            placeholder={"Write something"}
+                            onKeyPress={onKeyPressHandler}
+                        />
+            </div>
+            <div>
+                <button onClick={addMessageHandler}>Send</button>
+            </div>*/}
+        </form>
     )
 }
 

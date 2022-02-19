@@ -1,8 +1,7 @@
 import {Dispatch} from "redux";
 
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 import {AppActionType} from "./redux-store";
-import {getUsersThunkCreator, setFollowingProgress} from "./users-reducer";
 
 //types:
 type PostType = {

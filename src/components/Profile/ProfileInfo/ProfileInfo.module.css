@@ -22,7 +22,15 @@
     flex-direction: column;
 }
 
-.profileStatus {
+.statusStaticMode {
     color: gray;
     font-size: 23px;
+    cursor: pointer;
+}
+
+.statusEditMode {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 220px;
 }

@@ -29,11 +29,18 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         this.setState({editMode: false});
         this.onUpdateStatus();
     }
+    onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            this.deactivateEditMode();
+        }
+    }
+
     //onchange localState of status:
     onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({status: e.currentTarget.value});
     }
-    //update status callback from local state to global state:
+
+    //update status callback  function from local state to global state:
     onUpdateStatus = () => {
         if (this.state.status){
             this.props.updateStatus( this.state.status);
@@ -42,7 +49,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         }
     }
 
-
+    //re-rendering of status's local state if its props have changed:
     componentDidUpdate(prevProps: ProfileStatusPropsType, prevState: any) { //need to check types!!!
         if (prevProps.status !== this.props.status){
             this.setState({status: this.props.status});
@@ -50,13 +57,12 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
 
     render() {
-
         return (
             <>
                 {
                     !this.state.editMode &&
                         <div>
-                            <div className={styles.profileStatus} onDoubleClick={this.activateEditMode}>{
+                            <div className={styles.statusStaticMode} onDoubleClick={this.activateEditMode}>{
                                 this.props.status
                                     ? this.props.status
                                     : "set status"
@@ -66,15 +72,24 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
                 {
                     this.state.editMode &&
-                        <div>
-                            <input
-                                autoFocus
-                                onBlur={this.deactivateEditMode}
-                                value={`${this.state.status}`}  //NEED TO FIX !!!!
-                                onChange={this.onStatusChange}
-                            />
+                        <div className={`${styles.statusEditMode}`}>
+                            <div>
+                                <input
+                                    autoFocus
+                                    /*onBlur={this.deactivateEditMode}*/
+                                    onKeyPress={this.onKeyPressHandler}
+                                    value={`${this.state.status}`}  //NEED TO FIX !!!!
+                                    onChange={this.onStatusChange}
+                                />
+                            </div>
+                            <div>
+                                <button
+                                onClick={this.deactivateEditMode}
+                                >save</button>
+                            </div>
                         </div>
                 }
+
             </>
         )
     }
