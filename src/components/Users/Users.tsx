@@ -25,10 +25,24 @@ type UsersPropsType = {
 //functional component:
 const Users: React.FC<UsersPropsType> = (props) => {
 
-    const state = props.usersPage;
+    const {
+        usersPage,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        followingInProgress,
+        setUsers, //need to delete
+        setCurrentPage, //need to delete
+        setTotalUsersCount, //need to delete
+        onPageChanged,
+        unFollowThunkCreator,
+        followThunkCreator,
+    } = props;
+
+   /* const state = props.usersPage;*/
 
     //pages for pagination:
-    const pagesCount = Math.ceil(state.totalUsersCount / state.pageSize) //.ceil rounds a number up to the next largest integer
+    const pagesCount = Math.ceil(totalUsersCount / pageSize) //.ceil rounds a number up to the next largest integer
     const pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -37,8 +51,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
     return (
         <div className={style.items}>
             {
-                state.users.map(u => <div key={u.id}>
-                    {/*<hr/>*/}
+                usersPage.users.map(u => <div key={u.id}>
                     <div className={style.profile}>
 
                         <NavLink to={'/profile/' + u.id}>
@@ -46,7 +59,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
                                 u.photos.small !== null
                                     ? u.photos.small
                                     : defaultSmallUserPhoto //defaultAsset
-                            } alt="defaultSmallUserPhoto"/>
+                            } alt="smallUserPhoto"/>
                         </NavLink>
 
                         <div className={style.info}>
@@ -61,15 +74,15 @@ const Users: React.FC<UsersPropsType> = (props) => {
                             {
                                 u.followed
                                     ? <button
-                                        disabled={props.followingInProgress.some(id => id === u.id)}
+                                        disabled={followingInProgress.some(id => id === u.id)}
                                         onClick={() => {
-                                            props.unFollowThunkCreator(u.id);
+                                            unFollowThunkCreator(u.id);
                                         }}
                                     >unfollow</button>
                                     : <button
-                                        disabled={props.followingInProgress.some(id => id === u.id)}
+                                        disabled={followingInProgress.some(id => id === u.id)}
                                         onClick={() => {
-                                            props.followThunkCreator(u.id);
+                                            followThunkCreator(u.id);
                                         }}
                                     >follow</button>
                             }
@@ -88,11 +101,12 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
                 {
                     pages.map(p => <span  //pagination
-                        className={p === state.currentPage
-                            ? style.selectedPage
-                            : ''
+                        className={
+                            p === currentPage
+                                ? style.selectedPage
+                                : ''
                         }
-                        onClick={() => props.onPageChanged(p)}
+                        onClick={() => onPageChanged(p)}
                     >{p}</span>)
                 }
             </div>

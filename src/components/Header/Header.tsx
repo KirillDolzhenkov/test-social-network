@@ -13,6 +13,12 @@ type HeaderPropsType = {
 
 //functional component:
 const Header: React.FC<HeaderPropsType> = (props) => {
+
+	const {
+		isAuth,
+		login,
+	} = props;
+
 	return (
 		<div className={style.header}>
 			<NavLink to={"/news"} className={style.logoArea}>
@@ -24,24 +30,24 @@ const Header: React.FC<HeaderPropsType> = (props) => {
 				</div>
 			</NavLink>
 			<div className={style.loginBlock}>
-				{props.isAuth ? (
-					<div className={style.items}>
-						<div>
-							{/*<img src={                    //<-- no photo yet
+				{
+					isAuth
+						? <div className={style.items}>
+							<div>
+								{/*<img src={                    //<-- no photo yet
                                     props.photos.small !== null
                                         ? props.photos.small
                                         : defaultSmallUserPhoto //defaultAsset
                                 }/>*/}
+							</div>
+							<div>{login} </div>
+							<NavLink to={"/login"}>Logout</NavLink>
 						</div>
-						<div>{props.login} </div>
-						<NavLink to={"/login"}>Logout</NavLink>
-					</div>
-				) : (
-					<div className={style.items}>
-						<NavLink to={"/login"}>Login </NavLink>
-						<NavLink to={"/login"}>Sign up </NavLink>
-					</div>
-				)}
+						: <div className={style.items}>
+							<NavLink to={"/login"}>Login </NavLink>
+							<NavLink to={"/login"}>Sign up </NavLink>
+						</div>
+				}
 			</div>
 		</div>
 	);
