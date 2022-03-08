@@ -19,13 +19,16 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 //container component:
 function WithAuthRedirect<T>(Component: React.ComponentType<T>) { //possible to make arrow function?
 
-  const RedirectComponent = (props: mapStateToPropsType) => {
+  const RedirectComponent: React.FC<mapStateToPropsType> = (props) => {
 
-    const {isAuth, ...restProps} = props
+    const {
+      isAuth,
+      ...restProps
+    } = props;
+
     if (!isAuth) {
       return <Redirect to={"/Login"}/>
     }
-
     return <Component {...(restProps as T)} />
   }
 

@@ -15,12 +15,18 @@ type ProfilePropsType = {
 //functional component:
 const Profile: React.FC<ProfilePropsType> = (props) => {
 
+    const {
+        profile,
+        status,
+        updateStatus,
+    } = props;
+
     return (
         <div className={styles.profile}>
             <ProfileInfo
-                profile={props.profile}
-                status={props.status}
-                updateStatus={props.updateStatus}
+                profile={profile}
+                status={status}
+                updateStatus={updateStatus}
             />
             <ContentAreaContainer/>
         </div>

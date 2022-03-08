@@ -16,19 +16,23 @@ export type DialogsPropsType = {
 //functional component:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    const state = props.dialogsPage;
+    const {
+        dialogsPage,
+        addMessage,
+        setNewMessageText,
+    } = props;
 
-    let dialogElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
-    let messageElements = state.messages.map(m => <Message key={m.id} message={m.message} id={m.id}/>);
+    let dialogElements = dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+    let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id}/>);
 
     const addMessageHandler = () => {
-        if (state.newMessageText) {
-            props.addMessage(state.newMessageText.trim());
+        if (dialogsPage.newMessageText) {
+            addMessage(dialogsPage.newMessageText.trim());
         }
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget?.value;
-        props.setNewMessageText(newText);
+        setNewMessageText(newText);
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === 'Enter') {
@@ -47,17 +51,19 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
 
             <div className={style.messages}>
+
                 <div className={style.messageElements}>
                     {
                         messageElements
                     }
                 </div>
                 <hr/>
+
                 <div className={style.inputAreaElements}>
                     <AddMessageForm/>
                     <div>
                         <textarea
-                            value={state.newMessageText}
+                            value={dialogsPage.newMessageText}
                             maxLength={500}
                             onChange={onChangeHandler}
                             placeholder={"Write something"}

@@ -6,6 +6,10 @@ type LoginPagePropsType = {}
 
 //functional component:
 const LoginForm: React.FC<LoginFormPropsType> = (props) => {
+
+    const {
+    } = props;
+
     return(
         <form>
             <div>
@@ -21,7 +25,6 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
             <div>
                 <button>Login</button>
             </div>
-
         </form>
     )
 }

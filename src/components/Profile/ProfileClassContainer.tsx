@@ -45,7 +45,7 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
             userId = "8091"; // test value!!!!
         }
 
-        //usersAPI.getProfile() & profileAPI.getUserStatus() requests, ("+" for to string):
+        //usersAPI.getProfile() & profileAPI.getUserStatus() responses, ("+" for to string):
         this.props.getUserProfile(+userId);
         this.props.getUserStatus(+userId);
     }
