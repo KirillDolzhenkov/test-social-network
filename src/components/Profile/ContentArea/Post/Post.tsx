@@ -1,7 +1,7 @@
 import React from "react";
 
 import style from "./Post.module.css"
-import defaultSmallUserPhoto from "../../../../assets/images/defaultSmallUserPhoto.png"
+import defaultSmallUserPhoto from "../../../../assets/images/default_user_photo.png"
 
 //types:
 type PostPropsType = {

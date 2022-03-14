@@ -1,6 +1,6 @@
 import React from "react";
 
-import defaultSmallUserPhoto from "../../../assets/images/defaultSmallUserPhoto.png";
+import defaultSmallUserPhoto from "../../../assets/images/default_user_photo.png";
 import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
 import styles from "./ProfileInfo.module.css";

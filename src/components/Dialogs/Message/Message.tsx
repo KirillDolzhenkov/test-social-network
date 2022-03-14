@@ -2,7 +2,7 @@ import React from "react";
 
 import dialogStyle from "../Dialogs.module.css";
 import messageStyle from "./Message.module.css";
-import defaultAvatar from "../../../assets/images/defaultSmallUserPhoto.png"
+import defaultAvatar from "../../../assets/images/default_user_photo.png"
 
 //types:
 type MessagePropsType = {
