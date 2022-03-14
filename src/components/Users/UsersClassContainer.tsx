@@ -48,7 +48,7 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
     componentDidMount() {
         //usersAPI.getUsers() request:
         this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
-    }
+    };
 
     //onChanged function for pagination:
     onPageChanged = (pageNumber: number) => {
@@ -56,12 +56,13 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
         this.props.setIsFetching(true);
 
         //request for re-render next page of users:
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        usersAPI
+            .getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false);
                 this.props.setUsers(data.items);
             });
-    }
+    };
 
     render() {
         return (
@@ -78,7 +79,7 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
                 }
             </>
         )
-    }
+    };
 }
 
 
@@ -90,8 +91,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
-    }
-}
+    };
+};
 
 
 //HOC:
@@ -111,4 +112,4 @@ const UsersContainer = compose<React.FC>(
 
 export {
     UsersContainer
-}
+};

@@ -13,9 +13,9 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     followingInProgress: any[]
-    setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
+    setUsers: (users: Array<UsersType>) => void //need to delete
+    setCurrentPage: (pageNumber: number) => void //need to delete
+    setTotalUsersCount: (totalCount: number) => void //need to delete
     onPageChanged: (p: number) => void
 
     unFollowThunkCreator: (userId: number) => void //need rename to unFollow
@@ -38,8 +38,6 @@ const Users: React.FC<UsersPropsType> = (props) => {
         unFollowThunkCreator,
         followThunkCreator,
     } = props;
-
-   /* const state = props.usersPage;*/
 
     //pages for pagination:
     const pagesCount = Math.ceil(totalUsersCount / pageSize) //.ceil rounds a number up to the next largest integer
@@ -95,10 +93,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                     </div>
                     <hr/>
                 </div>)
-
             }
             <div>
-
                 {
                     pages.map(p => <span  //pagination
                         className={

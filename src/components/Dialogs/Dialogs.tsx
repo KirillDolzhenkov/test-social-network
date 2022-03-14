@@ -43,7 +43,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     return (
         <div className={style.dialogsPage}>
-
             <div className={style.dialogs}>
                 {
                     dialogElements
@@ -51,7 +50,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
 
             <div className={style.messages}>
-
                 <div className={style.messageElements}>
                     {
                         messageElements

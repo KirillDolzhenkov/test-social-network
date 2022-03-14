@@ -7,13 +7,13 @@ import { AppStateType } from "../redux/redux-store";
 //types:
 type mapStateToPropsType = {
   isAuth: boolean;
-}
+};
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   return {
     isAuth: state.auth.isAuth,
-  }
-}
+  };
+};
 
 
 //container component:
@@ -30,11 +30,11 @@ function WithAuthRedirect<T>(Component: React.ComponentType<T>) { //possible to 
       return <Redirect to={"/Login"}/>
     }
     return <Component {...(restProps as T)} />
-  }
+  };
 
   return connect(mapStateToProps)(RedirectComponent)
 }
 
 export {
   WithAuthRedirect
-}
+};
