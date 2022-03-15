@@ -96,14 +96,16 @@ const Users: React.FC<UsersPropsType> = (props) => {
             }
             <div>
                 {
-                    pages.map(p => <span  //pagination
-                        className={
-                            p === currentPage
-                                ? style.selectedPage
-                                : ''
-                        }
-                        onClick={() => onPageChanged(p)}
-                    >{p}</span>)
+                    pages.map(p =>
+                        <span  //pagination
+                            className={
+                                p === currentPage
+                                    ? style.selectedPage
+                                    : ''
+                            }
+                            onClick={() => onPageChanged(p)}
+                        >{p}</span>
+                    )
                 }
             </div>
         </div>

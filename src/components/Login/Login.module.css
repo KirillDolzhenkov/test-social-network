@@ -1,0 +1,23 @@
+.loginPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.items{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.loginButton{
+    margin-left: 10px;
+}

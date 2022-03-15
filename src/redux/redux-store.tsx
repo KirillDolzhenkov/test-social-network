@@ -1,5 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
+// @ts-ignore
+import {reducer as formReducer, reduxForm} from 'redux-form';
 
 import {DialogsActionType, dialogsReducer} from "./dialogs-reducer";
 import {ProfileActionType, profileReducer} from "./profile-reducer";
@@ -15,7 +17,8 @@ export const rootReducer = combineReducers({
     dialogPage: dialogsReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

@@ -1,8 +1,11 @@
 import React from "react";
+import {Field, reduxForm} from "redux-form";
+
+import styles from "./Login.module.css"
 
 //types:
-type LoginFormPropsType = {}
-type LoginPagePropsType = {}
+type LoginFormPropsType = any;
+type LoginPagePropsType = any;
 
 //functional component:
 const LoginForm: React.FC<LoginFormPropsType> = (props) => {
@@ -11,30 +14,38 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
     } = props;
 
     return(
-        <form>
+        <form onSubmit={props.handleSubmit} className={styles.loginForm}>
             <div>
-                <input placeholder={"Login"}/>
+                <Field placeholder={"Login"} name={"login"} component={"input"}/>
             </div>
             <div>
-                <input placeholder={"Password"}/>
+                <Field placeholder={"Password"} name={"password"} component={"input"}/>
             </div>
-
-            <div>
-                <input type={"checkbox"}/> remember me
-            </div>
-            <div>
-                <button>Login</button>
+            <div className={styles.items}>
+                <div>
+                    <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> remember me
+                </div>
+                <div className={styles.loginButton}>
+                    <button>Login</button>
+                </div>
             </div>
         </form>
     )
 }
 
+
+const LoginReduxForm = reduxForm({form: 'Login'})(LoginForm);
+
 //functional component:
 const LoginPage: React.FC<LoginPagePropsType> = () => {
+    const onSubmit = () => {
+        console.log()
+    }
+
     return (
-        <div>
+        <div className={styles.loginPage}>
             <h1>Login</h1>
-            <LoginForm/>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )
 }
