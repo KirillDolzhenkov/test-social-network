@@ -1,4 +1,6 @@
 import axios from "axios";
+
+import {LoginPropertiesType} from "../redux/auth-reducer";
 import {getUserProfile} from "../redux/profile-reducer";
 
 const instance = axios.create({
@@ -38,7 +40,7 @@ export const profileAPI = {
 		return instance.get(`/profile/status/${userId}`);
 	},
 	updateUserStatus(status: string) {
-		return instance.put(`/profile/status`, {status: status});
+		return instance.put(`/profile/status`, {status});
 	},
 }
 
@@ -46,4 +48,7 @@ export const authAPI = {
 	me() {
 		return instance.get(`auth/me`);
 	},
+	login(properties: LoginPropertiesType) {
+		return instance.post(`/auth/login`, {properties});
+	}
 };
