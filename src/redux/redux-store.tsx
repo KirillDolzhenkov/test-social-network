@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
-// @ts-ignore
-import {reducer as formReducer, reduxForm} from 'redux-form';
+
+import {reducer as formReducer} from 'redux-form';
 
 import {DialogsActionType, dialogsReducer} from "./dialogs-reducer";
 import {ProfileActionType, profileReducer} from "./profile-reducer";
@@ -22,6 +22,15 @@ export const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
+//root AppThunk:
+
+/*export type AppThunk<ReturnType = void> = ThunkAction<
+    ReturnType,
+    RootState,
+    unknown,
+    AnyAction
+    >*/
 
 // @ts-ignore
 window.__store__ = store

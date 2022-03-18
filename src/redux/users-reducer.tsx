@@ -120,18 +120,20 @@ export const setFollowingProgress = (followingInProgress: boolean, id: number) =
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setIsFetching(true));
-
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(setIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        } );
+        usersAPI
+            .getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            });
     }
 }
 export const unFollowThunkCreator =(userId: number)=> {
     return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setFollowingProgress(true, userId));
-        usersAPI.unFollow(userId)
+        usersAPI
+            .unFollow(userId)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(unFollow(userId));
@@ -143,9 +145,10 @@ export const unFollowThunkCreator =(userId: number)=> {
 export const followThunkCreator =(userId: number)=> {
     return (dispatch: Dispatch<AppActionType>) => {
         dispatch(setFollowingProgress(true, userId));
-        usersAPI.follow(userId)
+        usersAPI
+            .follow(userId)
             .then(response => {
-                if (response.data.resultCode === 0){
+                if (response.data.resultCode === 0) {
                     dispatch(follow(userId));
                 }
                 dispatch(setFollowingProgress(false, userId));

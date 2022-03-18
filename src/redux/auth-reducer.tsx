@@ -1,21 +1,17 @@
 import {Dispatch} from "redux";
 
 import {authAPI} from "../api/api";
-import {AppActionType} from "./redux-store";
+import {AppActionType, AppStateType} from "./redux-store";
+import {ThunkAction} from "redux-thunk";
 
 //types:
-export type authReducerAT = ReturnType<typeof setAuthUserData>| ReturnType<typeof loginUser>
+export type authReducerAT = ReturnType<typeof setAuthUserData>
+
 export type AuthInitialStateType = {
-    id: null | number,
-    email: null | string,
-    login: null | string,
+    id: null | number
+    email: null | string
+    login: null | string
     isAuth: boolean
-}
-export type LoginPropertiesType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: boolean
 }
 
 //initialState:
@@ -23,9 +19,8 @@ const initialState: AuthInitialStateType = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
 }
-
 
 //reducer:
 const authReducer = (state: AuthInitialStateType = initialState, action: AppActionType): AuthInitialStateType => {
@@ -33,12 +28,8 @@ const authReducer = (state: AuthInitialStateType = initialState, action: AppActi
         case "SN/AUTH/SET_AUTH_USER_DATA": {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
-        }
-        case "SN/AUTH/LOGIN_USER":{
-            return state; //need to create
         }
         default:
             return state;
@@ -46,12 +37,11 @@ const authReducer = (state: AuthInitialStateType = initialState, action: AppActi
 }
 
 //action creators:
-export const setAuthUserData = (data: AuthInitialStateType) => {
-    return {type: "SN/AUTH/SET_AUTH_USER_DATA", data} as const //data = id, email, login
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
+    return {type: "SN/AUTH/SET_AUTH_USER_DATA", payload: {userId, email, login, isAuth} } as const
 }
-const loginUser = (properties: LoginPropertiesType) => {
-    return {type: "SN/AUTH/LOGIN_USER", properties} as const //properties = email: string, password, rememberMe, captcha
-}
+
+
 
 //thunk creators:
 export const getAuthUserData = () => {
@@ -60,21 +50,32 @@ export const getAuthUserData = () => {
             .me()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let data = response.data.data;
-                    dispatch(setAuthUserData(data));
+                    let {id, email, login} = response.data.data; //payload = id, email, login, isAuth
+                    dispatch(setAuthUserData(id, email, login,  true));
                 }
             });
     }
 }
 
-export const loginUserThunk = (properties: LoginPropertiesType) => {
-    return (dispatch: Dispatch<authReducerAT>) => {
+export const loginUserThunk = (email: string, password: string, rememberMe: boolean) : ThunkAction<void, AppStateType, unknown, authReducerAT> => {
+    return (dispatch) => { // need to create AppThunk in store
         authAPI
-            .login(properties)
+            .login(email, password, rememberMe)
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let properties = response.data.data;
-                    dispatch(loginUser(properties));
+                    dispatch(getAuthUserData());
+                }
+            });
+    }
+}
+
+export const logoutUserThunk = (): ThunkAction<void, AppStateType, unknown, authReducerAT> => {
+    return (dispatch) => { // need to create AppThunk in store
+        authAPI
+            .logout()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false));
                 }
             });
     }

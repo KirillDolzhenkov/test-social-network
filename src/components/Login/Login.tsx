@@ -1,28 +1,50 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
+import {connect} from "react-redux";
 
 import styles from "./Login.module.css"
-import {loginUserThunk} from "../../redux/auth-reducer";
+import {loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
+import {AppStateType} from "../../redux/redux-store";
 
 //types:
-type LoginFormPropsType = any; //need to fix
-type LoginPagePropsType = any; //need to fix
+type LoginFormPropsType = any; //need to any
+type LoginPagePropsType = any; //need to any
+type mapDispatchToPropsType = any //need to any
+
+export type LoginPropertiesType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    /*captcha: boolean*/
+}
 
 //functional component:
 const LoginForm: React.FC<LoginFormPropsType> = (props) => {
-    /*const {} = props;*/
 
-    return(
+    return (
         <form onSubmit={props.handleSubmit} className={styles.loginForm}>
             <div>
-                <Field placeholder={"Login"} name={"login"} component={"input"}/>
+                <Field
+                    placeholder={"email"}
+                    name={"email"}
+                    component={"input"}
+                />
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={"input"}/>
+                <Field
+                    placeholder={"Password"}
+                    name={"password"}
+                    component={"input"}
+                    type={"password"}
+                />
             </div>
             <div className={styles.items}>
                 <div>
-                    <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> remember me
+                    <Field
+                        type={"checkbox"}
+                        name={"rememberMe"}
+                        component={"input"}
+                    /> remember me
                 </div>
                 <div className={styles.loginButton}>
                     <button>Login</button>
@@ -37,20 +59,30 @@ const LoginReduxForm = reduxForm({form: 'Login'})(LoginForm);
 
 //functional component:
 const LoginPage: React.FC<LoginPagePropsType> = (props) => {
-    /*const {} = props;*/
-    const onSubmit = (formData: any) => {
-       /* props.loginUserThunk(formData);*/
-        console.log(formData);
+
+    const onSubmit = (formData: LoginPropertiesType) => {
+        props.loginUserThunk(formData.email, formData.password, formData.rememberMe);
+        /*console.log(formData.email, formData.password, formData.rememberMe);*/
     }
 
     return (
         <div className={styles.loginPage}>
-            <h1>Login Bushido</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <h1>User Login</h1>
+
+            <LoginReduxForm //@ts-ignore //need to fix it !!!
+             onSubmit={onSubmit}/>
         </div>
     )
 }
 
+//HOC:
+const LoginPageContainer = connect<null, mapDispatchToPropsType, {}, AppStateType>(
+    null, {
+        loginUserThunk,
+        logoutUserThunk,
+    })(LoginPage);
+
+
 export {
-    LoginPage
+    LoginPageContainer
 }
