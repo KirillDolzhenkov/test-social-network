@@ -5,10 +5,14 @@ import {connect} from "react-redux";
 import styles from "./Login.module.css"
 import {loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 //types:
 type LoginFormPropsType = any; //need to any
 type LoginPagePropsType = any; //need to any
+type mapStateToPropsType = {
+    isAuth: boolean
+}; //need to any
 type mapDispatchToPropsType = any //need to any
 
 export type LoginPropertiesType = {
@@ -57,6 +61,12 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'Login'})(LoginForm);
 
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth,
+    }
+}
+
 //functional component:
 const LoginPage: React.FC<LoginPagePropsType> = (props) => {
 
@@ -65,10 +75,13 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
         /*console.log(formData.email, formData.password, formData.rememberMe);*/
     }
 
+    if (props.isAuth){
+        return <Redirect to={"/profile"}/>
+    }
+
     return (
         <div className={styles.loginPage}>
             <h1>User Login</h1>
-
             <LoginReduxForm //@ts-ignore //need to fix it !!!
              onSubmit={onSubmit}/>
         </div>
@@ -76,8 +89,8 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
 }
 
 //HOC:
-const LoginPageContainer = connect<null, mapDispatchToPropsType, {}, AppStateType>(
-    null, {
+const LoginPageContainer = connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
+    mapStateToProps, {
         loginUserThunk,
         logoutUserThunk,
     })(LoginPage);
