@@ -11,6 +11,8 @@ import {Profile} from "./Profile";
 type mapStateToPropsType = {
     profile: ProfilePageType | null
     status: string | null
+
+    isAuth: boolean //test redirect
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -31,6 +33,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+
+        isAuth: state.auth.isAuth //test redirect
     }
 }
 

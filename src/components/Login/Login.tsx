@@ -59,7 +59,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 }
 
 
-const LoginReduxForm = reduxForm({form: 'Login'})(LoginForm);
+const LoginReduxForm = reduxForm<{},LoginFormPropsType>({form: 'Login'})(LoginForm); //need to check types!!!
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
@@ -72,7 +72,6 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
 
     const onSubmit = (formData: LoginPropertiesType) => {
         props.loginUserThunk(formData.email, formData.password, formData.rememberMe);
-        /*console.log(formData.email, formData.password, formData.rememberMe);*/
     }
 
     if (props.isAuth){
@@ -82,8 +81,7 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
     return (
         <div className={styles.loginPage}>
             <h1>User Login</h1>
-            <LoginReduxForm //@ts-ignore //need to fix it !!!
-             onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )
 }

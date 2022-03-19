@@ -9,6 +9,7 @@ import logo2 from "../../assets/images/logo_part_2.png";
 type HeaderPropsType = {
     isAuth: boolean
     login: null | string
+	logoutUserThunk: () => void
 }
 
 //functional component:
@@ -17,7 +18,13 @@ const Header: React.FC<HeaderPropsType> = (props) => {
 	const {
 		isAuth,
 		login,
+		logoutUserThunk,
 	} = props;
+
+	//logout request:
+	const logout = () => {
+		logoutUserThunk();
+	}
 
 	return (
 		<div className={style.header}>
@@ -41,7 +48,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
                                 }/>*/}
 							</div>
 							<div>{login} </div>
-							<NavLink to={"/login"}>Logout</NavLink>
+							<NavLink to={"/login"} onClick={logout}>Logout</NavLink>
 						</div>
 						: <div className={style.items}>
 							<NavLink to={"/login"}>Login </NavLink>

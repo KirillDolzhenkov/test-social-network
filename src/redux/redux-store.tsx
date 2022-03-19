@@ -24,8 +24,7 @@ export const rootReducer = combineReducers({
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 //root AppThunk:
-
-/*export type AppThunk<ReturnType = void> = ThunkAction<
+/*export type AppThunk<ReturnType = void> = ThunkAction< //need to create!!!
     ReturnType,
     RootState,
     unknown,

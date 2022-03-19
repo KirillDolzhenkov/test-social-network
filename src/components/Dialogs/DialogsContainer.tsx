@@ -22,9 +22,8 @@ type mapDispatchToPropsType = {
 }
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-//class container component:
+//mapStateToProps & class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-
     return {
         dialogsPage: state.dialogPage,
     }

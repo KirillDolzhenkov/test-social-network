@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {getAuthUserData, setAuthUserData} from "../../redux/auth-reducer";
+import {getAuthUserData, logoutUserThunk, setAuthUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
 
@@ -12,11 +12,13 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    getAuthUserData: () => void;
+    getAuthUserData: () => void
     setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => void //test
+    logoutUserThunk: () => void
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
+//mapStateToProps & class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
@@ -38,12 +40,13 @@ class HeaderClassContainer extends React.Component<HeaderClassContainerPropsType
 	}
 }
 
-
+//HOC:
 const HeaderContainer = connect<mapStateToPropsType,
     mapDispatchToPropsType, {},
     AppStateType>(mapStateToProps, {
         getAuthUserData,
-        setAuthUserData
+        setAuthUserData,
+        logoutUserThunk,
     })(HeaderClassContainer);
 
 export {
