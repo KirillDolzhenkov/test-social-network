@@ -30,10 +30,10 @@ const Header: React.FC<HeaderPropsType> = (props) => {
 		<div className={style.header}>
 			<NavLink to={"/news"} className={style.logoArea}>
 				<div>
-					<img src={logo1} alt="logoName1" />
+					<img src={logo1} alt="logoPart1" />
 				</div>
 				<div>
-					<img src={logo2} alt="logoName2" />
+					<img src={logo2} alt="logoPart2" />
 				</div>
 			</NavLink>
 			<div className={style.loginBlock}>
@@ -57,8 +57,8 @@ const Header: React.FC<HeaderPropsType> = (props) => {
 				}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
 export {
     Header

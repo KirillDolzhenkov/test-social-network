@@ -25,8 +25,12 @@ export type LoginPropertiesType = {
 //functional component:
 const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 
+    const {
+        handleSubmit,
+    } = props;
+
     return (
-        <form onSubmit={props.handleSubmit} className={styles.loginForm}>
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div>
                 <Field
                     placeholder={"email"}
@@ -58,23 +62,30 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
     )
 }
 
-
+//reduxForm HOC:
 const LoginReduxForm = reduxForm<{},LoginFormPropsType>({form: 'Login'})(LoginForm); //need to check types!!!
 
+//mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
     }
 }
 
-//functional component:
 const LoginPage: React.FC<LoginPagePropsType> = (props) => {
 
+    const {
+        loginUserThunk,
+        isAuth,
+    } = props;
+
+    //login onClickHandler:
     const onSubmit = (formData: LoginPropertiesType) => {
-        props.loginUserThunk(formData.email, formData.password, formData.rememberMe);
+        loginUserThunk(formData.email, formData.password, formData.rememberMe);
     }
 
-    if (props.isAuth){
+    //redirect users to profile page after login:
+    if (isAuth){
         return <Redirect to={"/profile"}/>
     }
 
@@ -91,7 +102,8 @@ const LoginPageContainer = connect<mapStateToPropsType, mapDispatchToPropsType, 
     mapStateToProps, {
         loginUserThunk,
         logoutUserThunk,
-    })(LoginPage);
+    }
+)(LoginPage);
 
 
 export {

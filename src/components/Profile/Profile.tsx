@@ -11,8 +11,7 @@ type ProfilePropsType = {
     profile: ProfilePageType | null
     status: string | null
     updateStatus: (status: string) => void
-
-    isAuth: boolean //test redirect
+    isAuth: boolean
 }
 
 //functional component:
@@ -22,10 +21,11 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
         profile,
         status,
         updateStatus,
+        isAuth,
     } = props;
 
-    //test redirect:
-    if (!props.isAuth){
+    //redirect users to loginPage after logout:
+    if (!isAuth){
         return <Redirect to={"/login"}/>
     }
 
