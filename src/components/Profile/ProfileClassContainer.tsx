@@ -11,8 +11,7 @@ import {Profile} from "./Profile";
 type mapStateToPropsType = {
     profile: ProfilePageType | null
     status: string | null
-
-    isAuth: boolean //test redirect
+    isAuth: boolean 
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -20,7 +19,7 @@ type mapDispatchToPropsType = {
     updateUserStatus: (status: string) => void
 }
 type  PathParamsType = {
-    userId: string //number or string (STRING!!!)
+    userId: string //need string
 }
 type ProfileClassContainerPropsType = mapStateToPropsType
     & mapDispatchToPropsType
@@ -33,13 +32,13 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-
-        isAuth: state.auth.isAuth //test redirect
+        isAuth: state.auth.isAuth
     }
 }
 
 //class container component:
 class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
+
 
     componentDidMount() {
 

@@ -8,11 +8,11 @@ import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 
 //types:
-type LoginFormPropsType = any; //need to any
-type LoginPagePropsType = any; //need to any
+type LoginFormPropsType = any; //need fix to any
+type LoginPagePropsType = any; //need fix to any
 type mapStateToPropsType = {
     isAuth: boolean
-}; //need to any
+}
 type mapDispatchToPropsType = any //need to any
 
 export type LoginPropertiesType = {
