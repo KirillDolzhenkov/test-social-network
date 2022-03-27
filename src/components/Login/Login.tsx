@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 
@@ -13,8 +13,8 @@ type LoginPagePropsType = any; //need fix to any
 type mapStateToPropsType = {
     isAuth: boolean
 }
-type mapDispatchToPropsType = any //need to any
-
+type mapDispatchToPropsType = any //need to fix any
+type passType = 'password' | 'text'
 export type LoginPropertiesType = {
     email: string
     password: string
@@ -29,41 +29,57 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
         handleSubmit,
     } = props;
 
+    const visiblePass = 'password';
+    const unVisiblePass = 'text';
+    const [pass, setPass] = useState<passType>(unVisiblePass);
+
+    //change icon view handler function:
+    const changeIconView = () => {
+        if (pass === visiblePass) {
+            setPass(unVisiblePass);
+        } else {
+            setPass(visiblePass);
+        }
+    }
+
     return (
-        <form onSubmit={handleSubmit} className={styles.loginForm}>
-            <div>
-                <Field
-                    placeholder={"email"}
-                    name={"email"}
-                    component={"input"}
-                />
-            </div>
-            <div>
-                <Field
-                    placeholder={"Password"}
-                    name={"password"}
-                    component={"input"}
-                    type={"password"}
-                />
-            </div>
-            <div className={styles.items}>
+        <div className={styles.loginForm}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <Field
-                        type={"checkbox"}
-                        name={"rememberMe"}
+                        placeholder={"email"}
+                        name={"email"}
                         component={"input"}
-                    /> remember me
+                    />
                 </div>
-                <div className={styles.loginButton}>
-                    <button>Login</button>
+                <div className={styles.pass}>
+                    <Field
+                        placeholder={"Password"}
+                        name={"password"}
+                        component={"input"}
+                        type={pass}
+                    />
+                    <span className={styles.iconPass} onClick={changeIconView}>👁</span>
                 </div>
-            </div>
-        </form>
+                <div className={styles.items}>
+                    <div>
+                        <Field
+                            type={"checkbox"}
+                            name={"rememberMe"}
+                            component={"input"}
+                        /> remember me
+                    </div>
+                    <div className={styles.loginButton}>
+                        <button>Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     )
 }
 
 //reduxForm HOC:
-const LoginReduxForm = reduxForm<{},LoginFormPropsType>({form: 'Login'})(LoginForm); //need to check types!!!
+const LoginReduxForm = reduxForm<{}, LoginFormPropsType>({form: 'Login'})(LoginForm); //need to check types!!!
 
 //mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
@@ -85,7 +101,7 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
     }
 
     //redirect users to profile page after login:
-    if (isAuth){
+    if (isAuth) {
         return <Redirect to={"/profile"}/>
     }
 

@@ -12,6 +12,18 @@
     justify-content: space-between;
 }
 
+.pass{
+
+}
+
+.iconPass{
+    position: relative;
+    right: 20px;
+    top: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+}
+
 .items{
     display: flex;
     flex-direction: row;

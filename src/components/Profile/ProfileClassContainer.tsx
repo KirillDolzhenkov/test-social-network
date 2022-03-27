@@ -11,7 +11,7 @@ import {Profile} from "./Profile";
 type mapStateToPropsType = {
     profile: ProfilePageType | null
     status: string | null
-    isAuth: boolean 
+    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void

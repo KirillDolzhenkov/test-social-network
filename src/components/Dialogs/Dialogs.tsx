@@ -7,7 +7,8 @@ import {Message} from "./Message/Message";
 
 
 //types:
-export type DialogsPropsType = {
+type AddMessageFormPropsType = any //need to fix any!!!
+type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
     addMessage: (newMessageText: string) => void
     setNewMessageText: (newText: string) => void
@@ -79,9 +80,14 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 }
 
 //functional component:
-const AddMessageForm: React.FC<{}> = (props) => {
+const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
+
+    const {
+        handleSubmit,
+    } = props;
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             {/*<div>
                         <textarea
                             value={state.newMessageText}
@@ -94,6 +100,7 @@ const AddMessageForm: React.FC<{}> = (props) => {
             <div>
                 <button onClick={addMessageHandler}>Send</button>
             </div>*/}
+
         </form>
     )
 }
