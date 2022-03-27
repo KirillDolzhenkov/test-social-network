@@ -1,24 +1,31 @@
 import React, {useState} from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
-
+import {Redirect} from "react-router-dom";
+import {ThunkAction} from "redux-thunk";
 
 import styles from "./Login.module.css"
-import {loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
+import {authReducerAT, loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
 
 //types:
-type LoginFormPropsType = any //need to fix any
-type IProps = {
+type confProps = {
     form: string;
 }
-type LoginPagePropsType = any; //need fix to any
+type passType = 'password' | 'text'
+type LoginPagePropsType = any //need to fix any
+type LoginFormPropsType = any //need to fix any
 type mapStateToPropsType = {
     isAuth: boolean
 }
-type mapDispatchToPropsType = any //need to fix any
-type passType = 'password' | 'text'
+type mapDispatchToPropsType = {
+    loginUserThunk: (
+        email: string,
+        password: string,
+        rememberMe: boolean
+    ) => ThunkAction<void, AppStateType, unknown, authReducerAT>
+    logoutUserThunk:  () => ThunkAction<void, AppStateType, unknown, authReducerAT>
+}
 export type LoginPropertiesType = {
     email: string
     password: string
@@ -27,24 +34,23 @@ export type LoginPropertiesType = {
 }
 
 //functional component:
-const LoginForm: React.FC<any> = (props) => {
+const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 
     const {
         handleSubmit,
     } = props;
 
     const [passView, setPassView] = useState<boolean>(false);
-    const passInput = passView ?  'text' :  'password';
+    const typePassView: passType = passView ?  'text' :  'password';
 
-    //change icon view handler function:
-    const changePassView = () => {
+    //change password view type handler function:
+    const showPassword = () => {
         if (passView) {
             setPassView(false);
         } else {
             setPassView(true);
         }
     }
-
 
     return (
         <div className={styles.loginForm}>
@@ -56,14 +62,14 @@ const LoginForm: React.FC<any> = (props) => {
                         component={"input"}
                     />
                 </div>
-                <div className={passInput}>
+                <div className={styles.passInput}>
                     <Field
                         placeholder={"Password"}
                         name={"password"}
                         component={"input"}
-                        type={passInput}
+                        type={typePassView}
                     />
-                    <span className={styles.iconPass} onClick={changePassView}>👁</span>
+                    <span className={styles.iconPass} onClick={showPassword}>👁</span>
                 </div>
                 <div className={styles.items}>
                     <div>
@@ -83,7 +89,7 @@ const LoginForm: React.FC<any> = (props) => {
 }
 
 //reduxForm HOC:
-const LoginReduxForm = reduxForm<any>({form: 'Login'})(LoginForm); //need to check types!!!
+const LoginReduxForm = reduxForm<confProps,any>({form: 'Login'})(LoginForm); //need to check types & fix any !!!
 
 //mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
