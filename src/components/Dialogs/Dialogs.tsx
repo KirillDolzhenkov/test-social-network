@@ -86,9 +86,10 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
         handleSubmit,
     } = props;
 
-    return(
-        <form onSubmit={handleSubmit}>
-            {/*<div>
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                {/*<div>
                         <textarea
                             value={state.newMessageText}
                             maxLength={500}
@@ -101,7 +102,8 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
                 <button onClick={addMessageHandler}>Send</button>
             </div>*/}
 
-        </form>
+            </form>
+        </>
     )
 }
 

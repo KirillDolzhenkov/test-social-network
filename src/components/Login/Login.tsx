@@ -2,13 +2,17 @@ import React, {useState} from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 
+
 import styles from "./Login.module.css"
 import {loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 
 //types:
-type LoginFormPropsType = any; //need fix to any
+type LoginFormPropsType = any //need to fix any
+type IProps = {
+    form: string;
+}
 type LoginPagePropsType = any; //need fix to any
 type mapStateToPropsType = {
     isAuth: boolean
@@ -23,24 +27,24 @@ export type LoginPropertiesType = {
 }
 
 //functional component:
-const LoginForm: React.FC<LoginFormPropsType> = (props) => {
+const LoginForm: React.FC<any> = (props) => {
 
     const {
         handleSubmit,
     } = props;
 
-    const visiblePass = 'password';
-    const unVisiblePass = 'text';
-    const [pass, setPass] = useState<passType>(unVisiblePass);
+    const [passView, setPassView] = useState<boolean>(false);
+    const passInput = passView ?  'text' :  'password';
 
     //change icon view handler function:
-    const changeIconView = () => {
-        if (pass === visiblePass) {
-            setPass(unVisiblePass);
+    const changePassView = () => {
+        if (passView) {
+            setPassView(false);
         } else {
-            setPass(visiblePass);
+            setPassView(true);
         }
     }
+
 
     return (
         <div className={styles.loginForm}>
@@ -52,14 +56,14 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                         component={"input"}
                     />
                 </div>
-                <div className={styles.pass}>
+                <div className={passInput}>
                     <Field
                         placeholder={"Password"}
                         name={"password"}
                         component={"input"}
-                        type={pass}
+                        type={passInput}
                     />
-                    <span className={styles.iconPass} onClick={changeIconView}>👁</span>
+                    <span className={styles.iconPass} onClick={changePassView}>👁</span>
                 </div>
                 <div className={styles.items}>
                     <div>
@@ -79,7 +83,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 }
 
 //reduxForm HOC:
-const LoginReduxForm = reduxForm<{}, LoginFormPropsType>({form: 'Login'})(LoginForm); //need to check types!!!
+const LoginReduxForm = reduxForm<any>({form: 'Login'})(LoginForm); //need to check types!!!
 
 //mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
