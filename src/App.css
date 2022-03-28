@@ -2,16 +2,16 @@
     --text-primary: #8c91b6;
     --text-secondary: #dd8620;
     --text-main: #e0e0e0;
-    --bg-primary: #c6c6d2;
+    --bg-primary: #d4d4e1;
     --bg-secondary: #0e0e0e;
-    --bg-main: #1c1c23;
+    --bg-window: #c1cad2;
+    --bg-app: #1c1c23;
     --btn-primary: #c41c3c;
-    --nav: #17171a;;
     --transition-speed: all 0.4s;
 }
 
 .app-main{
-    background: var(--bg-main);
+    background: var(--bg-app);
 }
 
 .app-wrapper {
@@ -29,8 +29,8 @@
 }
 
 .app-wrapper-content {
+    background: var(--bg-primary);
     grid-area: c;
-    background: #c6c6d2;
     opacity: 0.89;
     border-radius: 4px;
     padding: 10px;

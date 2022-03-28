@@ -27,8 +27,8 @@
 .item a:hover {
     text-decoration: none;
     /*filter: grayscale(0%) opacity(1);*/
-    background: var(--nav);
-    color: var(--text-secondary);
+    background: var(--btn-primary);
+    color: var(--text-main);
     border-radius: 4px;
     cursor: pointer;
 }
@@ -38,3 +38,6 @@
     transition: var(--transition-speed);
 }
 
+.item a.active:hover {
+    color: var(--text-main);
+}
