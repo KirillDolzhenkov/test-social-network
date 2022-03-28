@@ -19,17 +19,19 @@ type PropsType = {}
 //functional component:
 const App: React.FC<PropsType> = (props) => {
     return (
-        <div className="app-wrapper">
-            <HeaderContainer/>
-            <Navbar/>
-            <div className={"app-wrapper-content"}>
-                <Route path={"/Profile/:userId?"} render={() => <ProfileContainer />}/>
-                <Route path={"/News"} render={() => <News/>}/>
-                <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
-                <Route path={"/Users"} render={() => <UsersContainer/>}/>
-                <Route path={"/Music"} render={() => <Music/>}/>
-                <Route path={"/Settings"} render={() => <Settings/>}/>
-                <Route path={"/Login"} render={() => <LoginPageContainer/>}/>
+        <div className={"app-main"}>
+            <div className={"app-wrapper"}>
+                <HeaderContainer/>
+                <Navbar/>
+                <div className={"app-wrapper-content"}>
+                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer />}/>
+                    <Route path={"/News"} render={() => <News/>}/>
+                    <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
+                    <Route path={"/Users"} render={() => <UsersContainer/>}/>
+                    <Route path={"/Music"} render={() => <Music/>}/>
+                    <Route path={"/Settings"} render={() => <Settings/>}/>
+                    <Route path={"/Login"} render={() => <LoginPageContainer/>}/>
+                </div>
             </div>
         </div>
     );

@@ -5,7 +5,6 @@
     padding: 0;
     justify-content: normal;
     align-items: flex-start;
-
     text-align: start;
     font-size: 25px;
 }
@@ -22,10 +21,18 @@
     flex-direction: column;
 }
 
+.items .name{
+
+}
+
 .statusStaticMode {
-    color: gray;
+    color: var(--text-primary);
     font-size: 23px;
     cursor: pointer;
+}
+
+.statusStaticMode:hover {
+    color: var(--text-secondary);
 }
 
 .statusEditMode {

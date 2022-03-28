@@ -45,7 +45,9 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 } alt={"smallUserPhoto"}/>
 
                 <div className={styles.items}>
-                    <div><b>{profile.fullName}</b></div>
+                    <div className={styles.name}>
+                        <b>{profile.fullName}</b>
+                    </div>
                     <ProfileStatus
                         updateStatus={updateStatus}
                         status={status}

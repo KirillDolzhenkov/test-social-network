@@ -5,7 +5,11 @@ import {Redirect} from "react-router-dom";
 import {ThunkAction} from "redux-thunk";
 
 import styles from "./Login.module.css"
-import {authReducerAT, loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
+import {
+    authReducerAT,
+    loginUserThunk,
+    logoutUserThunk
+} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 //types:
@@ -41,10 +45,10 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
     } = props;
 
     const [passView, setPassView] = useState<boolean>(false);
-    const typePassView: passType = passView ?  'text' :  'password';
+    const passVariation: passType = passView ?  'text' :  'password';
 
     //change password view type handler function:
-    const showPassword = () => {
+    const showPasswordHandler = () => {
         if (passView) {
             setPassView(false);
         } else {
@@ -67,12 +71,12 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                         placeholder={"Password"}
                         name={"password"}
                         component={"input"}
-                        type={typePassView}
+                        type={passVariation}
                     />
-                    <span className={styles.iconPass} onClick={showPassword}>👁</span>
+                    <span className={styles.iconPass} onClick={showPasswordHandler}>👁</span>
                 </div>
                 <div className={styles.items}>
-                    <div>
+                    <div className={styles.checkBox}>
                         <Field
                             type={"checkbox"}
                             name={"rememberMe"}

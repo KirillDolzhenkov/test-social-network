@@ -31,8 +31,12 @@ const Post: React.FC<PostPropsType> = (props) => {
                     } alt="defaultSmallUserPhoto"/>*/}
                     </div>
                     <div className={style.postMessage}>
-                        <div><b>{"UserName"} </b> {/*<-- props.UserName !!!*/}</div>
-                        <div><div>{props.message}</div></div>
+                        <div className={style.name}>
+                            <b>{"UserName"} </b> {/*<-- props.UserName !!!*/}
+                        </div>
+                        <div className={style.message}>
+                            <div>{props.message}</div>
+                        </div>
                     </div>
                 </div>
                 <div className={style.reactions}>
