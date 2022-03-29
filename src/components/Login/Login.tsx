@@ -61,13 +61,15 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <Field
+                        className={styles.field}
                         placeholder={"email"}
                         name={"email"}
                         component={"input"}
                     />
                 </div>
-                <div className={styles.passInput}>
+                <div>
                     <Field
+                        className={styles.field}
                         placeholder={"Password"}
                         name={"password"}
                         component={"input"}
@@ -78,6 +80,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                 <div className={styles.items}>
                     <div className={styles.checkBox}>
                         <Field
+                            className={"field"}
                             type={"checkbox"}
                             name={"rememberMe"}
                             component={"input"}

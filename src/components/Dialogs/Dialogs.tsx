@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 
-import style from "./Dialogs.module.css"
+import styles from "./Dialogs.module.css"
 import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -43,22 +43,22 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     }
 
     return (
-        <div className={style.dialogsPage}>
-            <div className={style.dialogs}>
+        <div className={styles.dialogsPage}>
+            <div className={styles.dialogs}>
                 {
                     dialogElements
                 }
             </div>
 
-            <div className={style.messages}>
-                <div className={style.messageElements}>
+            <div className={styles.messages}>
+                <div className={styles.messageElements}>
                     {
                         messageElements
                     }
                 </div>
                 <hr/>
 
-                <div className={style.inputAreaElements}>
+                <div className={styles.inputAreaElements}>
                     <AddMessageForm/>
                     <div>
                         <textarea

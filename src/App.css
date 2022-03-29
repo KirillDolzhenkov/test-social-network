@@ -10,14 +10,18 @@
     --transition-speed: all 0.4s;
 }
 
-.app-main{
+.app-main {
     background: var(--bg-app);
+    background-image: url("./assets/images/background_image.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 100vh;
 }
+
 
 .app-wrapper {
     /*color: var(--text-main);*/
     width: 1000px;
-    height: 850px;
     display: grid;
     margin: 0 auto;
     grid-template-areas:
@@ -31,13 +35,7 @@
 .app-wrapper-content {
     background: var(--bg-primary);
     grid-area: c;
-    opacity: 0.89;
+    opacity: 97%;
     border-radius: 4px;
     padding: 10px;
-}
-
-.app-wrapper-content img {
-    width: 1000px;
-    height: 200px;
-    opacity: 2;
 }

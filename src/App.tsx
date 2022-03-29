@@ -24,7 +24,7 @@ const App: React.FC<PropsType> = (props) => {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className={"app-wrapper-content"}>
-                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer />}/>
+                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
                     <Route path={"/News"} render={() => <News/>}/>
                     <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
                     <Route path={"/Users"} render={() => <UsersContainer/>}/>

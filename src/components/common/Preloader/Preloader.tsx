@@ -1,16 +1,18 @@
 import React from "react";
 
-import {ReactComponent as ReactLogo} from "./three-dots.svg";
+import {ReactComponent as PreloaderLogo} from "./three-dots.svg";
+import styles from "./Preloader.module.css";
 
 //types:
 type PreloaderPropsType = {}
 
 //functional component:
 const Preloader: React.FC<PreloaderPropsType> = (props) => {
+
+    //loading:
     return (
-        <div>
-            {/*<h1>loading...</h1>*/}
-            <ReactLogo fill="#2b3f4f" stroke="current"/>
+        <div className={styles.main}>
+            <PreloaderLogo fill="#2b3f4f" stroke="current"/>
         </div>
     )
 }
