@@ -1,8 +1,5 @@
-
-
 .header {
     grid-area: h;
-    /*background-color: #20232a;*/
     background: var(--bg-secondary);
     border-radius: 4px;
     display: flex;
@@ -12,7 +9,6 @@
     top: 0;
     width: 100%;
     z-index: 9;
-    opacity: 0.99;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -40,13 +36,11 @@
 }
 
 .loginBlock a {
-    /*color: gray;*/
     color: var(--text-primary);;
     text-decoration: none;
 }
 
 .loginBlock a:hover {
-    /*color: white;*/
     color: var(--text-secondary)
 }
 

@@ -8,6 +8,7 @@ export type DialogsDataType = {
 export type MessagesDataType = {
     id: number
     message: string
+    time: string
 }
 export type DialogsInitialStateType = {
     dialogs: Array<DialogsDataType>,
@@ -24,8 +25,8 @@ const initialState: DialogsInitialStateType = {
         {id: 2, name: "Sasha"},
     ],
     messages: [
-        {id: 1, message: "hello"},
-        {id: 2, message: "How are you?"},
+        {id: 1, message: "hello", time: "test 4/1/2022, 10:38:18 PM"},
+        {id: 2, message: "How are you?", time: "test 4/1/2022, 10:38:18 PM"},
 
     ],
     newMessageText: ""
@@ -38,6 +39,7 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         const newMessage: MessagesDataType = {
             id: Math.floor(new Date().valueOf() * Math.random()), //Creating a unique number with javascript time method
             message: stateCopy.newMessageText,
+            time: new Date().toLocaleString(), //Get Current Date & Time function
         };
         stateCopy.messages = [...state.messages, newMessage];
         stateCopy.newMessageText = "";

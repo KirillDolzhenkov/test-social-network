@@ -1,29 +1,34 @@
 import React from "react";
 
-import dialogStyle from "../Dialogs.module.css";
-import messageStyle from "./Message.module.css";
+import styles from "./Message.module.css";
 import defaultAvatar from "../../../assets/images/default_user_photo.png"
 
 //types:
 type MessagePropsType = {
-    id: number
+    id: number //?
     message: string
+    time: string
 }
 
 //function component:
 const Message: React.FC<MessagePropsType> = (props) => {
-    return (
 
-    <div className={dialogStyle.text}>
-        <div className={messageStyle.message}>
-            <img className={messageStyle.img} alt="userPhoto" src={defaultAvatar}/>
-            <div className={messageStyle.content}>
-                <div className={messageStyle.name}>userName</div>
-                <div className={messageStyle.text}>{props.message}</div>
-                <div className={messageStyle.time}>time</div>
+    const {
+        id, //?
+        message,
+        time,
+    } = props;
+
+    return (
+        <div className={styles.message}>
+            <img className={styles.img} alt="userPhoto" src={defaultAvatar}/>
+            <div className={styles.content}>
+                <div className={styles.name}>userName</div>
+                <div className={styles.text}>{message}</div>
+                <div className={styles.time}>{time}</div>
             </div>
         </div>
-    </div>
+
     )
 }
 

@@ -18,9 +18,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    line-height: 24px;
     width: 390px;
-
     background-color: #edeef0;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -33,6 +31,7 @@
     position: relative;
     left: -20px;
     top: -28.5px;
+    bottom: -40px;
     border: 10px solid transparent;
     border-bottom: 10px solid #edeef0;
     width: 1px;
@@ -47,6 +46,8 @@
     color: black;
     font-size: 13px;
     word-wrap: break-word;
+    position: relative;
+    top: 7px;
 }
 
 .time {
@@ -55,4 +56,6 @@
     justify-content: right;
     padding-right: 5px;
     font-size: 12px;
+    position: relative;
+    top: 20px;
 }
