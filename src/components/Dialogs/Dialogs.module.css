@@ -16,7 +16,7 @@
 }
 
 .messageElements {
-    background: var(--bg-window);
+    background: var(--bg-window-primary);
     border-radius: 4px;
     padding-bottom: 10px;
     width: 690px;

@@ -124,7 +124,7 @@ const LoginPage: React.FC<LoginPagePropsType> = (props) => {
 
     return (
         <div className={styles.loginPage}>
-            <h1>User Login</h1>
+            <h1>Samurai Login</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )

@@ -2,9 +2,10 @@
     grid-area: n;
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 340px;
-    background: var(--bg-secondary);
+    width: 100%;
+    min-width: 230px; /*need to fix*/
+    height: fit-content;
+    background: var(--bg-main);
     border-radius: 4px;
     grid-row-gap: 10px;
     font-family: Arial, Helvetica, sans-serif;
@@ -27,7 +28,7 @@
 .item a:hover {
     text-decoration: none;
     /*filter: grayscale(0%) opacity(1);*/
-    background: var(--btn-primary);
+    background: var(--bg-btn-secondary);
     color: var(--text-main);
     border-radius: 4px;
     cursor: pointer;
