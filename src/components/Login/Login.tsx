@@ -44,7 +44,9 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
         handleSubmit,
     } = props;
 
+    //local state for password view type:
     const [passView, setPassView] = useState<boolean>(false);
+    //styles for password view:
     const passVariation: passType = passView ?  'text' :  'password';
 
     //change password view type handler function:

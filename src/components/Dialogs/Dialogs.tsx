@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import {Field, reduxForm} from "redux-form";
 
 import styles from "./Dialogs.module.css"
 import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
@@ -7,6 +8,9 @@ import {Message} from "./Message/Message";
 
 
 //types:
+type confProps = {
+    form: string
+}
 type AddMessageFormPropsType = any //need to fix any!!!
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
@@ -26,7 +30,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let dialogElements = dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
     let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id} time={m.time}/>);
 
-    const addMessageHandler = () => {
+    /*const addMessageHandler = () => {
         if (dialogsPage.newMessageText) {
             addMessage(dialogsPage.newMessageText.trim());
         }
@@ -40,6 +44,12 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             e.preventDefault();
             addMessageHandler();
         }
+    }*/
+
+    const addNewMessage = (value: any) => { //need to fix any!!!
+        if(value.newMessageText){
+            addMessage(value.newMessageText);
+        }
     }
 
     return (
@@ -49,7 +59,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     dialogElements
                 }
             </div>
-
             <div className={styles.messages}>
                 <div className={styles.messageElements}>
                     {
@@ -57,9 +66,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     }
                 </div>
                 <hr/>
-
-                <div className={styles.inputAreaElements}>
-                    <AddMessageForm/>
+                {/*<div className={styles.inputAreaElements}>
                     <div>
                         <textarea
                             value={dialogsPage.newMessageText}
@@ -72,12 +79,13 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     <div>
                         <button onClick={addMessageHandler}>Send</button>
                     </div>
-                </div>
+                </div>*/}
+                <AddMessageReduxForm onSubmit={addNewMessage}/>
             </div>
-
         </div>
     )
 }
+
 
 //functional component:
 const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
@@ -87,25 +95,25 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
     } = props;
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                {/*<div>
-                        <textarea
-                            value={state.newMessageText}
-                            maxLength={500}
-                            onChange={onChangeHandler}
-                            placeholder={"Write something"}
-                            onKeyPress={onKeyPressHandler}
-                        />
-            </div>
             <div>
-                <button onClick={addMessageHandler}>Send</button>
-            </div>*/}
-
-            </form>
-        </>
+                <form onSubmit={handleSubmit} className={styles.inputAreaElements}>
+                    <div>
+                        <Field
+                            placeholder={"Write something"}
+                            name={"newMessageText"}
+                            component={"textarea"}
+                        />
+                    </div>
+                    <div>
+                        <button>Send</button>
+                    </div>
+                </form>
+            </div>
     )
 }
+
+//reduxForm HOC:
+const AddMessageReduxForm = reduxForm<confProps,any>({form: 'dialogAddMessageReduxForm'})(AddMessageForm); //need to check types & fix any !!!
 
 export {
     Dialogs

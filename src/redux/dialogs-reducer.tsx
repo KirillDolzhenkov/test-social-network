@@ -38,11 +38,10 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {
             id: Math.floor(new Date().valueOf() * Math.random()), //Creating a unique number with javascript time method
-            message: stateCopy.newMessageText,
+            message: action.newMessage,
             time: new Date().toLocaleString(), //Get Current Date & Time function
         };
         stateCopy.messages = [...state.messages, newMessage];
-        stateCopy.newMessageText = "";
         return stateCopy;
 
     } else if (action.type === "SN/DIALOGS/SET_NEW_MESSAGE_TEXT") {
