@@ -1,6 +1,5 @@
 :root {
     --text-primary: #8c91b6;
-    /*--text-secondary: #dd8620;*/
     --text-secondary: #fc3677;
     --text-main: #e0e0e0;
 
@@ -10,7 +9,7 @@
 
     --bg-window-primary: #c1cad2;
     --bg-btn-primary: #c41c3c;
-    --bg-btn-secondary: linear-gradient(to right, #182636, #c41c3c);
+    --bg-hover-primary: linear-gradient(to right, #182636, rgba(196, 28, 60, 0.58));
 
     --transition-speed: all 0.4s;
 }

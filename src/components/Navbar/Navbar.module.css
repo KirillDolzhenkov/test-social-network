@@ -28,7 +28,7 @@
 .item a:hover {
     text-decoration: none;
     /*filter: grayscale(0%) opacity(1);*/
-    background: var(--bg-btn-secondary);
+    background: var(--bg-hover-primary);
     color: var(--text-main);
     border-radius: 4px;
     cursor: pointer;

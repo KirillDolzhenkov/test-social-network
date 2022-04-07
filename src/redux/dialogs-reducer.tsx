@@ -16,7 +16,6 @@ export type DialogsInitialStateType = {
     newMessageText: string
 }
 export type DialogsActionType = ReturnType<typeof addMessage>
-    | ReturnType<typeof setNewMessageText>
 
 //initialState:
 const initialState: DialogsInitialStateType = {
@@ -43,12 +42,6 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
         };
         stateCopy.messages = [...state.messages, newMessage];
         return stateCopy;
-
-    } else if (action.type === "SN/DIALOGS/SET_NEW_MESSAGE_TEXT") {
-        const stateCopy = {...state};
-        stateCopy.newMessageText = action.newText;
-        return stateCopy;
-
     } else {
         return state;
     }
@@ -58,9 +51,7 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
 export const addMessage = (newMessage: string) => {
     return {type: "SN/DIALOGS/ADD_MESSAGE", newMessage} as const
 }
-export const setNewMessageText = (newText: string) => {
-    return {type: "SN/DIALOGS/SET_NEW_MESSAGE_TEXT", newText} as const
-}
+
 
 export {
     dialogsReducer

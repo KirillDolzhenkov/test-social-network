@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {
     addMessage,
     DialogsInitialStateType,
-    setNewMessageText
 } from "../../redux/dialogs-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
@@ -18,7 +17,6 @@ type mapStateToPropsType = {
 
 type mapDispatchToPropsType = {
     addMessage: (newMessageText: string) => void
-    setNewMessageText: (newText: string) => void
 }
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -41,7 +39,7 @@ class DialogsClassContainer extends React.Component<DialogsClassContainerPropsTy
 //HOC:
 const DialogsContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
-        mapStateToProps, {addMessage, setNewMessageText}),
+        mapStateToProps, {addMessage, }),
     WithAuthRedirect,
 )(DialogsClassContainer);
 

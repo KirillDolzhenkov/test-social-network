@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import {Field, reduxForm} from "redux-form";
 
 import styles from "./Dialogs.module.css"
@@ -15,7 +15,6 @@ type AddMessageFormPropsType = any //need to fix any!!!
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
     addMessage: (newMessageText: string) => void
-    setNewMessageText: (newText: string) => void
 }
 
 //functional component:
@@ -24,27 +23,13 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const {
         dialogsPage,
         addMessage,
-        setNewMessageText,
     } = props;
 
+    //users list:
     let dialogElements = dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
-    let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id} time={m.time}/>);
 
-    /*const addMessageHandler = () => {
-        if (dialogsPage.newMessageText) {
-            addMessage(dialogsPage.newMessageText.trim());
-        }
-    }
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const newText = e.currentTarget?.value;
-        setNewMessageText(newText);
-    }
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            addMessageHandler();
-        }
-    }*/
+    //messages history:
+    let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id} time={m.time}/>);
 
     const addNewMessage = (value: any) => { //need to fix any!!!
         if(value.newMessageText){
@@ -66,20 +51,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                     }
                 </div>
                 <hr/>
-                {/*<div className={styles.inputAreaElements}>
-                    <div>
-                        <textarea
-                            value={dialogsPage.newMessageText}
-                            maxLength={500}
-                            onChange={onChangeHandler}
-                            placeholder={"Write something"}
-                            onKeyPress={onKeyPressHandler}
-                        />
-                    </div>
-                    <div>
-                        <button onClick={addMessageHandler}>Send</button>
-                    </div>
-                </div>*/}
                 <AddMessageReduxForm onSubmit={addNewMessage}/>
             </div>
         </div>
@@ -96,12 +67,13 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
 
     return (
             <div>
-                <form onSubmit={handleSubmit} className={styles.inputAreaElements}>
+                <form onSubmit={handleSubmit} className={styles.inputAreaElements}> {/* <--need to rename class*/}
                     <div>
                         <Field
                             placeholder={"Write something"}
                             name={"newMessageText"}
                             component={"textarea"}
+                            maxLength={300}
                         />
                     </div>
                     <div>
