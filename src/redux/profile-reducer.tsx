@@ -69,12 +69,12 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
             const stateCopy = {...state}
             const newPost: PostType = {
                 id: Math.floor(new Date().valueOf() * Math.random()), //Create a unique number using javaScriptTime
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0,
                 isLiked: false
             };
             stateCopy.posts = [newPost, ...state.posts];
-            stateCopy.newPostText = "";
+
             return stateCopy;
         }
         case"SN/PROFILE/SET_NEW_POST_TEXT": {
@@ -115,8 +115,8 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
 }
 
 //action creators:
-export const addPost = (newPost: string) => {
-    return {type: "SN/PROFILE/ADD_POST", newPost} as const
+export const addPost = (newPostText: string) => {
+    return {type: "SN/PROFILE/ADD_POST", newPostText} as const
 }
 export const setNewPostText = (newText: string) => {
     return {type: "SN/PROFILE/SET_NEW_POST_TEXT", newText} as const

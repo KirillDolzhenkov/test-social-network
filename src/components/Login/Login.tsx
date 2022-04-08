@@ -13,7 +13,7 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 
 //types:
-type confProps = {
+type confPropsType = {
     form: string;
 }
 type passType = 'password' | 'text'
@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 
     //local state for password view type:
     const [passView, setPassView] = useState<boolean>(false);
-    //styles for password view:
+    //style for password view:
     const passVariation: passType = passView ?  'text' :  'password';
 
     //change password view type handler function:
@@ -98,7 +98,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 }
 
 //reduxForm HOC:
-const LoginReduxForm = reduxForm<confProps,any>({form: 'Login'})(LoginForm); //need to check types & fix any !!!
+const LoginReduxForm = reduxForm<confPropsType,any>({form: 'Login'})(LoginForm); //need to check types & fix any !!!
 
 //mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {

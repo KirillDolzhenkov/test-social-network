@@ -3,8 +3,13 @@ import React, {ChangeEvent} from "react";
 import style from "./ContentArea.module.css"
 import {ProfileInitialStateType} from "../../../redux/profile-reducer";
 import {PostContainer} from "./Post/PostContainer";
+import {Field, reduxForm} from "redux-form";
 
 //types:
+type confPropsType = {
+    form: string;
+}
+type PostMessageFormType = any //need to fix any!!!
 type ContentAreaPropsType = {
     profilePage: ProfileInitialStateType
     addPost: (newPostText: string) => void
@@ -14,9 +19,13 @@ type ContentAreaPropsType = {
 //functional component:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
-    const state = props.profilePage; //state!!!
+    const {
+        profilePage,
+        addPost,
+        setNewPostText,
+    } = props;
 
-    let postsElements = state.posts.map(p =>
+    let postsElements = profilePage.posts.map(p =>
         <PostContainer
             key={p.id}
             message={p.message}
@@ -26,36 +35,16 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
         />
     )
 
-    const addPostHandler = () => {
-        if (state.newPostText) {
-            props.addPost(state.newPostText);
-        }
-    }
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const newText = e.currentTarget?.value;
-        props.setNewPostText(newText);
-    }
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            addPostHandler();
+    const addPostHandler = (value: any) => { //need to fix any!!!
+        if (value.newPostText) {
+            addPost(value.newPostText);
+
         }
     }
 
     return (
         <div className={style.postBlock}>
-            <div className={style.inputAreaElements}>
-                <div><textarea
-                    value={state.newPostText}
-                    maxLength={100000}
-                    onChange={onChangeHandler}
-                    placeholder={"What's new?"}
-                    onKeyPress={onKeyPressHandler}
-                /></div>
-                <div>
-                    <button onClick={addPostHandler}>Post</button>
-                </div>
-            </div>
+            <PostMessageReduxForm onSubmit={addPostHandler}/>
             <div className={style.posts}>
                 {
                     postsElements
@@ -64,6 +53,32 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
         </div>
     )
 }
+
+const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
+
+    const {
+        handleSubmit,
+    } = props;
+
+    return(
+        <form onSubmit={handleSubmit} className={style.inputAreaElements}>
+            <div>
+                <Field
+                    placeholder={"What's new?"}
+                    name={"newPostText"}
+                    component={"textarea"}
+                    maxLength={300}
+                />
+            </div>
+            <div>
+                <button>Post</button>
+            </div>
+        </form>
+    )
+}
+
+//reduxForm HOC:
+const PostMessageReduxForm = reduxForm<confPropsType,any>({form: 'postMessageReduxForm'})(PostMessageForm); //need to check types!!!
 
 export {
     ContentArea

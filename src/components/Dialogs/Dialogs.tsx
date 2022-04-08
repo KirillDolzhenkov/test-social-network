@@ -8,9 +8,10 @@ import {Message} from "./Message/Message";
 
 
 //types:
-type confProps = {
+type confPropsType = {
     form: string
 }
+
 type AddMessageFormPropsType = any //need to fix any!!!
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
@@ -32,7 +33,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id} time={m.time}/>);
 
     const addNewMessage = (value: any) => { //need to fix any!!!
-        if(value.newMessageText){
+        if (value.newMessageText) {
             addMessage(value.newMessageText);
         }
     }
@@ -66,26 +67,24 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
     } = props;
 
     return (
+        <form onSubmit={handleSubmit} className={styles.inputAreaElements}> {/* <--need to rename class*/}
             <div>
-                <form onSubmit={handleSubmit} className={styles.inputAreaElements}> {/* <--need to rename class*/}
-                    <div>
-                        <Field
-                            placeholder={"Write something"}
-                            name={"newMessageText"}
-                            component={"textarea"}
-                            maxLength={300}
-                        />
-                    </div>
-                    <div>
-                        <button>Send</button>
-                    </div>
-                </form>
+                <Field
+                    placeholder={"Write something"}
+                    name={"newMessageText"}
+                    component={"textarea"}
+                    maxLength={300}
+                />
             </div>
+            <div>
+                <button>Send</button>
+            </div>
+        </form>
     )
 }
 
 //reduxForm HOC:
-const AddMessageReduxForm = reduxForm<confProps,any>({form: 'dialogAddMessageReduxForm'})(AddMessageForm); //need to check types & fix any !!!
+const AddMessageReduxForm = reduxForm<confPropsType,any>({form: 'profileAddPostReduxForm'})(AddMessageForm); //need to check types & fix any !!!
 
 export {
     Dialogs

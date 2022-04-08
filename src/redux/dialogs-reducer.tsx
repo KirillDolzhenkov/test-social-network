@@ -25,7 +25,7 @@ const initialState: DialogsInitialStateType = {
     ],
     messages: [
         {id: 1, message: "hello", time: "test 4/1/2022, 10:38:18 PM"},
-        {id: 2, message: "How are you?", time: "test 4/1/2022, 10:38:18 PM"},
+        {id: 2, message: "How are you?", time: "test 4/1/2022, 10:39:22 PM"},
 
     ],
     newMessageText: ""
