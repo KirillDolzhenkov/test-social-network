@@ -1,9 +1,10 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
+import {Field, reduxForm} from "redux-form";
 
 import style from "./ContentArea.module.css"
 import {ProfileInitialStateType} from "../../../redux/profile-reducer";
 import {PostContainer} from "./Post/PostContainer";
-import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, requiredField} from "../../../utils/validator";
 
 //types:
 type confPropsType = {
@@ -16,13 +17,15 @@ type ContentAreaPropsType = {
     setNewPostText: (newText: string) => void
 }
 
+const maxLength3 = maxLengthCreator(3);//test value!!!
+
 //functional component:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
 
     const {
         profilePage,
         addPost,
-        setNewPostText,
+        setNewPostText, //need to delete
     } = props;
 
     let postsElements = profilePage.posts.map(p =>
@@ -38,7 +41,6 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     const addPostHandler = (value: any) => { //need to fix any!!!
         if (value.newPostText) {
             addPost(value.newPostText);
-
         }
     }
 
@@ -67,7 +69,7 @@ const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
                     placeholder={"What's new?"}
                     name={"newPostText"}
                     component={"textarea"}
-                    maxLength={300}
+                    validate={[requiredField, maxLength3]}
                 />
             </div>
             <div>
