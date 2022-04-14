@@ -1,11 +1,21 @@
 import React from "react";
 
-type TextAreaFormType = {}
+import styles from "./FormControls.module.css"
 
-export const TextAreaForm: React.FC<TextAreaFormType> = (props) =>{
+//types:
+type FormControlType = { input: any, meta: any, } //need to fix any fnd check types!!! (meta has: touched, error...)
+
+//functional component:
+export const TextAreaForm: React.FC<FormControlType> = ({input, meta, ...props}) => {
+
+    const isError = meta.touched && meta.error;
+
     return (
-        <div>
-            <textarea/>
+        <div className={ isError && `${styles.formControl} ${styles.error}`}>
+            <div>
+                <textarea {...input} {...props}/>
+            </div>
+            {isError && <span>{meta.error}</span>}
         </div>
     )
 }

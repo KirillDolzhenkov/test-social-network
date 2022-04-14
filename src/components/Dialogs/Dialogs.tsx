@@ -5,6 +5,8 @@ import styles from "./Dialogs.module.css"
 import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {TextAreaForm} from "../common/FormControls/FormControls";
+import {maxLengthCreator, requiredField} from "../../utils/validator";
 
 
 //types:
@@ -58,6 +60,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     )
 }
 
+const maxLength3 = maxLengthCreator(3);//test value!!!
 
 //functional component:
 const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
@@ -72,8 +75,8 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
                 <Field
                     placeholder={"Write something"}
                     name={"newMessageText"}
-                    component={"textarea"}
-                    maxLength={300}
+                    component={TextAreaForm}
+                    validate={[requiredField, maxLength3]}
                 />
             </div>
             <div>

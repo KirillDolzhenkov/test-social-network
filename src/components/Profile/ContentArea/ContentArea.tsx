@@ -1,10 +1,11 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 
-import style from "./ContentArea.module.css"
+import styles from "./ContentArea.module.css"
 import {ProfileInitialStateType} from "../../../redux/profile-reducer";
 import {PostContainer} from "./Post/PostContainer";
 import {maxLengthCreator, requiredField} from "../../../utils/validator";
+import {TextAreaForm} from "../../common/FormControls/FormControls";
 
 //types:
 type confPropsType = {
@@ -16,8 +17,6 @@ type ContentAreaPropsType = {
     addPost: (newPostText: string) => void
     setNewPostText: (newText: string) => void
 }
-
-const maxLength3 = maxLengthCreator(3);//test value!!!
 
 //functional component:
 const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
@@ -45,9 +44,9 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     }
 
     return (
-        <div className={style.postBlock}>
+        <div className={styles.postBlock}>
             <PostMessageReduxForm onSubmit={addPostHandler}/>
-            <div className={style.posts}>
+            <div className={styles.posts}>
                 {
                     postsElements
                 }
@@ -56,6 +55,8 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
     )
 }
 
+const maxLength3 = maxLengthCreator(3);//test value!!!
+
 const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
 
     const {
@@ -63,12 +64,12 @@ const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
     } = props;
 
     return(
-        <form onSubmit={handleSubmit} className={style.inputAreaElements}>
+        <form onSubmit={handleSubmit} className={styles.inputAreaElements}>
             <div>
                 <Field
                     placeholder={"What's new?"}
                     name={"newPostText"}
-                    component={"textarea"}
+                    component={TextAreaForm}
                     validate={[requiredField, maxLength3]}
                 />
             </div>
