@@ -19,3 +19,17 @@ export const TextAreaForm: React.FC<FormControlType> = ({input, meta, ...props})
         </div>
     )
 }
+
+export const InputForm: React.FC<FormControlType> = ({input, meta, ...props}) => {
+
+    const isError = meta.touched && meta.error;
+
+    return (
+        <div className={ isError && `${styles.formControl} ${styles.error}`}>
+            <div>
+                <input {...input} {...props}/>
+            </div>
+            {isError && <span>{meta.error}</span>}
+        </div>
+    )
+}

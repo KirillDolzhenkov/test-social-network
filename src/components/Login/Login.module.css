@@ -12,17 +12,17 @@
     justify-content: space-around;
 }
 
-.field {
+.field{
 
 }
-
 .pass {
-
+    display: flex;
+    flex-direction: row;
 }
 
 .iconPass {
     position: relative;
-    right: 20px;
+    right: 10px;
     top: 50%;
     transform: translate(-50%);
     cursor: pointer;

@@ -11,6 +11,8 @@ import {
     logoutUserThunk
 } from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
+import {InputForm} from "../common/FormControls/FormControls";
+import { requiredField } from "../../utils/validator";
 
 //types:
 type confPropsType = {
@@ -66,15 +68,17 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                         className={styles.field}
                         placeholder={"email"}
                         name={"email"}
-                        component={"input"}
+                        component={InputForm}
+                        validate={[requiredField]}
                     />
                 </div>
-                <div>
+                <div className={styles.pass}>
                     <Field
                         className={styles.field}
                         placeholder={"Password"}
                         name={"password"}
-                        component={"input"}
+                        component={InputForm}
+                        validate={[requiredField]}
                         type={passVariation}
                     />
                     <span className={styles.iconPass} onClick={showPasswordHandler}>👁</span>
