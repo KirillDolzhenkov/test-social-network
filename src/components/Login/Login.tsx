@@ -5,14 +5,10 @@ import {Redirect} from "react-router-dom";
 import {ThunkAction} from "redux-thunk";
 
 import styles from "./Login.module.css"
-import {
-    authReducerAT,
-    loginUserThunk,
-    logoutUserThunk
-} from "../../redux/auth-reducer";
+import {authReducerAT, loginUserThunk, logoutUserThunk} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {InputForm} from "../common/FormControls/FormControls";
-import { requiredField } from "../../utils/validator";
+import {FormControl} from "../common/FormControls/FormControls";
+import {requiredField} from "../../utils/validator";
 
 //types:
 type confPropsType = {
@@ -68,16 +64,18 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                         className={styles.field}
                         placeholder={"email"}
                         name={"email"}
-                        component={InputForm}
+                        component={FormControl}
+                        formControlValue={"input"}
                         validate={[requiredField]}
                     />
                 </div>
                 <div className={styles.pass}>
                     <Field
-                        className={styles.field}
+                        cla ssName={styles.field}
                         placeholder={"Password"}
                         name={"password"}
-                        component={InputForm}
+                        component={FormControl}
+                        formControlValue={"input"}
                         validate={[requiredField]}
                         type={passVariation}
                     />

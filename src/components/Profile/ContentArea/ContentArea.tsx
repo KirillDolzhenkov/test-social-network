@@ -5,7 +5,7 @@ import styles from "./ContentArea.module.css"
 import {ProfileInitialStateType} from "../../../redux/profile-reducer";
 import {PostContainer} from "./Post/PostContainer";
 import {maxLengthCreator, requiredField} from "../../../utils/validator";
-import {TextAreaForm} from "../../common/FormControls/FormControls";
+import {FormControl} from "../../common/FormControls/FormControls";
 
 //types:
 type confPropsType = {
@@ -69,7 +69,8 @@ const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
                 <Field
                     placeholder={"What's new?"}
                     name={"newPostText"}
-                    component={TextAreaForm}
+                    component={FormControl}
+                    formControlValue={"textarea"}
                     validate={[requiredField, maxLength3]}
                 />
             </div>

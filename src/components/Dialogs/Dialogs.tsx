@@ -5,7 +5,7 @@ import styles from "./Dialogs.module.css"
 import {DialogsInitialStateType} from "../../redux/dialogs-reducer";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {TextAreaForm} from "../common/FormControls/FormControls";
+import {FormControl} from "../common/FormControls/FormControls";
 import {maxLengthCreator, requiredField} from "../../utils/validator";
 
 
@@ -75,7 +75,8 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
                 <Field
                     placeholder={"Write something"}
                     name={"newMessageText"}
-                    component={TextAreaForm}
+                    component={FormControl}
+                    formControlValue={"textarea"}
                     validate={[requiredField, maxLength3]}
                 />
             </div>
