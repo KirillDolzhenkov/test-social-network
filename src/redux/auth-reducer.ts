@@ -3,6 +3,7 @@ import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppActionType, AppStateType} from "./redux-store";
 import {ThunkAction} from "redux-thunk";
+import {stopSubmit} from "redux-form";
 
 //types:
 export type authReducerAT = ReturnType<typeof setAuthUserData>
@@ -52,6 +53,10 @@ export const getAuthUserData = () => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data; //payload = id, email, login, isAuth
                     dispatch(setAuthUserData(id, email, login,  true));
+                } else {
+                    let action = stopSubmit("login",{email: "Email is wrong!"});
+                    //@ts-ignore
+                    dispatch(action);
                 }
             });
     }

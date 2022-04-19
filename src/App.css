@@ -28,9 +28,9 @@
     margin: 0 auto;
     grid-template-areas:
   'h h h'
-  'n c indent';
+  'n c indent ';
     grid-template-rows: 75px 1fr;
-    grid-template-columns: 2fr 9fr 2fr;
+    grid-template-columns: 3fr 9fr 3fr;
     grid-gap: 10px;
 }
 
