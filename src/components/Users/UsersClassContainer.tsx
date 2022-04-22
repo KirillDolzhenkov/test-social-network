@@ -69,6 +69,7 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
             <>
                 {
                     this.props.isFetching
+                        //user would see preloader while response has not confirmed:
                         ? <div className={preloaderStyle.main}><Preloader/></div>
                         : <div>
                             <Users

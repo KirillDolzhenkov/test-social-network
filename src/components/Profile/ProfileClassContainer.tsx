@@ -6,6 +6,8 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
+import preloaderStyle from "../common/Preloader/Preloader.module.css";
+import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
 type mapStateToPropsType = {
@@ -59,12 +61,17 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
     render() {
         return (
             <>
-                <Profile
-                    {...this.props}
-                    profile={this.props.profile}
-                    status={this.props.status}
-                    updateStatus={this.props.updateUserStatus}
-                />
+                {
+                    this.props.profile
+                        ? <Profile
+                            {...this.props}
+                            profile={this.props.profile}
+                            status={this.props.status}
+                            updateStatus={this.props.updateUserStatus}
+                        />
+                        //user would see preloader while response has not confirmed:
+                        : <div className={preloaderStyle.main}><Preloader/></div> //need to delete this from profileInfo?
+                }
             </>
         )
     }

@@ -23,8 +23,8 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
         updateStatus,
     } = props;
 
-    //user would see preloader while response has not confirmed:
-    if (!profile) {
+    //user would see preloader while response has not confirmed: // added to profileContainer
+    /*if (!profile) {
         return (
             <>
                 <div className={preloaderStyle.main}>
@@ -32,21 +32,21 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 </div>
             </>
         )
-    }
+    }*/
 
     return (
         <div>
             <div className={styles.descriptionBlock}>
 
                 <img src={
-                    profile.photos.large !== null
-                        ? profile.photos.large
+                    profile?.photos.large !== null
+                        ? profile?.photos.large
                         : defaultSmallUserPhoto //defaultAsset
                 } alt={"smallUserPhoto"}/>
 
                 <div className={styles.items}>
                     <div className={styles.name}>
-                        <b>{profile.fullName}</b>
+                        <b>{profile?.fullName}</b>
                     </div>
                     <ProfileStatus
                         updateStatus={updateStatus}
