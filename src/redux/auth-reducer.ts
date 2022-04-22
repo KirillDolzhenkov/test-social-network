@@ -42,8 +42,6 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
     return {type: "SN/AUTH/SET_AUTH_USER_DATA", payload: {userId, email, login, isAuth} } as const
 }
 
-
-
 //thunk creators:
 export const getAuthUserData = () => {
     return (dispatch: Dispatch<authReducerAT>) => {
@@ -53,10 +51,6 @@ export const getAuthUserData = () => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data; //payload = id, email, login, isAuth
                     dispatch(setAuthUserData(id, email, login,  true));
-                } else {
-                    let action = stopSubmit("login",{email: "Email is wrong!"});
-                    //@ts-ignore
-                    dispatch(action);
                 }
             });
     }
@@ -69,6 +63,10 @@ export const loginUserThunk = (email: string, password: string, rememberMe: bool
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(getAuthUserData());
+                } else {
+                    let messages = response.data.messages.length > 0 ? response.data.messages : "Some error"
+                    //@ts-ignore
+                    dispatch(stopSubmit("login",{_error: messages})); //TYPES !!!
                 }
             });
     }

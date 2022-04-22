@@ -12,6 +12,7 @@ type mapStateToPropsType = {
     profile: ProfilePageType | null
     status: string | null
     isAuth: boolean
+    authUserId: number | null // null or string ???
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -32,7 +33,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        authUserId: state.auth.id
     }
 }
 
@@ -45,7 +47,8 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
         //profile userId:
         let userId: string = this.props.match.params.userId;
         if (!userId) {
-            userId = "8091"; // test value!!!!
+            //userId = `${this.props.authUserId}` // is it correct????
+            userId = "8091"; // test value! need to create App initialisation !
         }
 
         //usersAPI.getProfile() & profileAPI.getUserStatus() responses, ("+" for to string):

@@ -21,12 +21,10 @@ type mapDispatchToPropsType = {
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 const createId = () => {
-    const newId = Math.floor(new Date().valueOf() * Math.random()); //Creating a unique number with javascript time method (???)
-    return newId;
+    return Math.floor(new Date().valueOf() * Math.random()); //Creating a unique number with javascript time method (???);
 }
 const createDate = () => {
-    const newDate = new Date().toLocaleString(); //Get Current Date & Time function (???)
-    return newDate;
+    return new Date().toLocaleString(); //Get Current Date & Time function (???)
 }
 
 //mapStateToProps & class container component:

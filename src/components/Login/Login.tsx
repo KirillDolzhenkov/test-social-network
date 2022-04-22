@@ -9,6 +9,7 @@ import {authReducerAT, loginUserThunk, logoutUserThunk} from "../../redux/auth-r
 import {AppStateType} from "../../redux/redux-store";
 import {FormControl} from "../common/FormControls/FormControls";
 import {requiredField} from "../../utils/validator";
+import formStyles from "./../common/FormControls/FormControls.module.css"
 
 //types:
 type confPropsType = {
@@ -40,6 +41,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 
     const {
         handleSubmit,
+        error,
     } = props;
 
     //local state for password view type:
@@ -79,7 +81,12 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                         validate={[requiredField]}
                         type={passVariation}
                     />
-                    <span className={styles.iconPass} onClick={showPasswordHandler}>👁</span>
+                    <div className={styles.iconPass} onClick={showPasswordHandler}>👁</div>
+                </div>
+                <div>
+                    {
+                        error && <div className={formStyles.formSummaryError}>{error}</div> //not working !!!
+                    }
                 </div>
                 <div className={styles.items}>
                     <div className={styles.checkBox}>
@@ -100,7 +107,7 @@ const LoginForm: React.FC<LoginFormPropsType> = (props) => {
 }
 
 //reduxForm HOC:
-const LoginReduxForm = reduxForm<confPropsType,any>({form: 'Login'})(LoginForm); //need to check types & fix any !!!
+const LoginReduxForm = reduxForm<confPropsType,any>({form: "login"})(LoginForm); //need to check types & fix any !!!
 
 //mapStateToProps & functional component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
