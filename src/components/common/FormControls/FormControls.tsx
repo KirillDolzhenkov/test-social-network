@@ -12,6 +12,7 @@ const  FormControl: React.FC<FormControlType> = ({input, meta, ...props}) => {
         formControlValue,
     } = props;
 
+    //if field is touched activate error
     const isError = meta.touched && meta.error;
     const FormElement = formControlValue;
 

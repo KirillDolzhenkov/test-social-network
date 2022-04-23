@@ -95,7 +95,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     };
 };
 
-
 //HOC:
 const UsersContainer = compose<React.FC>(
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
