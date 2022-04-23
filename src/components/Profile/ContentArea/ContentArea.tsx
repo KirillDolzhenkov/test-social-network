@@ -52,7 +52,7 @@ const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
                 }
             </div>
         </div>
-    )
+    );
 }
 
 const maxLength3 = maxLengthCreator(3);//test value!!!
@@ -63,7 +63,7 @@ const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
         handleSubmit,
     } = props;
 
-    return(
+    return (
         <form onSubmit={handleSubmit} className={styles.inputAreaElements}>
             <div>
                 <Field
@@ -78,11 +78,11 @@ const PostMessageForm: React.FC<PostMessageFormType> = (props) => {
                 <button>Post</button>
             </div>
         </form>
-    )
+    );
 }
 
 //reduxForm HOC:
-const PostMessageReduxForm = reduxForm<confPropsType,any>({form: 'postMessageReduxForm'})(PostMessageForm); //need to check types!!!
+const PostMessageReduxForm = reduxForm<confPropsType, any>({form: 'postMessageReduxForm'})(PostMessageForm); //need to check types!!!
 
 export {
     ContentArea

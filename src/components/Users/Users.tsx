@@ -40,8 +40,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
     } = props;
 
     //pages for pagination:
-    const pagesCount = Math.ceil(totalUsersCount / pageSize) //.ceil rounds a number up to the next largest integer
-    const pages = []
+    const pagesCount = Math.ceil(totalUsersCount / pageSize); //.ceil rounds a number up to the next largest integer
+    const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
@@ -109,7 +109,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
                 }
             </div>
         </div>
-    )
+    );
 }
 
 export {

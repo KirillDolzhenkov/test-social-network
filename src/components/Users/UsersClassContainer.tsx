@@ -79,7 +79,7 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
                         </div>
                 }
             </>
-        )
+        );
     };
 }
 
@@ -104,7 +104,7 @@ const UsersContainer = compose<React.FC>(
             setCurrentPage,
             setTotalUsersCount,
             setIsFetching,
-            getUsersThunkCreator, // need rename to getUsers
+            getUsersThunkCreator, //need rename to getUsers
             unFollowThunkCreator, //need rename to unFollow
             followThunkCreator,  //need rename to follow
         }),
