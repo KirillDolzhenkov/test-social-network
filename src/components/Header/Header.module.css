@@ -26,6 +26,7 @@
 }
 
 .loginBlock {
+    border: red solid 2px;
     display: flex;
     align-items: center;
     padding-right: 30px;

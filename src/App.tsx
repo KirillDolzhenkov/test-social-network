@@ -1,5 +1,6 @@
 import React from "react";
 import {Route} from "react-router-dom";
+import {connect} from "react-redux";
 
 import "./App.css";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
@@ -8,27 +9,30 @@ import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {News} from "./components/News/News";
 import {Navbar} from "./components/Navbar/Navbar";
-import { LoginPageContainer} from "./components/Login/Login";
+import {LoginPageContainer} from "./components/Login/Login";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {connect} from "react-redux";
 import {getAuthUserData} from "./redux/auth-reducer";
 import {AppStateType} from "./redux/redux-store";
+import {ProfileInfo} from "./components/Profile/ProfileInfo/ProfileInfo";
 
 
 //types:
-type PropsType = {
-    getAuthUserData: ()=> void
-}
 type mapDispatchToPropsType = {
-    getAuthUserData: ()=> void
+    getAuthUserData: () => void
 }
+type AppPropsType = {} & mapDispatchToPropsType; //need to check types
 
-//functional component:
-class AppClassComponent extends React.Component<PropsType> {
+//class component:
+class AppClassComponent extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        this.props.getAuthUserData();
+        const {
+            getAuthUserData,
+        } = this.props;
+
+        //auth request:
+        getAuthUserData();
     }
 
     render() {
@@ -36,7 +40,7 @@ class AppClassComponent extends React.Component<PropsType> {
             <div className={"app-main"}>
                 <div className={"app-wrapper"}>
                     <HeaderContainer/>
-                    <Navbar/>
+
                     <div className={"app-wrapper-content"}>
                         <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
                         <Route path={"/News"} render={() => <News/>}/>
@@ -52,7 +56,12 @@ class AppClassComponent extends React.Component<PropsType> {
     };
 }
 
-const App = connect(null, {getAuthUserData})(AppClassComponent);
+//HOC:
+const App = connect<{}, mapDispatchToPropsType, {}, AppStateType>(
+        null,
+        {getAuthUserData,}
+)(AppClassComponent);
+
 
 export {
     App

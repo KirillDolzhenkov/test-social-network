@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import styles from "./Header.module.css";
 import logo1 from "../../assets/images/logo_part_1.png";
 import logo2 from "../../assets/images/logo_part_2.png";
+import {Navbar} from "../Navbar/Navbar";
 
 //types:
 type HeaderPropsType = {
@@ -36,6 +37,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
 					<img src={logo2} alt="logoPart2" />
 				</div>
 			</NavLink>
+			<Navbar/>
 			<div className={styles.loginBlock}>
 				{
 					isAuth
