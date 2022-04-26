@@ -1,15 +1,19 @@
 .postBlock {
-    padding: 10px;
-    width: 750px;
+    padding-top: 10px;
 }
 
 .posts {
     margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
+    background: var(--bg-secondary);
 }
 
 .inputAreaElements {
     display: flex;
-    width: 750px;
+    width: 100%;
+    border-radius: 4px;
+    background: var(--bg-secondary);
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

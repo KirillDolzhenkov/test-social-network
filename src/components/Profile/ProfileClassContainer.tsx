@@ -14,7 +14,7 @@ type mapStateToPropsType = {
     profile: ProfilePageType | null
     status: string | null
     isAuth: boolean
-    authUserId: number | null // null or string ???
+    authUserId: number | null  // number or string ???
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -29,7 +29,6 @@ type ProfileClassContainerPropsType = mapStateToPropsType
     & RouteComponentProps<PathParamsType> //.props.match.params FIX
 
 
-
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
     return {
@@ -37,6 +36,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         status: state.profilePage.status,
         isAuth: state.auth.isAuth,
         authUserId: state.auth.id
+
     }
 }
 
@@ -48,32 +48,31 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
         //profile userId:
         let userId: string = this.props.match.params.userId;
-        if (!userId) {
-            //userId = `${this.props.authUserId}` // is it correct????
-            userId = "8091"; // test value! need to create App initialisation !
-        }
 
-        //usersAPI.getProfile() & profileAPI.getUserStatus() responses, ("+" for to string):
-        this.props.getUserProfile(+userId);
-        this.props.getUserStatus(+userId);
+        if (!userId) {
+            userId = `${this.props.authUserId}`
+        }
+        if (userId) {
+            //usersAPI.getProfile() & profileAPI.getUserStatus() responses, ("+" for to string):
+            this.props.getUserProfile(+userId);
+            this.props.getUserStatus(+userId);
+        }
     }
 
     render() {
-        return (
-            <>
-                {
-                    this.props.profile
-                        ? <Profile
-                            {...this.props}
-                            profile={this.props.profile}
-                            status={this.props.status}
-                            updateStatus={this.props.updateUserStatus}
-                        />
-                        //user would see preloader while response has not confirmed:
-                        : <div className={preloaderStyle.main}><Preloader/></div> //need to delete this from profileInfo?
-                }
-            </>
-        )
+        return <>
+            {
+                this.props.profile
+                    ? <Profile
+                        {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateUserStatus}
+                    />
+                    //user would see preloader while response has not confirmed:
+                    : <div className={preloaderStyle.main}><Preloader/></div> //need to delete this from profileInfo?
+            }
+        </>
     }
 }
 

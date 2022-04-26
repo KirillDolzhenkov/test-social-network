@@ -14,8 +14,6 @@ import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {getAuthUserData} from "./redux/auth-reducer";
 import {AppStateType} from "./redux/redux-store";
-import {ProfileInfo} from "./components/Profile/ProfileInfo/ProfileInfo";
-
 
 //types:
 type mapDispatchToPropsType = {
@@ -40,7 +38,7 @@ class AppClassComponent extends React.Component<AppPropsType> {
             <div className={"app-main"}>
                 <div className={"app-wrapper"}>
                     <HeaderContainer/>
-
+                    <Navbar/>
                     <div className={"app-wrapper-content"}>
                         <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
                         <Route path={"/News"} render={() => <News/>}/>

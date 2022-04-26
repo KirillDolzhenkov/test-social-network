@@ -1,6 +1,6 @@
 .header {
     grid-area: h;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border-radius: 4px;
     display: flex;
     flex-direction: row;
@@ -26,7 +26,6 @@
 }
 
 .loginBlock {
-    border: red solid 2px;
     display: flex;
     align-items: center;
     padding-right: 30px;

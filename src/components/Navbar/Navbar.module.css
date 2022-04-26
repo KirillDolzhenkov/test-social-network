@@ -1,19 +1,16 @@
 .navbar {
+    /*border: red solid 1px;*/
     grid-area: n;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: end;
-
-
-    width: 60%;
-   /* min-width: 230px; !*need to fix*!*/
-   /* background: var(--bg-main);*/
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    background: var(--bg-main);
     border-radius: 4px;
     grid-row-gap: 10px;
     font-family: Arial, Helvetica, sans-serif;
     opacity: 0.95;
-    border: solid red 2px;
 }
 
 .item a {
