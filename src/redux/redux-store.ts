@@ -6,6 +6,7 @@ import {DialogsActionType, dialogsReducer} from "./dialogs-reducer";
 import {ProfileActionType, profileReducer} from "./profile-reducer";
 import {UsersActionType, usersReducer} from "./users-reducer";
 import {authReducer, authReducerAT} from "./auth-reducer";
+import {AppReducer} from "./app-reducer";
 
 //types:
 export type AppStateType = ReturnType<typeof rootReducer>;
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
+    app: AppReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

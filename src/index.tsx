@@ -2,8 +2,8 @@ import React from "react";
 import {Provider} from "react-redux";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
 
+import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import {App} from "./App";
 import {AppStateType, store} from "./redux/redux-store";

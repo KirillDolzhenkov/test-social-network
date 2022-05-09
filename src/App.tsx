@@ -12,28 +12,34 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {LoginPageContainer} from "./components/Login/Login";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {getAuthUserData} from "./redux/auth-reducer";
 import {AppStateType} from "./redux/redux-store";
+import {compose} from "redux";
+import {initialiseApp} from "./redux/app-reducer";
+import {Preloader} from "./components/common/Preloader/Preloader";
 
 //types:
-type mapDispatchToPropsType = {
-    getAuthUserData: () => void
+type mapStateToPropsType = {
+    initialised: boolean
 }
-type AppPropsType = {} & mapDispatchToPropsType; //need to check types
+type mapDispatchToPropsType = {
+    initialiseApp: any //need to change any
+}
+type AppComponentPropsType = mapStateToPropsType & mapDispatchToPropsType; //need to check types
 
 //class component:
-class AppClassComponent extends React.Component<AppPropsType> {
+class AppClassComponent extends React.Component<AppComponentPropsType> {
 
     componentDidMount() {
         const {
-            getAuthUserData,
+            initialiseApp,
         } = this.props;
 
-        //auth request:
-        getAuthUserData();
+        //thunk dispatch (auth request):
+        initialiseApp();
     }
 
     render() {
+       /*return <Preloader/>*/
         return (
             <div className={"app-main"}>
                 <div className={"app-wrapper"}>
@@ -51,14 +57,20 @@ class AppClassComponent extends React.Component<AppPropsType> {
                 </div>
             </div>
         );
+
     };
 }
 
+const mapStateToProps = (state: AppStateType) => ({
+    initialized: state.app.initialised
+})
+
 //HOC:
-const App = connect<{}, mapDispatchToPropsType, {}, AppStateType>(
+const App = compose(
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
         null,
-        {getAuthUserData,}
-)(AppClassComponent);
+    {initialiseApp}
+)(AppClassComponent));
 
 
 export {
