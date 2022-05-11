@@ -21,7 +21,7 @@ type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsTyp
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login
+        login: state.auth.login,
     }
 }
 

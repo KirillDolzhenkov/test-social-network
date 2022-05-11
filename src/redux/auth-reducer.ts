@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 
 import {authAPI} from "../api/api";
-import {AppActionType, AppStateType} from "./redux-store";
+import {AppActionType, AppStateType, AppThunk} from "./redux-store";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 
@@ -43,21 +43,23 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 }
 
 //thunk creators:
-export const getAuthUserData = () => {
+export const getAuthUserData = (): AppThunk => {
     return (dispatch: Dispatch<authReducerAT>) => {
-        authAPI
+        return authAPI
             .me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data; //payload = id, email, login, isAuth
+
+                    debugger
                     dispatch(setAuthUserData(id, email, login,  true));
                 }
             });
     }
 }
 
-export const loginUserThunk = (email: string, password: string, rememberMe: boolean) : ThunkAction<void, AppStateType, unknown, authReducerAT> => {
-    return (dispatch) => { // need to create AppThunk in store
+export const loginUserThunk = (email: string, password: string, rememberMe: boolean) : AppThunk => {
+    return (dispatch) => {
         authAPI
             .login(email, password, rememberMe)
             .then(response => {
@@ -72,8 +74,8 @@ export const loginUserThunk = (email: string, password: string, rememberMe: bool
     }
 }
 
-export const logoutUserThunk = (): ThunkAction<void, AppStateType, unknown, authReducerAT> => {
-    return (dispatch) => { // need to create AppThunk in store
+export const logoutUserThunk = (): AppThunk => {
+    return (dispatch) => {
         authAPI
             .logout()
             .then(response => {
