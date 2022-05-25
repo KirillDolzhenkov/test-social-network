@@ -10,9 +10,8 @@ type mapStateToPropsType = {
     isAuth: boolean
     login: null | string
 }
-
 type mapDispatchToPropsType = {
-    setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => void //test
+    setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => void
     logoutUserThunk: () => void
 }
 type HeaderClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;

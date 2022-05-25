@@ -4,7 +4,6 @@ import defaultSmallUserPhoto from "../../../assets/images/default_user_photo.png
 import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
 import styles from "./ProfileInfo.module.css";
-import preloaderStyle from "../../common/Preloader/Preloader.module.css";
 import {ProfileStatus} from "./ProfileStatus";
 
 //types:
@@ -24,15 +23,13 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     } = props;
 
     //user would see preloader while response has not confirmed: // added to profileContainer
-    /*if (!profile) {
+    if (!profile) {
         return (
-            <>
-                <div className={preloaderStyle.main}>
-                    <Preloader/>
-                </div>
-            </>
+            <div>
+                <Preloader/>
+            </div>
         )
-    }*/
+    }
 
     return (
         <div>

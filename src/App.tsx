@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, withRouter} from "react-router-dom";
+import {Redirect, Route, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -36,57 +36,45 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 class App extends React.Component<AppClassComponentPropsType> {
 
     componentDidMount() {
-        //thunk dispatch (auth request):
+        //auth request:
         this.props.initializeApp()
+
+        return <Redirect to={"/Profile"}/>
     }
 
     render() {
-        /* if (!this.props.initialised) {
-             return <Preloader/>
-         }*/
-
         return (
             <>
-                {
-                    this.props.isInitialized
+                {   //users don't see anything before app would be initialized:
+                    !this.props.isInitialized
                         ? <Preloader/>
                         : <div className={"app-main"}>
                             <div className={"app-wrapper"}>
                                 <HeaderContainer/>
                                 <Navbar/>
                                 <div className={"app-wrapper-content"}>
-                                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
-                                    <Route path={"/News"} render={() => <News/>}/>
-                                    <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
-                                    <Route path={"/Users"} render={() => <UsersContainer/>}/>
-                                    <Route path={"/Music"} render={() => <Music/>}/>
-                                    <Route path={"/Settings"} render={() => <Settings/>}/>
-                                    <Route path={"/Login"} render={() => <LoginPageContainer/>}/>
+                                    {/*there are default path when the App start: */}
+                                    <Route exact path='/' render={() => <Redirect to='/profile'/>}/>
+                                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
+                                    <Route path={"/news"} render={() => <News/>}/>
+                                    <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
+                                    <Route path={"/users"} render={() => <UsersContainer/>}/>
+                                    <Route path={"/music"} render={() => <Music/>}/>
+                                    <Route path={"/settings"} render={() => <Settings/>}/>
+                                    <Route path={"/login"} render={() => <LoginPageContainer/>}/>
                                 </div>
                             </div>
                         </div>
                 }
             </>
         );
-
-
     }
 }
 
 //HOC:
-/*const App = compose(
-    connect<mapStateToPropsType,
-        mapDispatchToPropsType, {}, AppStateType>(
-        mapStateToProps,
-        {initialiseApp}
-    )(AppClassComponent));
-
-
-export {
-    App
-}*/
-
 export default compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeApp})
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(
+        mapStateToProps, {initializeApp}
+    )
 )(App);

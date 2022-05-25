@@ -26,24 +26,12 @@
     min-width: 100vh;;
 }
 
-/*.app-wrapper {
-    display: grid;
-    margin: 0 auto;
-    grid-template-areas:
-  'h h h'
-  'indent_1 n indent_2'
-  'indent_3 c indent_4 ';
-    grid-template-rows: 75px 30px 1fr;
-    grid-template-columns: 3fr 9fr 3fr;
-    grid-gap: 10px;
-}*/
-
 .app-wrapper {
     display: grid;
     margin: 0 auto;
     grid-template-areas:
   'h h h'
-  'n c indent_4 ';
+  'n c i ';
     grid-template-rows: 75px 1fr;
     grid-template-columns: 3fr 9fr 3fr;
     grid-gap: 10px;

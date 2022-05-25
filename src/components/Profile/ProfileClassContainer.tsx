@@ -6,7 +6,6 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
-import preloaderStyle from "../common/Preloader/Preloader.module.css";
 import {Preloader} from "../common/Preloader/Preloader";
 
 //types:
@@ -51,6 +50,9 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
         if (!userId) {
             userId = `${this.props.authUserId}`
+            if(!userId){
+                this.props.history.push('/login'); //test method?!
+            }
         }
         if (userId) {
             //usersAPI.getProfile() & profileAPI.getUserStatus() responses, ("+" for to string):
@@ -70,7 +72,7 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
                         updateStatus={this.props.updateUserStatus}
                     />
                     //user would see preloader while response has not confirmed:
-                    : <div className={preloaderStyle.main}><Preloader/></div> //need to delete this from profileInfo?
+                    : <Preloader/> //need to delete this from profileInfo?
             }
         </>
     }

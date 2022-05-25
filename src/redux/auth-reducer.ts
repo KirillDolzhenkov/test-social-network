@@ -1,8 +1,7 @@
 import {Dispatch} from "redux";
 
 import {authAPI} from "../api/api";
-import {AppActionType, AppStateType, AppThunk} from "./redux-store";
-import {ThunkAction} from "redux-thunk";
+import {AppActionType, AppThunk} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
 //types:
@@ -50,8 +49,6 @@ export const getAuthUserData = (): AppThunk => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data; //payload = id, email, login, isAuth
-
-                    debugger
                     dispatch(setAuthUserData(id, email, login,  true));
                 }
             });
