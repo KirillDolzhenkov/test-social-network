@@ -37,12 +37,13 @@ class App extends React.Component<AppClassComponentPropsType> {
 
     componentDidMount() {
         //auth request:
-        this.props.initializeApp()
-
-        return <Redirect to={"/Profile"}/>
+        this.props.initializeApp();
     }
 
     render() {
+        //default path when the App start:
+        const startingPath = '/' || '/way-of-samurai-social-network/';
+
         return (
             <>
                 {   //users don't see anything before app would be initialized:
@@ -53,15 +54,18 @@ class App extends React.Component<AppClassComponentPropsType> {
                                 <HeaderContainer/>
                                 <Navbar/>
                                 <div className={"app-wrapper-content"}>
-                                    {/*there are default path when the App start: */}
-                                    <Route exact path='/' render={() => <Redirect to='/profile'/>}/>
-                                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                                    <Route path={"/news"} render={() => <News/>}/>
-                                    <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-                                    <Route path={"/users"} render={() => <UsersContainer/>}/>
-                                    <Route path={"/music"} render={() => <Music/>}/>
-                                    <Route path={"/settings"} render={() => <Settings/>}/>
-                                    <Route path={"/login"} render={() => <LoginPageContainer/>}/>
+                                    {/*redirect from default startingPath to main page when the app start: */}
+                                    <Route exact path={`${startingPath}`} render={() => <Redirect to='/Profile'/>}/>
+
+                                    {/*redirect user to his own profile page using userId: */}
+                                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
+
+                                    <Route path={"/News"} render={() => <News/>}/>
+                                    <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
+                                    <Route path={"/Users"} render={() => <UsersContainer/>}/>
+                                    <Route path={"/Music"} render={() => <Music/>}/>
+                                    <Route path={"/Settings"} render={() => <Settings/>}/>
+                                    <Route path={"/Login"} render={() => <LoginPageContainer/>}/>
                                 </div>
                             </div>
                         </div>
