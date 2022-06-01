@@ -13,9 +13,9 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     followingInProgress: any[]
-    setUsers: (users: Array<UsersType>) => void //need to delete
-    setCurrentPage: (pageNumber: number) => void //need to delete
-    setTotalUsersCount: (totalCount: number) => void //need to delete
+    setUsers: (users: Array<UsersType>) => void //need to delete and remove from props
+    setCurrentPage: (pageNumber: number) => void //need to delete and remove from props
+    setTotalUsersCount: (totalCount: number) => void //need to delete and remove from props
     onPageChanged: (p: number) => void
 
     unFollowThunkCreator: (userId: number) => void //need rename to unFollow
@@ -86,7 +86,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                             }
                         </div>
                         <div>
-                            <NavLink to={'/dialogs/' + u.id}> {/*<- NavLink!!!!!!*/}
+                            {/*(in progress) NavLink to dialogs with user we clicked: */}
+                            <NavLink to={'/dialogs/' + u.id}>
                                 <button>{"Write message"}</button>
                             </NavLink>
                         </div>
@@ -95,9 +96,8 @@ const Users: React.FC<UsersPropsType> = (props) => {
                 </div>)
             }
             <div>
-                {
-                    pages.map(p =>
-                        <span  //pagination
+                {   /*pagination: */
+                    pages.map(p => <span
                             className={
                                 p === currentPage
                                     ? style.selectedPage

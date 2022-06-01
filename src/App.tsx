@@ -5,17 +5,17 @@ import {compose} from "redux";
 
 import "./App.css";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
-import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {Music} from "./components/Music/Music";
-import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {News} from "./components/News/News";
 import {Navbar} from "./components/Navbar/Navbar";
 import {LoginPageContainer} from "./components/Login/Login";
 import {Settings} from "./components/Settings/Settings";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {AppStateType} from "./redux/redux-store";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
+import {UsersContainer} from "./components/Users/UsersClassContainer";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 //types:
 type mapStateToPropsType = {
@@ -42,7 +42,7 @@ class App extends React.Component<AppClassComponentPropsType> {
 
     render() {
         //default path when the App start:
-        const startingPath = '/' || '/way-of-samurai-social-network/';
+        const startingPath = '/' || '/way-of-samurai-social-network/'; //need to fix. not work with gitHubPages!
 
         return (
             <>
