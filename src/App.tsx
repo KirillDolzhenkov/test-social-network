@@ -41,9 +41,6 @@ class App extends React.Component<AppClassComponentPropsType> {
     }
 
     render() {
-        //default path when the App start:
-        const startingPath = '/' || '/way-of-samurai-social-network/'; //need to fix. not work with gitHubPages!
-
         return (
             <>
                 {   //users don't see anything before app would be initialized:
@@ -54,8 +51,9 @@ class App extends React.Component<AppClassComponentPropsType> {
                                 <HeaderContainer/>
                                 <Navbar/>
                                 <div className={"app-wrapper-content"}>
-                                    {/*redirect from default startingPath to main page when the app start: */}
-                                    <Route exact path={`${startingPath}`} render={() => <Redirect to='/Profile'/>}/>
+                                    {/*redirect from default path to main page when the app start: */}
+                                    <Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to='/Profile'/>}/>
+                                    <Route exact path='/' render={() => <Redirect to='/Profile'/>}/>
 
                                     {/*redirect user to his own profile page using userId: */}
                                     <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>

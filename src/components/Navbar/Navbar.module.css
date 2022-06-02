@@ -7,7 +7,6 @@
     min-width: 300px;
     width: 100%;
     background: var(--bg-main);
-    border-radius: 4px;
     grid-row-gap: 10px;
     font-family: Arial, Helvetica, sans-serif;
     opacity: 0.95;
@@ -15,9 +14,9 @@
 
 .item a {
     display: flex;
+
     color: var(--text-primary);
     padding-top: 1em;
-    align-items: center;
     letter-spacing: 0.2ch;
     text-decoration: none;
     height: 2rem;
