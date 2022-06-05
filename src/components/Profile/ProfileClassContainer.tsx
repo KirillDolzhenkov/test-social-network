@@ -7,6 +7,8 @@ import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {Preloader} from "../common/Preloader/Preloader";
+import {requestAuthUserId, requestIsAuth, requestProfile, requestStatus} from "../../selectors/profile-selectors";
+
 
 //types:
 type mapStateToPropsType = {
@@ -27,15 +29,21 @@ type ProfileClassContainerPropsType = mapStateToPropsType
     & mapDispatchToPropsType
     & RouteComponentProps<PathParamsType> //.props.match.params FIX
 
-
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-
+/*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         isAuth: state.auth.isAuth,
-        authUserId: state.auth.id
+        authUserId: state.usersPage.currentPage,
+    }
+}*/
 
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        profile: requestProfile(state),
+        status: requestStatus(state),
+        isAuth: requestIsAuth(state),
+        authUserId: requestAuthUserId(state),
     }
 }
 
@@ -44,13 +52,12 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
 
     componentDidMount() {
-
         //profile userId:
         let userId: string = this.props.match.params.userId;
 
         if (!userId) {
             userId = `${this.props.authUserId}`
-            if(!userId){
+            if (!userId) {
                 this.props.history.push('/login'); //test method?!
             }
         }

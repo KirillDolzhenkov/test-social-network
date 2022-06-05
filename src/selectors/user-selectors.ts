@@ -3,22 +3,22 @@ import {AppStateType} from "../redux/redux-store";
 export const requestUsers = (state: AppStateType) => {
     return state.usersPage
 }
-export const getPageSize = (state: AppStateType) => {
+export const requestPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize
 }
 
-export const getTotalUsersCount = (state: AppStateType) => {
+export const requestTotalUsersCount = (state: AppStateType) => {
     return state.usersPage.totalUsersCount
 }
 
-export const getCurrentPage = (state: AppStateType) => {
+export const requestCurrentPage = (state: AppStateType) => {
     return state.usersPage.currentPage
 }
 
-export const getIsFetching = (state: AppStateType) => {
+export const requestIsFetching = (state: AppStateType) => {
     return state.usersPage.isFetching
 }
 
-export const getFollowingInProgress = (state: AppStateType) => {
+export const requestFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 }

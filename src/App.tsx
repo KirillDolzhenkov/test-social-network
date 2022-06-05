@@ -16,6 +16,7 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import {requestInitialized} from "./selectors/app-selectors";
 
 //types:
 type mapStateToPropsType = {
@@ -27,9 +28,14 @@ type mapDispatchToPropsType = {
 type AppClassComponentPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //mapStateToProps & class container component:
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+/*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isInitialized: state.app.initialized
+    }
+}*/
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        isInitialized: requestInitialized(state)
     }
 }
 

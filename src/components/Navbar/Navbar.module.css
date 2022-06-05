@@ -14,7 +14,6 @@
 
 .item a {
     display: flex;
-
     color: var(--text-primary);
     padding-top: 1em;
     letter-spacing: 0.2ch;

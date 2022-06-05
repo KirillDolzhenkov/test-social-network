@@ -9,6 +9,7 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {requestDialogs} from "../../selectors/dialogs-selectors";
 
 //types:
 type mapStateToPropsType = {
@@ -28,9 +29,15 @@ const createDate = () => {
 }
 
 //mapStateToProps & class container component:
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+/*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: state.dialogPage,
+    }
+}*/
+
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        dialogsPage: requestDialogs(state),
     }
 }
 
