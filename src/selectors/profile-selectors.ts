@@ -12,5 +12,5 @@ export const requestIsAuth = (state: AppStateType) => {
 }
 
 export const requestAuthUserId = (state: AppStateType) => {
-    return state.usersPage.currentPage
+    return state.auth.id
 }
