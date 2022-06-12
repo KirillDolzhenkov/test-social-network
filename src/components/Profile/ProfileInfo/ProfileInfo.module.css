@@ -35,6 +35,7 @@
 
 .statusStaticMode:hover {
     color: var(--text-secondary);
+    opacity: 1;
 }
 
 .statusEditMode {
@@ -43,3 +44,9 @@
     justify-content: space-between;
     width: 220px;
 }
+
+.statusDefault{
+    opacity: 0.5;
+}
+
+

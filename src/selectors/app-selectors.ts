@@ -1,5 +1,5 @@
 import {AppStateType} from "../redux/redux-store";
 
-export const requestInitialized = (state: AppStateType) => {
+export const getInitializedSL = (state: AppStateType) => {
     return state.app.initialized
 }

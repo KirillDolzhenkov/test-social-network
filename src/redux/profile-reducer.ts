@@ -53,12 +53,12 @@ const initialState: ProfileInitialStateType = {
             id: 21313,
             message: "testPost",
             likesCount: 1,
-            isLiked: false
+            isLiked: false,
         }
     ],
     newPostText: "",
     profile: null,
-    status: null
+    status: "",
 }
 
 //reducer:

@@ -1,16 +1,16 @@
 import {AppStateType} from "../redux/redux-store";
 
-export const requestProfile = (state: AppStateType) => {
+export const getProfileSL = (state: AppStateType) => {
     return state.profilePage.profile
 }
-export const requestStatus = (state: AppStateType) => {
+export const getStatusSL = (state: AppStateType) => {
     return  state.profilePage.status
 }
 
-export const requestIsAuth = (state: AppStateType) => {
+export const getIsAuthSL = (state: AppStateType) => {
     return state.auth.isAuth
 }
 
-export const requestAuthUserId = (state: AppStateType) => {
+export const getAuthUserIdSL = (state: AppStateType) => {
     return state.auth.id
 }

@@ -16,7 +16,7 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {requestInitialized} from "./selectors/app-selectors";
+import {getInitializedSL} from "./selectors/app-selectors";
 
 //types:
 type mapStateToPropsType = {
@@ -35,7 +35,7 @@ type AppClassComponentPropsType = mapStateToPropsType & mapDispatchToPropsType;
 }*/
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        isInitialized: requestInitialized(state)
+        isInitialized: getInitializedSL(state)
     }
 }
 

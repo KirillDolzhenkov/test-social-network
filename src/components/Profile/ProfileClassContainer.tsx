@@ -7,8 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {Preloader} from "../common/Preloader/Preloader";
-import {requestAuthUserId, requestIsAuth, requestProfile, requestStatus} from "../../selectors/profile-selectors";
-import {stat} from "fs";
+import {getAuthUserIdSL, getIsAuthSL, getProfileSL, getStatusSL} from "../../selectors/profile-selectors";
 
 //types:
 type mapStateToPropsType = {
@@ -31,22 +30,20 @@ type ProfileClassContainerPropsType = mapStateToPropsType
 
 
 /*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         isAuth: state.auth.isAuth,
         authUserId: state.auth.id
-
     }
 }*/
+
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        profile: requestProfile(state),
-        status: requestStatus(state),
-        isAuth: requestIsAuth(state),
-        authUserId: requestAuthUserId(state)
-
+        profile: getProfileSL(state),
+        status: getStatusSL(state),
+        isAuth: getIsAuthSL(state),
+        authUserId: getAuthUserIdSL(state),
     }
 }
 
@@ -55,7 +52,6 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
 
     componentDidMount() {
-
         //profile userId:
         let userId: string = this.props.match.params.userId;
 

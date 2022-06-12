@@ -5,6 +5,7 @@ import { Preloader } from "../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../../redux/profile-reducer";
 import styles from "./ProfileInfo.module.css";
 import {ProfileStatus} from "./ProfileStatus";
+import { ProfileStatusWithHooks } from "./ProfileStatusWithHoocks";
 
 //types:
 type  ProfileInfoPropsType = {
@@ -45,7 +46,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                     <div className={styles.name}>
                         <b>{profile?.fullName}</b>
                     </div>
-                    <ProfileStatus
+                    <ProfileStatusWithHooks
                         updateStatus={updateStatus}
                         status={status}
                     />

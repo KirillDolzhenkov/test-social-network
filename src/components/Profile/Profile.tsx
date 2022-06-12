@@ -36,7 +36,6 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
                 status={status}
                 updateStatus={updateStatus}
             />
-
             <ContentAreaContainer/>
         </div>
     )

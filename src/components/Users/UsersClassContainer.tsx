@@ -20,12 +20,12 @@ import preloaderStyle from "../common/Preloader/Preloader.module.css"
 import {Users} from "./Users";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {
-    requestCurrentPage,
-    requestFollowingInProgress,
-    requestIsFetching,
-    requestPageSize,
-    requestTotalUsersCount,
-    requestUsers,
+    getCurrentPageSL,
+    getFollowingInProgressSL,
+    getIsFetchingSL,
+    getPageSizeSL,
+    getTotalUsersCountSL,
+    getUsersSL,
 } from "../../selectors/user-selectors";
 
 //types:
@@ -106,12 +106,12 @@ class UsersClassContainer extends React.Component<UsersClassContainerPropsType> 
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersPage: requestUsers(state),
-        pageSize: requestPageSize(state),
-        totalUsersCount: requestTotalUsersCount(state),
-        currentPage:requestCurrentPage(state),
-        isFetching: requestIsFetching(state),
-        followingInProgress: requestFollowingInProgress(state),
+        usersPage: getUsersSL(state),
+        pageSize: getPageSizeSL(state),
+        totalUsersCount: getTotalUsersCountSL(state),
+        currentPage:getCurrentPageSL(state),
+        isFetching: getIsFetchingSL(state),
+        followingInProgress: getFollowingInProgressSL(state),
     };
 };
 

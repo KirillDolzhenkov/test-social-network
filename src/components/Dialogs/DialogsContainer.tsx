@@ -9,7 +9,7 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
-import {requestDialogs} from "../../selectors/dialogs-selectors";
+import {getDialogsSL} from "../../selectors/dialogs-selectors";
 
 //types:
 type mapStateToPropsType = {
@@ -37,7 +37,7 @@ const createDate = () => {
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        dialogsPage: requestDialogs(state),
+        dialogsPage: getDialogsSL(state),
     }
 }
 
