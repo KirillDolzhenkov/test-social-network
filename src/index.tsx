@@ -8,8 +8,17 @@ import "./index.css";
 import App from "./App";
 import {AppStateType, store} from "./redux/redux-store";
 
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </BrowserRouter>
+    , document.getElementById('root')
+);
 
-const reRenderEntireThree = (state: AppStateType) => {
+//Legacy:
+/*const reRenderEntireThree = (state: AppStateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
@@ -24,7 +33,7 @@ const reRenderEntireThree = (state: AppStateType) => {
 reRenderEntireThree(store.getState());
 store.subscribe(() => {
     reRenderEntireThree(store.getState())
-});
+});*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
