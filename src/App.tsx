@@ -28,11 +28,6 @@ type mapDispatchToPropsType = {
 type AppClassComponentPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 //mapStateToProps & class container component:
-/*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-    return {
-        isInitialized: state.app.initialized
-    }
-}*/
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isInitialized: getInitializedSL(state)
@@ -47,10 +42,14 @@ class App extends React.Component<AppClassComponentPropsType> {
     }
 
     render() {
+        const {
+            isInitialized,
+        } = this.props
+
         return (
             <>
                 {   //users don't see anything before app would be initialized:
-                    !this.props.isInitialized
+                    !isInitialized
                         ? <Preloader/>
                         : <div className={"app-main"}>
                             <div className={"app-wrapper"}>

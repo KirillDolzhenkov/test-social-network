@@ -19,40 +19,43 @@ type ContentAreaPropsType = {
 }
 
 //functional component:
-const ContentArea: React.FC<ContentAreaPropsType> = (props) => {
+class ContentArea extends React.Component<ContentAreaPropsType> {
 
-    const {
-        profilePage,
-        addPost,
-        setNewPostText, //need to delete
-    } = props;
+    render() {
 
-    let postsElements = profilePage.posts.map(p =>
-        <PostContainer
-            key={p.id}
-            message={p.message}
-            id={p.id}
-            likesCount={p.likesCount}
-            isLiked={p.isLiked}
-        />
-    )
+        const {
+            profilePage,
+            addPost,
+            setNewPostText, //need to delete
+        } = this.props;
 
-    const addPostHandler = (value: any) => { //need to fix any!!!
-        if (value.newPostText) {
-            addPost(value.newPostText);
+        let postsElements = profilePage.posts.map(p =>
+            <PostContainer
+                key={p.id}
+                message={p.message}
+                id={p.id}
+                likesCount={p.likesCount}
+                isLiked={p.isLiked}
+            />
+        )
+
+        const addPostHandler = (value: any) => { //need to fix any!!!
+            if (value.newPostText) {
+                addPost(value.newPostText);
+            }
         }
-    }
 
-    return (
-        <div className={styles.postBlock}>
-            <PostMessageReduxForm onSubmit={addPostHandler}/>
-            <div className={styles.posts}>
-                {
-                    postsElements
-                }
+        return (
+            <div className={styles.postBlock}>
+                <PostMessageReduxForm onSubmit={addPostHandler}/>
+                <div className={styles.posts}>
+                    {
+                        postsElements
+                    }
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 const maxLength3 = maxLengthCreator(3);//test value!!!
