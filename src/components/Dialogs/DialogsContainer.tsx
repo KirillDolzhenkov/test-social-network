@@ -17,24 +17,19 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    addMessage: (newId: number, newMessageText: string, newDate: string) => void
+    addMessage: (/*newId: number,*/ newMessageText: string, /*newDate: string*/) => void
 }
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-const createId = () => {
-    return Math.floor(new Date().valueOf() * Math.random()); //Creating a unique number with javascript time method (???);
+//need to fix! (sideEffects):
+/*const createId = () => {
+    return Math.floor(new Date().valueOf() * Math.random()); //Creating a unique number with javascript time method
 }
 const createDate = () => {
-    return new Date().toLocaleString(); //Get Current Date & Time function (???)
-}
-
-//mapStateToProps & class container component:
-/*const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-    return {
-        dialogsPage: state.dialogPage,
-    }
+    return new Date().toLocaleString(); //Get Current Date & Time function
 }*/
 
+//mapStateToProps & class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogsPage: getDialogsSL(state),
@@ -45,7 +40,11 @@ class DialogsClassContainer extends React.Component<DialogsClassContainerPropsTy
 
     render(){
         return(
-            <Dialogs {...this.props} newId={createId()} newDate={createDate()}/>
+            <Dialogs
+                {...this.props}
+                /*newId={createId()}
+                newDate={createDate()}*/
+            />
         )
     }
 }

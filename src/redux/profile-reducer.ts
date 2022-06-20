@@ -44,6 +44,7 @@ export type ProfileActionType = ReturnType<typeof addPost>
     | ReturnType<typeof removeLike>
     | ReturnType<typeof setProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePost>
 
 
 //initialState:
@@ -107,8 +108,16 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
         case "SN/PROFILE/SET_PROFILE": {
             return {...state, profile: action.profile}
         }
-        case "SN/PROFILE/SET_STATUS":
+        case "SN/PROFILE/SET_STATUS": {
             return {...state, status: action.status}
+        }
+        case "SN/PROFILE/DELETE_POST": {
+            const stateCopy = {
+                ...state,
+                posts: state.posts.filter(p=> p.id !== action.id)
+            }
+            return stateCopy;
+              }
         default:
             return state;
     }
@@ -132,6 +141,9 @@ export const setProfile = (profile: ProfilePageType) => {
 }
 export const setStatus = (status: string) => {
     return {type: "SN/PROFILE/SET_STATUS", status} as const
+}
+export const deletePost = (id: number) => {
+    return {type: "SN/PROFILE/DELETE_POST", id} as const
 }
 
 

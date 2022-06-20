@@ -17,9 +17,9 @@ type confPropsType = {
 type AddMessageFormPropsType = any //need to fix any!!!
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
-    addMessage: (newId: number, newMessageText: string, newDate: string) => void
-    newId: number //(?)
-    newDate:string //(?)
+    addMessage: (/*newId: number,*/ newMessageText: string, /*newDate: string*/) => void
+    /*newId: number
+    newDate: string */
 }
 
 //functional component:
@@ -28,8 +28,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const {
         dialogsPage,
         addMessage,
-        newId, //(?)
-        newDate, //(?)
+        /*newId,
+        newDate,*/
     } = props;
 
     //users list:
@@ -40,7 +40,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const addNewMessage = (value: any) => { //need to fix any!!!
         if (value.newMessageText) {
-            addMessage(newId, value.newMessageText, newDate);
+            addMessage(/*newId,*/ value.newMessageText/*, newDate*/);
         }
     }
 

@@ -19,44 +19,45 @@ type ContentAreaPropsType = {
 }
 
 //functional component:
-class ContentArea extends React.Component<ContentAreaPropsType> {
+const ContentArea: React.FC<ContentAreaPropsType> = React.memo((props) => {
 
-    render() {
+    /*shouldComponentUpdate(nextProps: Readonly<ContentAreaPropsType>, nextState: Readonly<{}>): boolean {
+        return nextProps !== this.props || nextState !== this.state
+    }*/
 
-        const {
-            profilePage,
-            addPost,
-            setNewPostText, //need to delete
-        } = this.props;
+    const {
+        profilePage,
+        addPost,
+        setNewPostText, //need to delete
+    } = props;
 
-        let postsElements = profilePage.posts.map(p =>
-            <PostContainer
-                key={p.id}
-                message={p.message}
-                id={p.id}
-                likesCount={p.likesCount}
-                isLiked={p.isLiked}
-            />
-        )
+    let postsElements = profilePage.posts.map(p =>
+        <PostContainer
+            key={p.id}
+            message={p.message}
+            id={p.id}
+            likesCount={p.likesCount}
+            isLiked={p.isLiked}
+        />
+    )
 
-        const addPostHandler = (value: any) => { //need to fix any!!!
-            if (value.newPostText) {
-                addPost(value.newPostText);
-            }
+    const addPostHandler = (value: any) => { //need to fix any!!!
+        if (value.newPostText) {
+            addPost(value.newPostText);
         }
-
-        return (
-            <div className={styles.postBlock}>
-                <PostMessageReduxForm onSubmit={addPostHandler}/>
-                <div className={styles.posts}>
-                    {
-                        postsElements
-                    }
-                </div>
-            </div>
-        );
     }
-}
+
+    return (
+        <div className={styles.postBlock}>
+            <PostMessageReduxForm onSubmit={addPostHandler}/>
+            <div className={styles.posts}>
+                {
+                    postsElements
+                }
+            </div>
+        </div>
+    );
+})
 
 const maxLength3 = maxLengthCreator(3);//test value!!!
 
