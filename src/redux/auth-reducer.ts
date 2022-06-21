@@ -81,7 +81,7 @@ export const getAuthUserData = (): AppThunk => {
 }*/
 export const loginUserThunk = (email: string, password: string, rememberMe: boolean): AppThunk => {
     return async (dispatch) => {
-        const response = await authAPI.login(email, password, rememberMe)
+        let response = await authAPI.login(email, password, rememberMe)
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData());
         } else {
