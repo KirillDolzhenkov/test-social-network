@@ -148,7 +148,7 @@ export const deletePost = (id: number) => {
 
 
 //thunk creators:
-export const getUserProfile = (userId: number) => {
+/*export const getUserProfile = (userId: number) => {
     return (dispatch: Dispatch<AppActionType>) => {
         profileAPI
             .getProfile(userId)
@@ -156,8 +156,15 @@ export const getUserProfile = (userId: number) => {
                 dispatch(setProfile(response.data));
             });
     }
+}*/
+export const getUserProfile = (userId: number) => {
+    return async (dispatch: Dispatch<AppActionType>) => {
+        const response = await profileAPI.getProfile(userId);
+        dispatch(setProfile(response.data));
+    }
 }
-export const getUserStatus = (userId: number) => {
+
+/*export const getUserStatus = (userId: number) => {
     return (dispatch: Dispatch<AppActionType>) => {
         profileAPI
             .getUserStatus(userId) //+userId ??
@@ -165,9 +172,16 @@ export const getUserStatus = (userId: number) => {
                 dispatch(setStatus(response.data));
             });
     }
+}*/
+export const getUserStatus = (userId: number) => {
+    return async (dispatch: Dispatch<AppActionType>) => {
+        const response = await profileAPI.getUserStatus(userId); //+userId ??
+        dispatch(setStatus(response.data));
+    }
 }
-export const updateUserStatus = (status: string) => {
-    return (dispatch: Dispatch<AppActionType>) => {
+
+/*export const updateUserStatus = (status: string) =>  {
+    return (dispatch: Dispatch<AppActionType>) =>  {
         profileAPI
             .updateUserStatus(status)
             .then(response => {
@@ -175,6 +189,14 @@ export const updateUserStatus = (status: string) => {
                     dispatch(setStatus(status));
                 }
             });
+    }
+}*/
+export const updateUserStatus = (status: string) => {
+    return async (dispatch: Dispatch<AppActionType>) => {
+        const response = await profileAPI.updateUserStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
     }
 }
 
