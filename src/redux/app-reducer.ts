@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 
 import {getAuthUserData} from "./auth-reducer";
-import {AppActionType, AppThunk} from "./redux-store";
+import {AppActionType, AppThunkType} from "./redux-store";
 
 //types:
 type initialStateType = {
@@ -35,7 +35,7 @@ export const initializedSuccess = () => {
 }
 
 //thunk creators:
-export const initializeApp = (): AppThunk => {
+export const initializeApp = (): AppThunkType => {
     return (dispatch: Dispatch<AppActionType>) => {
         let promise = dispatch(getAuthUserData());
 

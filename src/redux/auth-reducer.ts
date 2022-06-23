@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 
 import {authAPI} from "../api/api";
-import {AppActionType, AppThunk} from "./redux-store";
+import {AppActionType, AppThunkType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
 //types:
@@ -54,7 +54,7 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
             });
     }
 }*/
-export const getAuthUserData = (): AppThunk => {
+export const getAuthUserData = (): AppThunkType => {
     return async (dispatch: Dispatch<authReducerAT>) => {
         const response = await authAPI.me();
         if (response.data.resultCode === 0) {
@@ -79,7 +79,7 @@ export const getAuthUserData = (): AppThunk => {
             });
     }
 }*/
-export const loginUserThunk = (email: string, password: string, rememberMe: boolean): AppThunk => {
+export const loginUserThunk = (email: string, password: string, rememberMe: boolean): AppThunkType => {
     return async (dispatch) => {
         let response = await authAPI.login(email, password, rememberMe)
         if (response.data.resultCode === 0) {
@@ -103,7 +103,7 @@ export const loginUserThunk = (email: string, password: string, rememberMe: bool
             });
     }
 }*/
-export const logoutUserThunk = (): AppThunk => {
+export const logoutUserThunk = (): AppThunkType => {
     return async (dispatch) => {
         const response = await authAPI.logout();
         if (response.data.resultCode === 0) {

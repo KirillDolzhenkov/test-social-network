@@ -11,6 +11,7 @@ import {appReducer, AppReducerActionType} from "./app-reducer";
 //types:
 export type AppStateType = ReturnType<typeof rootReducer>;
 export type AppActionType = UsersActionType | ProfileActionType | DialogsActionType | authReducerAT | AppReducerActionType
+export type AppThunkType = ThunkAction<void, AppStateType, unknown, authReducerAT>
 
 //rootReducer & store:
 export const rootReducer = combineReducers({
@@ -23,9 +24,6 @@ export const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-
-//root AppThunk:
-export type AppThunk = ThunkAction<void, AppStateType, unknown, authReducerAT>
 
 // @ts-ignore
 window.__store__ = store
