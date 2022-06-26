@@ -17,24 +17,6 @@ ReactDOM.render(
     , document.getElementById('root')
 );
 
-//Legacy:
-/*const reRenderEntireThree = (state: AppStateType) => {
-
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </BrowserRouter>
-        , document.getElementById('root')
-    );
-}
-
-reRenderEntireThree(store.getState());
-store.subscribe(() => {
-    reRenderEntireThree(store.getState())
-});*/
-
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
