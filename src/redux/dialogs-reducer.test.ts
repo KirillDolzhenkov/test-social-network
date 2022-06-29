@@ -1,5 +1,4 @@
 import {addMessage, DialogsInitialStateType, dialogsReducer} from "./dialogs-reducer";
-import {addPost} from "./profile-reducer";
 
 const state: DialogsInitialStateType = {
     dialogs: [
