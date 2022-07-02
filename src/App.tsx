@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect, Route, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -17,6 +17,7 @@ import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
 import {UsersContainer} from "./components/Users/UsersClassContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {getInitializedSL} from "./selectors/app-selectors";
+import { Error404 } from "./components/common/Error404/Error404";
 
 
 //types:
@@ -33,6 +34,16 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isInitialized: getInitializedSL(state)
     }
+}
+
+export const PATH = {
+    PROFILE: "/Profile",
+    NEWS: "/News",
+    DIALOGS: "/Dialogs",
+    USERS: "/Users",
+    MUSIC: "/Music",
+    SETTINGS: "/Settings",
+    LOGIN: "/login",
 }
 
 class App extends React.Component<AppClassComponentPropsType> {
@@ -58,18 +69,21 @@ class App extends React.Component<AppClassComponentPropsType> {
                                 <Navbar/>
                                 <div className={"app-wrapper-content"}>
                                     {/*redirect from default path to main page when the app start: */}
-                                    <Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to='/Profile'/>}/>
-                                    <Route exact path='/' render={() => <Redirect to='/Profile'/>}/>
+                                    <Switch>
+                                        {/*<Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to={PATH.PROFILE} />} />*/}
+                                        <Route exact path='/' render={() => <Redirect to={PATH.PROFILE} />} />
 
-                                    {/*redirect user to his own profile page using userId: */}
-                                    <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
+                                        {/*redirect user to his own profile page using userId: */}
+                                        <Route path={"/Profile/:userId?"} render={() => <ProfileContainer />} />
 
-                                    <Route path={"/News"} render={() => <News/>}/>
-                                    <Route path={"/Dialogs"} render={() => <DialogsContainer/>}/>
-                                    <Route path={"/Users"} render={() => <UsersContainer/>}/>
-                                    <Route path={"/Music"} render={() => <Music/>}/>
-                                    <Route path={"/Settings"} render={() => <Settings/>}/>
-                                    <Route path={"/Login"} render={() => <LoginPageContainer/>}/>
+                                        <Route path={PATH.NEWS} render={() => <News />} />
+                                        <Route path={PATH.DIALOGS} render={() => <DialogsContainer />} />
+                                        <Route path={PATH.USERS} render={() => <UsersContainer />} />
+                                        <Route path={PATH.MUSIC} render={() => <Music />} />
+                                        <Route path={PATH.SETTINGS} render={() => <Settings />} />
+                                        <Route path={PATH.LOGIN} render={() => <LoginPageContainer />} />
+                                        <Route render={() => <Error404/>}/>
+                                    </Switch>
                                 </div>
                             </div>
                         </div>
