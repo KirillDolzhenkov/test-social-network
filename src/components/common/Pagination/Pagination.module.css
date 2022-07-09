@@ -1,3 +1,7 @@
+.main{
+    margin-left: 3px;
+}
+
 .selectedPage{
     font-weight: bold;
 }

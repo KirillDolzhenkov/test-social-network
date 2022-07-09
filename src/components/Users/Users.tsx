@@ -53,7 +53,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
             pageSize={pageSize}
             onPageChanged={onPageChanged}
             totalUsersCount={totalUsersCount}
-            portionSize={6}//testValue
+            portionSize={10}//testValue
         />
     </div>
 }
