@@ -70,7 +70,7 @@ class App extends React.Component<AppClassComponentPropsType> {
                                 <div className={"app-wrapper-content"}>
                                     {/*redirect from default path to main page when the app start: */}
                                     <Switch>
-                                        {/*<Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to={PATH.PROFILE} />} />*/}
+                                        <Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to={PATH.PROFILE} />} />
                                         <Route exact path='/' render={() => <Redirect to={PATH.PROFILE} />} />
 
                                         {/*redirect user to his own profile page using userId: */}
@@ -82,7 +82,7 @@ class App extends React.Component<AppClassComponentPropsType> {
                                         <Route path={PATH.MUSIC} render={() => <Music />} />
                                         <Route path={PATH.SETTINGS} render={() => <Settings />} />
                                         <Route path={PATH.LOGIN} render={() => <LoginPageContainer />} />
-                                        <Route render={() => <Error404/>}/>
+                                        <Route path='*' render={() => <Error404/>}/>
                                     </Switch>
                                 </div>
                             </div>
