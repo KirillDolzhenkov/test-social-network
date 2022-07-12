@@ -68,8 +68,8 @@ class App extends React.Component<AppClassComponentPropsType> {
                                 <HeaderContainer/>
                                 <Navbar/>
                                 <div className={"app-wrapper-content"}>
-                                    {/*redirect from default path to main page when the app start: */}
                                     <Switch>
+                                        {/*redirect from default path to main page when the app start: */}
                                         <Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to={PATH.PROFILE} />} />
                                         <Route exact path='/' render={() => <Redirect to={PATH.PROFILE} />} />
 
@@ -82,6 +82,8 @@ class App extends React.Component<AppClassComponentPropsType> {
                                         <Route path={PATH.MUSIC} render={() => <Music />} />
                                         <Route path={PATH.SETTINGS} render={() => <Settings />} />
                                         <Route path={PATH.LOGIN} render={() => <LoginPageContainer />} />
+
+                                        {/*redirect to page 404 if the path does not exist: */}
                                         <Route path='*' render={() => <Error404/>}/>
                                     </Switch>
                                 </div>
