@@ -1,24 +1,46 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
 import "./App.css";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
-import {Music} from "./components/Music/Music";
-import {News} from "./components/News/News";
 import {Navbar} from "./components/Navbar/Navbar";
-import {LoginPageContainer} from "./components/Login/Login";
-import {Settings} from "./components/Settings/Settings";
 import {AppStateType} from "./redux/redux-store";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
-import {ProfileContainer} from "./components/Profile/ProfileClassContainer";
-import {UsersContainer} from "./components/Users/UsersClassContainer";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {getInitializedSL} from "./selectors/app-selectors";
-import { Error404 } from "./components/common/Error404/Error404";
+import {Error404} from "./components/common/Error404/Error404";
 
+//lazyLoading:
+const ProfileContainer = React.lazy(() =>
+    import("./components/Profile/ProfileClassContainer")
+        .then((module) => ({default: module.ProfileContainer}))
+)
+const DialogsContainer = React.lazy(() =>
+    import("./components/Dialogs/DialogsContainer")
+        .then((module) => ({default: module.DialogsContainer}))
+)
+const UsersContainer = React.lazy(() =>
+    import("./components/Users/UsersClassContainer")
+        .then((module) => ({default: module.UsersContainer}))
+)
+const LoginPageContainer = React.lazy(() =>
+    import("./components/Login/Login")
+        .then((module) => ({default: module.LoginPageContainer}))
+)
+const Music = React.lazy(() =>
+    import("./components/Music/Music")
+        .then((module) => ({default: module.Music}))
+)
+const News = React.lazy(() =>
+    import("./components/News/News")
+        .then((module) => ({default: module.News}))
+)
+const Settings = React.lazy(() =>
+    import("./components/Settings/Settings")
+        .then((module) => ({default: module.Settings}))
+)
 
 //types:
 type mapStateToPropsType = {
@@ -36,6 +58,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
+//PATH for imports:
 export const PATH = {
     PROFILE: "/Profile",
     NEWS: "/News",
@@ -46,8 +69,8 @@ export const PATH = {
     LOGIN: "/login",
 }
 
+//class component:
 class App extends React.Component<AppClassComponentPropsType> {
-
     componentDidMount() {
         //auth request:
         this.props.initializeApp();
@@ -58,40 +81,41 @@ class App extends React.Component<AppClassComponentPropsType> {
             isInitialized,
         } = this.props
 
-        return (
-            <>
-                {   //users don't see anything before app would be initialized:
-                    !isInitialized
-                        ? <Preloader/>
-                        : <div className={"app-main"}>
-                            <div className={"app-wrapper"}>
-                                <HeaderContainer/>
-                                <Navbar/>
-                                <div className={"app-wrapper-content"}>
+        return <>
+            {   //users don't see anything before app would be initialized:
+                !isInitialized
+                    ? <Preloader/>
+                    : <div className={"app-main"}>
+                        <div className={"app-wrapper"}>
+                            <HeaderContainer/>
+                            <Navbar/>
+                            <div className={"app-wrapper-content"}>
+                                <Suspense fallback={<div>test</div>}>
                                     <Switch>
                                         {/*redirect from default path to main page when the app start: */}
-                                        <Route exact path='/way-of-samurai-social-network/' render={() => <Redirect to={PATH.PROFILE} />} />
-                                        <Route exact path='/' render={() => <Redirect to={PATH.PROFILE} />} />
+                                        <Route exact path='/way-of-samurai-social-network/'
+                                               render={() => <Redirect to={PATH.PROFILE}/>}/>
+                                        <Route exact path='/' render={() => <Redirect to={PATH.PROFILE}/>}/>
 
                                         {/*redirect user to his own profile page using userId: */}
-                                        <Route path={"/Profile/:userId?"} render={() => <ProfileContainer />} />
+                                        <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
 
-                                        <Route path={PATH.NEWS} render={() => <News />} />
-                                        <Route path={PATH.DIALOGS} render={() => <DialogsContainer />} />
-                                        <Route path={PATH.USERS} render={() => <UsersContainer />} />
-                                        <Route path={PATH.MUSIC} render={() => <Music />} />
-                                        <Route path={PATH.SETTINGS} render={() => <Settings />} />
-                                        <Route path={PATH.LOGIN} render={() => <LoginPageContainer />} />
+                                        <Route path={PATH.NEWS} render={() => <News/>}/>
+                                        <Route path={PATH.DIALOGS} render={() => <DialogsContainer/>}/>
+                                        <Route path={PATH.USERS} render={() => <UsersContainer/>}/>
+                                        <Route path={PATH.MUSIC} render={() => <Music/>}/>
+                                        <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
+                                        <Route path={PATH.LOGIN} render={() => <LoginPageContainer/>}/>
 
                                         {/*redirect to page 404 if the path does not exist: */}
                                         <Route path='*' render={() => <Error404/>}/>
                                     </Switch>
-                                </div>
+                                </Suspense>
                             </div>
                         </div>
-                }
-            </>
-        );
+                    </div>
+            }
+        </>
     }
 }
 
