@@ -10,7 +10,8 @@ import {AppStateType} from "./redux/redux-store";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {getInitializedSL} from "./selectors/app-selectors";
-import {Error404} from "./components/common/Error404/Error404";
+import {Page404} from "./components/common/Page404/Page404";
+import {ErrorBoundary} from "./components/ErrorBoundary/ErrorBoundary";
 
 //lazyLoading:
 const ProfileContainer = React.lazy(() =>
@@ -51,7 +52,7 @@ type mapDispatchToPropsType = {
 }
 type AppClassComponentPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-//mapStateToProps & class container component:
+//mapStateToProps & class component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         isInitialized: getInitializedSL(state)
@@ -81,41 +82,45 @@ class App extends React.Component<AppClassComponentPropsType> {
             isInitialized,
         } = this.props
 
-        return <>
-            {   //users don't see anything before app would be initialized:
-                !isInitialized
-                    ? <Preloader/>
-                    : <div className={"app-main"}>
-                        <div className={"app-wrapper"}>
-                            <HeaderContainer/>
-                            <Navbar/>
-                            <div className={"app-wrapper-content"}>
-                                <Suspense fallback={<div>test</div>}>
-                                    <Switch>
-                                        {/*redirect from default path to main page when the app start: */}
-                                        <Route exact path='/way-of-samurai-social-network/'
-                                               render={() => <Redirect to={PATH.PROFILE}/>}/>
-                                        <Route exact path='/' render={() => <Redirect to={PATH.PROFILE}/>}/>
+        return (
+            <ErrorBoundary>
+                <div>
+                    {//users don't see anything before app would be initialized:
+                        !isInitialized
+                            ? <Preloader/>
+                            : <div className={"app-main"}>
+                                <div className={"app-wrapper"}>
+                                    <HeaderContainer/>
+                                    <Navbar/>
+                                    <div className={"app-wrapper-content"}>
+                                        <Suspense fallback={<Preloader/>}>
+                                            <Switch>
+                                                {/*redirect from default path to main page when the app start: */}
+                                                <Route exact path={"/"} render={() => <Redirect to={PATH.PROFILE}/>}/>
+                                                <Route exact path={"/way-of-samurai-social-network/"}
+                                                       render={() => <Redirect to={PATH.PROFILE}/>}/>
 
-                                        {/*redirect user to his own profile page using userId: */}
-                                        <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
+                                                {/*redirect user to his own profile page using userId: */}
+                                                <Route path={"/Profile/:userId?"} render={() => <ProfileContainer/>}/>
 
-                                        <Route path={PATH.NEWS} render={() => <News/>}/>
-                                        <Route path={PATH.DIALOGS} render={() => <DialogsContainer/>}/>
-                                        <Route path={PATH.USERS} render={() => <UsersContainer/>}/>
-                                        <Route path={PATH.MUSIC} render={() => <Music/>}/>
-                                        <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
-                                        <Route path={PATH.LOGIN} render={() => <LoginPageContainer/>}/>
+                                                <Route path={PATH.NEWS} render={() => <News/>}/>
+                                                <Route path={PATH.DIALOGS} render={() => <DialogsContainer/>}/>
+                                                <Route path={PATH.USERS} render={() => <UsersContainer/>}/>
+                                                <Route path={PATH.MUSIC} render={() => <Music/>}/>
+                                                <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
+                                                <Route path={PATH.LOGIN} render={() => <LoginPageContainer/>}/>
 
-                                        {/*redirect to page 404 if the path does not exist: */}
-                                        <Route path='*' render={() => <Error404/>}/>
-                                    </Switch>
-                                </Suspense>
+                                                {/*redirect to page 404 if the path does not exist: */}
+                                                <Route path={"*"} render={() => <Page404/>}/>
+                                            </Switch>
+                                        </Suspense>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-            }
-        </>
+                    }
+                </div>
+            </ErrorBoundary>
+        );
     }
 }
 

@@ -5,6 +5,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ContentAreaContainer} from "./ContentArea/ContentAreaContainer";
 import {ProfilePageType} from "../../redux/profile-reducer";
 import {Redirect} from "react-router-dom";
+import {PATH} from "../../App";
 
 //types:
 type ProfilePropsType = {
@@ -26,7 +27,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
 
     //redirect users to loginPage after logout:
     if (!isAuth){
-        return <Redirect to={"/login"}/>
+        return <Redirect to={PATH.LOGIN}/>
     }
 
     return (

@@ -15,19 +15,10 @@ import {getDialogsSL} from "../../selectors/dialogs-selectors";
 type mapStateToPropsType = {
     dialogsPage: DialogsInitialStateType
 }
-
 type mapDispatchToPropsType = {
-    addMessage: (/*newId: number,*/ newMessageText: string, /*newDate: string*/) => void
+    addMessage: (newMessageText: string) => void
 }
 type DialogsClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType;
-
-//need to fix! (sideEffects):
-/*const createId = () => {
-    return Math.floor(new Date().valueOf() * Math.random()); //Creating a unique number with javascript time method
-}
-const createDate = () => {
-    return new Date().toLocaleString(); //Get Current Date & Time function
-}*/
 
 //mapStateToProps & class container component:
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
@@ -42,8 +33,6 @@ class DialogsClassContainer extends React.Component<DialogsClassContainerPropsTy
         return(
             <Dialogs
                 {...this.props}
-                /*newId={createId()}
-                newDate={createDate()}*/
             />
         )
     }

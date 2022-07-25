@@ -36,9 +36,9 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
     if (action.type === "SN/DIALOGS/ADD_MESSAGE") {
         const stateCopy = {...state}
         const newMessage: MessagesDataType = {
-            id: /*action.newId,*/ Math.floor(new Date().valueOf() * Math.random()), //Creating a unique number with javascript time method
+            id: Math.floor(new Date().valueOf() * Math.random()), //Creating a unique number with javascript time method (sideEffect!)
             message: action.newMessage,
-            time: /*action.newDate*/new Date().toLocaleString(), //Get Current Date & Time function
+            time: new Date().toLocaleString(), //Get Current Date & Time function (sideEffect!)
         };
         stateCopy.messages = [...state.messages, newMessage];
         return stateCopy;
@@ -48,8 +48,8 @@ const dialogsReducer = (state: DialogsInitialStateType = initialState, action: A
 }
 
 //action creators:
-export const addMessage = (/*newId: number,*/ newMessage: string, /*newDate: string*/) => {
-    return {type: "SN/DIALOGS/ADD_MESSAGE", /*newId,*/ newMessage, /*newDate*/} as const
+export const addMessage = (newMessage: string) => {
+    return {type: "SN/DIALOGS/ADD_MESSAGE", newMessage} as const
 }
 
 export {

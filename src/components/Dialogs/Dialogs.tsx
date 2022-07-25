@@ -13,34 +13,27 @@ import {maxLengthCreator, requiredField} from "../../utils/validator";
 type confPropsType = {
     form: string
 }
-
 type AddMessageFormPropsType = any //need to fix any!!!
 type DialogsPropsType = {
     dialogsPage: DialogsInitialStateType
-    addMessage: (/*newId: number,*/ newMessageText: string, /*newDate: string*/) => void
-    /*newId: number
-    newDate: string */
+    addMessage: (newMessageText: string) => void
 }
 
 //functional component:
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
-
     const {
         dialogsPage,
         addMessage,
-        /*newId,
-        newDate,*/
     } = props;
 
     //users list:
     let dialogElements = dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
-
     //messages history:
     let messageElements = dialogsPage.messages.map(m => <Message key={m.id} message={m.message} id={m.id} time={m.time}/>);
-
+    //add message for handle submit:
     const addNewMessage = (value: any) => { //need to fix any!!!
         if (value.newMessageText) {
-            addMessage(/*newId,*/ value.newMessageText/*, newDate*/);
+            addMessage(value.newMessageText);
         }
     }
 
@@ -64,11 +57,11 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     )
 }
 
+//constant value for validation:
 const maxLength3 = maxLengthCreator(3);//test value!!!
 
 //functional component:
 const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
-
     const {
         handleSubmit,
     } = props;
@@ -76,12 +69,11 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = (props) => {
     return (
         <form onSubmit={handleSubmit} className={styles.inputAreaElements}> {/* <--need to rename class*/}
             <div>
-                <Field
-                    placeholder={"Write something"}
-                    name={"newMessageText"}
-                    component={FormControl}
-                    formControlValue={"textarea"}
-                    validate={[requiredField, maxLength3]}
+                <Field placeholder={"Write something"}
+                       name={"newMessageText"}
+                       component={FormControl}
+                       formControlValue={"textarea"}
+                       validate={[requiredField, maxLength3]}
                 />
             </div>
             <div>
