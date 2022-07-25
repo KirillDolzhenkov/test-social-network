@@ -59,7 +59,7 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
     render() {
         return <>
-            {
+            {/*{
                 this.props.profile
                     ? <Profile
                         {...this.props}
@@ -69,7 +69,13 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
                     />
                     //user would see preloader while response has not confirmed:
                     : <Preloader/> //need to delete this from profileInfo?
-            }
+            }*/}
+            <Profile
+                {...this.props}
+                profile={this.props.profile}
+                status={this.props.status}
+                updateStatus={this.props.updateUserStatus}
+            />
         </>
     }
 }
