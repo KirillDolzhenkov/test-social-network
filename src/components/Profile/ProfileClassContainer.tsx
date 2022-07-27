@@ -1,13 +1,13 @@
 import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile, getUserStatus, ProfilePageType, updateUserStatus} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
-import {Preloader} from "../common/Preloader/Preloader";
 import {getAuthUserIdSL, getIsAuthSL, getProfileSL, getStatusSL} from "../../selectors/profile-selectors";
+import {PATH} from "../../App";
 
 //types:
 type mapStateToPropsType = {
@@ -46,8 +46,9 @@ class ProfileClassContainer extends React.Component<ProfileClassContainerPropsTy
 
         if (!userId) {
             userId = `${this.props.authUserId}`
-            if(!userId){
-                this.props.history.push('/login'); //test method?!
+            if (!userId) {
+                //this.props.history.push('/login'); //test method?!
+                return <Redirect to={PATH.LOGIN}/>
             }
         }
         if (userId) {
