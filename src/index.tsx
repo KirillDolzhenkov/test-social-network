@@ -7,13 +7,17 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import App from "./App";
 import {store} from "./redux/redux-store";
+import {ErrorBoundary} from "./components/common/ErrorBoundary/ErrorBoundary";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </BrowserRouter>
+    //@ts-ignore
+    <ErrorBoundary>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    </ErrorBoundary>
     , document.getElementById('root')
 );
 
